@@ -4,18 +4,34 @@ using UnityEngine;
 
 public class MainMenuSelector : MonoBehaviour
 {
-    public bool apa = true;
+    public GameObject mainmenu;
+    public Camera playerCamera;
+    public Camera menuCamera;
+    public bool isMainmenu; //si estamo en el main menu
+    public Vector3 mainMenuPoint;
+
     void Start()
     {
-        //todavia 
+        isMainmenu = true;
+
+        playerCamera.enabled = false;
+        menuCamera.enabled = true;
     }
 
     void Update()
     {
-        //arranca seleccionado Start
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))
+        if (isMainmenu)
         {
-            apa = !apa; //togglea entre selecciones
+            if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Return))
+            {
+                mainmenu.SetActive(false);
+                PlayerStats.agency = true;
+                isMainmenu = false;
+                playerCamera.enabled = true;
+                menuCamera.enabled = false;
+
+            }
+
         }
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public static float playerHp = 50;
+    public static bool agency = false;
     void Start()
     {
 

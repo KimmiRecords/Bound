@@ -19,16 +19,20 @@ public class Linterna : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (PlayerStats.agency)
         {
-            if (prendida)
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                prendida = false;
+                if (prendida)
+                {
+                    prendida = false;
+                }
+                else
+                {
+                    prendida = true;
+                }
             }
-            else
-            {
-                prendida = true;
-            }
+
         }
 
         if (prendida)

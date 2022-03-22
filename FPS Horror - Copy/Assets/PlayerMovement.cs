@@ -42,16 +42,20 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
         move *= playerSpeed;
 
-        if (Input.GetButtonDown("Jump"))
+        if (PlayerStats.agency)
         {
-            if (groundedTimer > 0)
+            if (Input.GetButtonDown("Jump"))
             {
-                groundedTimer = 0;
-                verticalVelocity += Mathf.Sqrt(jumpHeight * 2 * gravityValue);
+                if (groundedTimer > 0)
+                {
+                    groundedTimer = 0;
+                    verticalVelocity += Mathf.Sqrt(jumpHeight * 2 * gravityValue);
+                }
             }
         }
 
         move.y = verticalVelocity;
-        controller.Move(move * Time.deltaTime);
+            controller.Move(move * Time.deltaTime);
+
     }
 }
