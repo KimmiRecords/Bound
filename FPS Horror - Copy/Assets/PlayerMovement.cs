@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController controller;
     private float verticalVelocity;
     private float groundedTimer;        // to allow jumping when going down ramps
-    private float playerSpeed = 4.5f;
+    private float playerSpeed = 7f;
     private float jumpHeight = 3.0f;
     private float gravityValue = 12.81f;
 
