@@ -19,8 +19,8 @@ public class Linterna : MonoBehaviour
 
     void Update()
     {
-        if (PlayerStats.agency) //agency es true solo cuando tenemos control de pj
-        {                       //cosa de que estes comandos no funcionen en cutscenes o intro
+        //if (PlayerStats.agency) //agency es true solo cuando tenemos control de pj
+        //{                       //cosa de que estes comandos no funcionen en cutscenes o intro
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 if (prendida)
@@ -33,7 +33,7 @@ public class Linterna : MonoBehaviour
                 }
             }
 
-        }
+        //}
 
         if (prendida)
         {
