@@ -10,5 +10,5 @@ public enum EnumPickUpType
 public class Interactable : MonoBehaviour
 {
     public EnumPickUpType pickUpType = EnumPickUpType.item_usb;
-    public float amount = 1;
+    public float amount;
 }
