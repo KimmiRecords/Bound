@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MonsterMovement : MonoBehaviour
 {
+
+    public static MonsterMovement instance;
+
     public float timer;
     public Transform playerTransform;
     public Vector3 playerPosition;
@@ -16,7 +19,14 @@ public class MonsterMovement : MonoBehaviour
 
     void Start()
     {
-
+        if (instance)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
     }
 
     void Update()
@@ -46,6 +56,13 @@ public class MonsterMovement : MonoBehaviour
     {
         transform.position = playerPosition + (playerTransform.forward * -distance); //teleports behind you
         //print("El enemigo tpeo a la posicion " + transform.position);
+
+    }
+
+    public void TPToPosition(Vector3 position)
+    {
+        transform.position = position; //teleports a la posicion pedida
+        print("El enemigo tpeo a la posicion " + transform.position);
 
     }
 }

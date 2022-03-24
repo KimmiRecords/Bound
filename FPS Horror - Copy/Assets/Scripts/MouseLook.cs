@@ -15,6 +15,7 @@ public class MouseLook : MonoBehaviour
     public float pickUpDistance = 100f;
 
     public Interactable sensedObj = null;
+    public GameObject usb3;
 
 
     float xRotation = 0f;
@@ -74,6 +75,14 @@ public class MouseLook : MonoBehaviour
             {
                 PlayerStats.usbsCollected++;
                 print("Conseguiste un Pendrive. Solo te faltan " + (4 - PlayerStats.usbsCollected) + " para ganar.");
+            }
+
+            if (sensedObj.gameObject == usb3)
+            {
+                Vector3 tpPos = new Vector3(131, 2, -35);
+                MonsterMovement.instance.TPToPosition(tpPos);
+                print("Tenes al Chebola atras tuyo");
+
             }
 
             DestroyImmediate(sensedObj.gameObject);
