@@ -4,11 +4,12 @@ using UnityEngine;
 
 public enum EnumPickUpType
 {
-    //Enumerador Para regular que item levantas y que cantidad de cu
+    //Enumerador Para regular que item levantas y que cantidad de cada uno
     item_usb, item_hp, item_battery
 }
 public class Interactable : MonoBehaviour
 {
     public EnumPickUpType pickUpType = EnumPickUpType.item_usb;
-    public float amount = 1;
+    public float amount = 1; 
+
 }

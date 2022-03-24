@@ -27,6 +27,8 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
+
+        //LOGICA DE ROTACION DE LA MIRA DEL MOUSE
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
@@ -36,10 +38,13 @@ public class MouseLook : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
 
+
+
+        //LOGICA DEL RAYCAST
         Ray ray = fpsCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        Debug.DrawRay(ray.origin, ray.direction * pickUpDistance, Color.red);
+        Debug.DrawRay(ray.origin, ray.direction * pickUpDistance, Color.blue);
 
         if (Physics.Raycast(ray, out hit, pickUpDistance))
         {
@@ -60,10 +65,10 @@ public class MouseLook : MonoBehaviour
             sensedObj = null;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && sensedObj)
+        if (Input.GetKeyDown(KeyCode.E) && sensedObj)//interactuamo con E
         {
             //Muestra en consola el nombre el tipo y la cantidad de objetos interactuados.
-            Debug.LogFormat("Used {0} of Type {1} Amount: {2}", sensedObj.name, sensedObj.pickUpType, sensedObj.amount);
+            Debug.LogFormat("Grabbed {0} of Type {1} Amount: {2}", sensedObj.name, sensedObj.pickUpType, sensedObj.amount);
             DestroyImmediate(sensedObj.gameObject);
             sensedObj = null;
         }
