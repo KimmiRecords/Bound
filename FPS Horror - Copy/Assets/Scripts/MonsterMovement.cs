@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MonsterMovement : MonoBehaviour
 {
-
     public static MonsterMovement instance;
 
     public float timer;
@@ -14,8 +13,6 @@ public class MonsterMovement : MonoBehaviour
     public float distanceToPlayer;
     public float damageAura; //el radio del aura
     public static float monsterSpeed = 0.25f;
-
-
 
     void Start()
     {
