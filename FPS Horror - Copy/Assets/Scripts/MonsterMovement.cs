@@ -30,15 +30,29 @@ public class MonsterMovement : MonoBehaviour
     {
         playerPosition = playerTransform.position; //actualiza la posicion del jugador
 
-        vectorToPlayer = playerPosition - transform.position; // calculo la distancia al player
+        vectorToPlayer = playerPosition - transform.position; // calculo vector y distancia al player
         distanceToPlayer = vectorToPlayer.magnitude;
 
+        //que el chebola siempre apunte al player
+        transform.rotation = Quaternion.LookRotation(vectorToPlayer);
+
+        //COMANDOS PARA TESTEAR BOLUDECES
         if (Input.GetKeyDown(KeyCode.P)) //toco P para tpear al monstruo behind you
         {
             TPBehindYou(damageAura);
         }
 
-        if (distanceToPlayer <= damageAura && distanceToPlayer > 0.5f) //si estoy cerca, lo entro a seguir
+        if (Input.GetKeyDown(KeyCode.O)) //toco O para tpear al monstruo a la loma del pato
+        {
+            TPFarAway();
+        }
+
+
+
+
+
+        //SEGUIR AL PLAYER
+        if (distanceToPlayer <= damageAura && distanceToPlayer > 0.5f)
         {
             transform.position += vectorToPlayer * monsterSpeed * Time.deltaTime;
 
@@ -61,5 +75,10 @@ public class MonsterMovement : MonoBehaviour
         transform.position = position; //teleports a la posicion pedida
         print("El enemigo tpeo a la posicion " + transform.position);
 
+    }
+
+    public void TPFarAway()
+    {
+        transform.position += new Vector3(0, 1000, 0);
     }
 }
