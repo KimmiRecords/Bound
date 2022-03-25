@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public static float playerHp = 50;
-    public static bool agency = false;
+    public static bool agency = true;
     public static int usbsCollected;
     void Start()
     {

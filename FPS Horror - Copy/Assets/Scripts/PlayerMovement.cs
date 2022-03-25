@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private float groundedTimer;        // to allow jumping when going down ramps
     private float playerSpeed = 7f;
     private float jumpHeight = 3.0f;
-    private float gravityValue = 12.81f;
+    public float gravityValue   ;
 
     private void Start()
     {
@@ -42,8 +42,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
         move *= playerSpeed;
 
-        //if (PlayerStats.agency)
-        //{
+        if (PlayerStats.agency)
+        {
             if (Input.GetButtonDown("Jump"))
             {
                 if (groundedTimer > 0)
@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
                     verticalVelocity += Mathf.Sqrt(jumpHeight * 2 * gravityValue);
                 }
             }
-        //}
+        }
 
         move.y = verticalVelocity;
             controller.Move(move * Time.deltaTime);
