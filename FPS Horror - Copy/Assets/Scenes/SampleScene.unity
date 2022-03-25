@@ -26003,7 +26003,10 @@ MonoBehaviour:
   playerPosition: {x: 0, y: 0, z: 0}
   vectorToPlayer: {x: 0, y: 0, z: 0}
   distanceToPlayer: 0
-  damageAura: 12
+  angle: 0
+  enEscena: 0
+  mustStay: 1
+  damageAura: 20
 --- !u!1 &1654447149
 GameObject:
   m_ObjectHideFlags: 0

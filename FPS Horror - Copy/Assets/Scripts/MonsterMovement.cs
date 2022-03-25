@@ -11,6 +11,12 @@ public class MonsterMovement : MonoBehaviour
     public Vector3 playerPosition;
     public Vector3 vectorToPlayer;
     public float distanceToPlayer;
+    public float angle; //angulo entre el player y el chebola
+
+    public bool enEscena = false; //si esta el chebola en vista o no
+    public bool mustStay = true; //si el chebola debe quedarse en su lugar
+    
+
     public float damageAura; //el radio del aura
     public static float monsterSpeed = 0.25f;
 
@@ -24,17 +30,19 @@ public class MonsterMovement : MonoBehaviour
         {
             instance = this;
         }
+
+        mustStay = true;
     }
 
     void Update()
     {
         playerPosition = playerTransform.position; //actualiza la posicion del jugador
 
-        vectorToPlayer = playerPosition - transform.position; // calculo vector y distancia al player
+        vectorToPlayer = playerPosition - transform.position; // calculo vector, distancia y angulo al player
         distanceToPlayer = vectorToPlayer.magnitude;
+        transform.rotation = Quaternion.LookRotation(vectorToPlayer); //que el chebola siempre apunte al player
+        angle = Quaternion.Angle(transform.rotation, playerTransform.rotation);
 
-        //que el chebola siempre apunte al player
-        transform.rotation = Quaternion.LookRotation(vectorToPlayer);
 
         //COMANDOS PARA TESTEAR BOLUDECES
         if (Input.GetKeyDown(KeyCode.P)) //toco P para tpear al monstruo behind you
@@ -47,38 +55,52 @@ public class MonsterMovement : MonoBehaviour
             TPFarAway();
         }
 
-
-
-
-
         //SEGUIR AL PLAYER
         if (distanceToPlayer <= damageAura && distanceToPlayer > 0.5f)
         {
             transform.position += vectorToPlayer * monsterSpeed * Time.deltaTime;
-
             PlayerStats.playerHp -= 0.1f; //daña al player constantemente (como un aura de daño)
+
             //print("Ahora le queda " + PlayerStats.playerHp + " de vida");
 
         }
 
+        //LOGICA DE DESAPARICION DEL MONSTRUO
+        if (angle > 90 && distanceToPlayer <= damageAura) //si estoy mirando al chebola y estoy cerca, lo considero en escena y ya queda liberado para tpearse cuando deje de verlo
+        {
+            enEscena = true;
+            mustStay = false;
+        }
+
+        if (angle < 90 && distanceToPlayer > damageAura) //si no lo miro y me alejo lo suficiente, se raja
+        {
+            enEscena = false;
+        }
+
+        if (enEscena == false && mustStay == false) //cuando dejo de mirarlo se tpea lejos
+        {
+            TPFarAway();
+        }
     }
 
     void TPBehindYou(float distance)
     {
+        mustStay = true;                                                             //le pido que se quede aunque no lo vea
         transform.position = playerPosition + (playerTransform.forward * -distance); //teleports behind you
-        //print("El enemigo tpeo a la posicion " + transform.position);
 
+        //print("El enemigo tpeo a la posicion " + transform.position);
     }
 
     public void TPToPosition(Vector3 position)
     {
+        mustStay = true;               //le pido que se quede aunque no lo vea
         transform.position = position; //teleports a la posicion pedida
-        print("El enemigo tpeo a la posicion " + transform.position);
 
+        //print("El enemigo tpeo a la posicion " + transform.position);
     }
 
     public void TPFarAway()
     {
-        transform.position += new Vector3(0, 1000, 0);
+        transform.position = new Vector3(0, 1000, 0);
     }
 }
