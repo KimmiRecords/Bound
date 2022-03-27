@@ -16,18 +16,16 @@ public class Flashlight : MonoBehaviour
     {
         flashlight.SetActive(false);
         flashlightActivatingCollider.SetActive(false);
-
     }
 
     void Update()
     {
         FlashlightFunction();
-
     }
 
     public void FlashlightFunction()
     {
-        if (flashlightOff.timer > 0 && Input.GetKeyDown(KeyCode.E))
+        if (flashlightOff.timer > 0 && Input.GetKeyDown(KeyCode.Q))
         {
             flashlightActive = !flashlightActive;
 
