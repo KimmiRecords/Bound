@@ -20,13 +20,15 @@ public class RaycastBatteries : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, 20f))
         {
-            if (hit.transform.tag == "batteries" && Input.GetKeyDown(KeyCode.F))
+            if (hit.transform.tag == "batteries" && Input.GetKeyDown(KeyCode.E))
             {
 
                 Destroy(hit.transform.gameObject);
                 batteriesObtained += currentBatteries;
                 Debug.Log("bateria obtenida");
                 count.text = "Baterias: " + batteriesObtained.ToString("f0");
+
+                AudioManager.instance.PlayPickup(1);
 
                 wasteBattery.timer += batteryRecharge;
             }

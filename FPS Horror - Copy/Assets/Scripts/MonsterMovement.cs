@@ -13,6 +13,8 @@ public class MonsterMovement : MonoBehaviour
     public float distanceToPlayer;
     public float angle; //angulo entre el player y el chebola
 
+    private bool screamer = true;
+
     public bool enEscena = false; //si esta el chebola en vista o no
     public bool mustStay = true; //si el chebola debe quedarse en su lugar
     
@@ -70,9 +72,17 @@ public class MonsterMovement : MonoBehaviour
         {
             enEscena = true;
             mustStay = false;
+            if (screamer)
+            {
+                AudioManager.instance.PlayScreamer1();
+                AudioManager.instance.FadeOutBGM(5);
+
+                screamer = false;
+
+            }
         }
 
-        if (angle < 90 && distanceToPlayer > damageAura) //si no lo miro y me alejo lo suficiente, se raja
+        if (angle < 90 && distanceToPlayer > damageAura) //si no lo miro y me alejo lo suficiente, se debe rajar
         {
             enEscena = false;
         }
@@ -80,6 +90,10 @@ public class MonsterMovement : MonoBehaviour
         if (enEscena == false && mustStay == false) //cuando dejo de mirarlo se tpea lejos
         {
             TPFarAway();
+            AudioManager.instance.FadeOutScreamer1(10);
+            AudioManager.instance.FadeInBGM(10);
+
+            screamer = true;
         }
     }
 

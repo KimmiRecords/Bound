@@ -70,11 +70,13 @@ public class MouseLook : MonoBehaviour
         {
             //Muestra en consola el nombre el tipo y la cantidad de objetos interactuados.
             Debug.LogFormat("Grabbed {0} of Type {1} Amount: {2}", sensedObj.name, sensedObj.pickUpType, sensedObj.amount);
+            AudioManager.instance.PlayPickup(1.1f);
 
             if (sensedObj.pickUpType == EnumPickUpType.item_usb)
             {
                 PlayerStats.usbsCollected++;
                 print("Conseguiste un Pendrive. Solo te faltan " + (4 - PlayerStats.usbsCollected) + " para ganar.");
+
             }
 
             if (sensedObj.gameObject == usb3)
