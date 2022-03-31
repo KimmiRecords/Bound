@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource pickup;
     public AudioSource bgm;
     public AudioSource screamer1;
+    public AudioSource mainMenuMusic;
 
     void Start()
     {
@@ -20,8 +21,6 @@ public class AudioManager : MonoBehaviour
             instance = this;
         }
         DontDestroyOnLoad(this);
-
-        PlayBGM();
     }
 
     void Update()
@@ -64,13 +63,27 @@ public class AudioManager : MonoBehaviour
     //SCREAMER SFX
     public void PlayScreamer1()
     {
-        screamer1.volume = 1;
+        screamer1.volume = 1;   
         screamer1.Play();
     }
-
     public void FadeOutScreamer1(float fadetime)
     {
         float timer = Time.time / fadetime;
         screamer1.volume = Mathf.Lerp(1, 0, timer);
+    }
+    public void StopScreamer1()
+    {
+        screamer1.Stop();
+    }
+
+
+    //MAIN MENU MUSIC
+    public void PlayMainMenuMusic()
+    {
+        mainMenuMusic.Play();
+    }
+    public void StopMainMenuMusic()
+    {
+        mainMenuMusic.Stop();
     }
 }

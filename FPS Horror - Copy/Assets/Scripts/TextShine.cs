@@ -8,7 +8,6 @@ public class TextShine : MonoBehaviour
 {
     public Text text;
     public Color startColor;
-    // Start is called before the first frame update
     void Start()
     {
         if (GetComponent<Text>() != null)
@@ -18,7 +17,6 @@ public class TextShine : MonoBehaviour
         startColor = text.color;
     }
 
-    // Update is called once per frame
     void Update()
     {
         //adjunta este codigo a cualquier texto UI

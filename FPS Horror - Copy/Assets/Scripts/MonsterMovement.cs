@@ -13,7 +13,8 @@ public class MonsterMovement : MonoBehaviour
     public float distanceToPlayer;
     public float angle; //angulo entre el player y el chebola
 
-    private bool screamer = true;
+    private bool screamerReady = true;
+    private bool bgmReady = false;
 
     public bool enEscena = false; //si esta el chebola en vista o no
     public bool mustStay = true; //si el chebola debe quedarse en su lugar
@@ -62,9 +63,6 @@ public class MonsterMovement : MonoBehaviour
         {
             transform.position += vectorToPlayer * monsterSpeed * Time.deltaTime;
             PlayerStats.playerHp -= 0.1f; //daña al player constantemente (como un aura de daño)
-
-            //print("Ahora le queda " + PlayerStats.playerHp + " de vida");
-
         }
 
         //LOGICA DE DESAPARICION DEL MONSTRUO
@@ -72,13 +70,12 @@ public class MonsterMovement : MonoBehaviour
         {
             enEscena = true;
             mustStay = false;
-            if (screamer)
+            if (screamerReady)
             {
                 AudioManager.instance.PlayScreamer1();
-                AudioManager.instance.FadeOutBGM(5);
-
-                screamer = false;
-
+                AudioManager.instance.StopBGM();
+                screamerReady = false;
+                bgmReady = true;
             }
         }
 
@@ -90,10 +87,13 @@ public class MonsterMovement : MonoBehaviour
         if (enEscena == false && mustStay == false) //cuando dejo de mirarlo se tpea lejos
         {
             TPFarAway();
-            AudioManager.instance.FadeOutScreamer1(10);
-            AudioManager.instance.FadeInBGM(10);
-
-            screamer = true;
+            screamerReady = true;
+            if (bgmReady)
+            {
+                AudioManager.instance.FadeOutScreamer1(10);
+                AudioManager.instance.PlayBGM();
+                bgmReady = false;
+            }
         }
     }
 
@@ -101,16 +101,12 @@ public class MonsterMovement : MonoBehaviour
     {
         mustStay = true;                                                             //le pido que se quede aunque no lo vea
         transform.position = playerPosition + (playerTransform.forward * -distance); //teleports behind you
-
-        //print("El enemigo tpeo a la posicion " + transform.position);
     }
 
     public void TPToPosition(Vector3 position)
     {
         mustStay = true;               //le pido que se quede aunque no lo vea
         transform.position = position; //teleports a la posicion pedida
-
-        //print("El enemigo tpeo a la posicion " + transform.position);
     }
 
     public void TPFarAway()
