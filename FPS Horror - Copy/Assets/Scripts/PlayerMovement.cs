@@ -4,58 +4,58 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private CharacterController controller;
-    private float verticalVelocity;
-    private float groundedTimer;        // to allow jumping when going down ramps
-    private float playerSpeed = 7f;
-    private float jumpHeight = 3.0f;
-    public float gravityValue   ;
+    private CharacterController _controller;
+    private float _verticalVelocity;
+    private float _groundedTimer;        // to allow jumping when going down ramps
+    private float _playerSpeed = 7f;
+    private float _jumpHeight = 3.0f;
+    public float gravityValue;
 
     private void Start()
     {
         // always add a controller
         if (GetComponent<CharacterController>() != null)
         {
-            controller = GetComponent<CharacterController>();
+            _controller = GetComponent<CharacterController>();
         }
     }
 
     void Update()
     {
-        bool groundedPlayer = controller.isGrounded;
+        bool groundedPlayer = _controller.isGrounded;
         if (groundedPlayer)
         {
-            groundedTimer = 0.2f; //mientras este en el suelo
+            _groundedTimer = 0.2f; //mientras este en el suelo
         }
 
-        if (groundedTimer > 0)
+        if (_groundedTimer > 0)
         {
-            groundedTimer -= Time.deltaTime; //lo vuelve a 0
+            _groundedTimer -= Time.deltaTime; //lo vuelve a 0
         }
 
-        if (groundedPlayer && verticalVelocity < 0) //corta la caida cuando toco el suelo
+        if (groundedPlayer && _verticalVelocity < 0) //corta la caida cuando toco el suelo
         {
-            verticalVelocity = 0f;
+            _verticalVelocity = 0f;
         }
 
-        verticalVelocity -= gravityValue * Time.deltaTime; //aplica gravedad
+        _verticalVelocity -= gravityValue * Time.deltaTime; //aplica gravedad
         Vector3 move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
-        move *= playerSpeed;
+        move *= _playerSpeed;
 
         if (PlayerStats.agency)
         {
             if (Input.GetButtonDown("Jump"))
             {
-                if (groundedTimer > 0)
+                if (_groundedTimer > 0)
                 {
-                    groundedTimer = 0;
-                    verticalVelocity += Mathf.Sqrt(jumpHeight * 2 * gravityValue);
+                    _groundedTimer = 0;
+                    _verticalVelocity += Mathf.Sqrt(_jumpHeight * 2 * gravityValue);
                 }
             }
         }
 
-        move.y = verticalVelocity;
-            controller.Move(move * Time.deltaTime);
+        move.y = _verticalVelocity;
+            _controller.Move(move * Time.deltaTime);
 
     }
 }
