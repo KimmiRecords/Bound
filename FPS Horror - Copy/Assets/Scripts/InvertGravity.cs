@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InvertGravity : MonoBehaviour
 {
+    public static InvertGravity instance;
     public Rigidbody rb;
     public Vector3 upGrav;
     public Vector3 inverseGrav;
@@ -11,6 +12,8 @@ public class InvertGravity : MonoBehaviour
     public bool isGrav;
     void Start()
     {
+        instance = this;
+
         if (GetComponent<Rigidbody>() != null)
         {
             rb = GetComponent<Rigidbody>();
@@ -22,10 +25,9 @@ public class InvertGravity : MonoBehaviour
         isGrav = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G)) //swapea la gravedad
         {
             if (isGrav)
             {
@@ -47,5 +49,21 @@ public class InvertGravity : MonoBehaviour
     private void FixedUpdate()
     {
         rb.AddForce(inverseGrav, ForceMode.Force); //aplica inverseGrav constantemente
+    }
+
+    public void ToggleGrav() //hace lo mismo que tocar G
+    {
+        if (isGrav)
+        {
+            rb.useGravity = false;
+            inverseGrav = upGrav;
+            isGrav = false;
+        }
+        else
+        {
+            rb.useGravity = true;
+            inverseGrav = Vector3.zero;
+            isGrav = true;
+        }
     }
 }

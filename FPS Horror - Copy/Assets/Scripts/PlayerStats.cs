@@ -36,6 +36,6 @@ public class PlayerStats : MonoBehaviour
         {
             playerHp += 0.04f;
         }
-        print("HP Actual = " + playerHp);
+        //print("HP Actual = " + playerHp);
     }
 }
