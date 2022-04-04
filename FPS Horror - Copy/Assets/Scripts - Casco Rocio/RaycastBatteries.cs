@@ -5,14 +5,11 @@ using UnityEngine.UI;
 
 public class RaycastBatteries : MonoBehaviour
 {
-
-
     public int batteriesObtained;
     public int currentBatteries;
     public int batteryRecharge;
     public Text count;
     public FlashlightLife wasteBattery;
-
 
 
     void Update()
@@ -31,9 +28,9 @@ public class RaycastBatteries : MonoBehaviour
                 AudioManager.instance.PlayPickup(1);
 
                 wasteBattery.timer += batteryRecharge;
+
             }
         }
-
     }
     private void OnDrawGizmos()
     {

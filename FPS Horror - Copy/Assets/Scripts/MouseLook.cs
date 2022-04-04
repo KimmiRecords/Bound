@@ -5,6 +5,7 @@ using UnityEngine;
 public class MouseLook : MonoBehaviour
 {
     //controla la vista FP y ademas tiene raycast en la camara.
+    //este script incluye algunas interacciones del jugador con objetos
 
     public Transform playerBody;
 
@@ -18,7 +19,6 @@ public class MouseLook : MonoBehaviour
     public GameObject usb3;
 
 
-
     float xRotation = 0f;
     void Start()
     {
@@ -26,11 +26,10 @@ public class MouseLook : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-
     void Update()
     {
 
-        //LOGICA DE ROTACION DE LA MIRA DEL MOUSE
+        //LOGICA DE ROTACION DE LA MIRA DEL MOUSE -- por Fran
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
@@ -41,8 +40,7 @@ public class MouseLook : MonoBehaviour
         playerBody.Rotate(Vector3.up * mouseX);
 
 
-
-        //LOGICA DEL RAYCAST
+        //LOGICA DEL RAYCAST -- por Fran
         Ray ray = fpsCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
@@ -67,7 +65,7 @@ public class MouseLook : MonoBehaviour
             sensedObj = null;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && sensedObj)//interactuamo con E
+        if (Input.GetKeyDown(KeyCode.E) && sensedObj)//interactuamo con E -- por Fran
         {
             //Muestra en consola el nombre, tipo y la cantidad de objetos interactuados.
             Debug.LogFormat("Grabbed {0} of Type {1} Amount: {2}", sensedObj.name, sensedObj.pickUpType, sensedObj.amount);
@@ -79,26 +77,26 @@ public class MouseLook : MonoBehaviour
                 print("Conseguiste un Pendrive. Solo te faltan " + (4 - PlayerStats.usbsCollected) + " para ganar.");
             }
 
-            if (sensedObj.gameObject == usb3)
+            if (sensedObj.gameObject == usb3) //hace aparecer al Chebola justo despues de agarrar el tercer usb. -- por DK
             {
                 Vector3 tpPos = new Vector3(131, 2, -35);
                 MonsterMovement.instance.TPToPosition(tpPos);
                 print("Tenes al Chebola atras tuyo");
             }
 
-            if (sensedObj.pickUpType == EnumPickUpType.trigger_reja)
+            if (sensedObj.pickUpType == EnumPickUpType.trigger_reja) //en el puzzle1, mueve la reja -- por DK
             {
                 //mueve la reja
                 RejaPuzzle1.instance.ToggleReja();
             }
 
-            if (sensedObj.pickUpType == EnumPickUpType.trigger_grav)
+            if (sensedObj.pickUpType == EnumPickUpType.trigger_grav) //en el puzzle1, altera la gravedad -- por DK
             {
                 InvertGravity.instance.ToggleGrav();
             }
 
 
-            //si es un pickup, lo destruye
+            //si es un pickup, lo destruye -- por Fran
             if (sensedObj.pickUpType == EnumPickUpType.item_usb || sensedObj.pickUpType == EnumPickUpType.item_battery || sensedObj.pickUpType == EnumPickUpType.item_hp)
             {
                 DestroyImmediate(sensedObj.gameObject);

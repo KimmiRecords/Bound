@@ -19,7 +19,6 @@ public class RejaPuzzle1 : MonoBehaviour
             instance = this;
         }
         open = false;
-        
     }
 
     void Update()
@@ -39,6 +38,4 @@ public class RejaPuzzle1 : MonoBehaviour
             transform.position += traslacion; 
         }
     }
-
-
 }
