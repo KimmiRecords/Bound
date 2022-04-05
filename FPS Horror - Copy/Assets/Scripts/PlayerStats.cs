@@ -14,7 +14,6 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         playerHpMax = vidita;
-        //playerHpMax = 150;
         playerHp = playerHpMax;
 
 
@@ -37,7 +36,11 @@ public class PlayerStats : MonoBehaviour
 
         if (playerHp < playerHpMax) //regenera hp de a poco
         {
-            playerHp += 0.04f;
+            if (!MonsterMovement.fear) //pero solo si no me esta dañando el chebola
+            {
+                playerHp += 0.2f;
+
+            }
         }
         print("HP Actual = " + playerHp);
     }

@@ -24,6 +24,7 @@ public class MonsterMovement : MonoBehaviour
 
     public float damageAura; //el radio del aura
     public static float monsterSpeed = 0.25f;
+    public static bool fear;
 
     public NavMeshAgent agent;
 
@@ -39,6 +40,7 @@ public class MonsterMovement : MonoBehaviour
         }
 
         _mustStay = true;
+        fear = false;
 
         agent = GetComponent<NavMeshAgent>();
     }
@@ -71,6 +73,7 @@ public class MonsterMovement : MonoBehaviour
         {
             agent.destination = _playerPosition;
             PlayerStats.playerHp -= 0.1f; //daña al player constantemente (como un aura de daño), lo vea o no
+            fear = true;
         }
 
         //LOGICA DE APARICION DEL MONSTRUO
@@ -102,6 +105,7 @@ public class MonsterMovement : MonoBehaviour
             {
                 AudioManager.instance.FadeOutScreamer1(10);
                 AudioManager.instance.PlayBGM();
+                fear = false;
                 _bgmReady = false;
             }
         }
@@ -111,7 +115,7 @@ public class MonsterMovement : MonoBehaviour
     {
         if (collision.gameObject.layer == 3) //layer 3 es Player
         {
-            PlayerStats.playerHp = 0;
+            PlayerStats.playerHp = 0; //si me toca, me muero
         }
         
 
