@@ -1,27 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+
 
 public class MonsterMovement : MonoBehaviour
 {
     public static MonsterMovement instance;
-
-    public float timer;
     public Transform playerTransform;
-    public Vector3 playerPosition;
-    public Vector3 vectorToPlayer;
-    public float distanceToPlayer;
-    public float angle; //angulo entre el player y el chebola
 
-    private bool screamerReady = true;
-    private bool bgmReady = false;
+    private float _timer;
+    private Vector3 _playerPosition;
+    private Vector3 _vectorToPlayer;
+    private float _distanceToPlayer;
+    private float _angle; //angulo entre el player y el chebola
 
-    public bool enEscena = false; //si esta el chebola en vista o no
-    public bool mustStay = true; //si el chebola debe quedarse en su lugar
+    private bool _screamerReady = true;
+    private bool _bgmReady = false;
+
+    private bool _enEscena = false; //si esta el chebola en vista o no
+    private bool _mustStay = true; //si el chebola debe quedarse en su lugar
     
 
     public float damageAura; //el radio del aura
     public static float monsterSpeed = 0.25f;
+
+    public NavMeshAgent agent;
 
     void Start()
     {
@@ -34,17 +38,21 @@ public class MonsterMovement : MonoBehaviour
             instance = this;
         }
 
-        mustStay = true;
+        _mustStay = true;
+
+        agent = GetComponent<NavMeshAgent>();
     }
 
     void Update()
     {
-        playerPosition = playerTransform.position; //actualiza la posicion del jugador
+        _playerPosition = playerTransform.position; //actualiza la posicion del jugador
 
-        vectorToPlayer = playerPosition - transform.position; // calculo vector, distancia y angulo al player
-        distanceToPlayer = vectorToPlayer.magnitude;
-        transform.rotation = Quaternion.LookRotation(vectorToPlayer); //que el chebola siempre apunte al player
-        angle = Quaternion.Angle(transform.rotation, playerTransform.rotation);
+        _vectorToPlayer = _playerPosition - transform.position; // calculo vector, distancia y angulo al player
+        _distanceToPlayer = _vectorToPlayer.magnitude;
+
+
+        transform.rotation = Quaternion.LookRotation(_vectorToPlayer); //que el chebola siempre apunte al player
+        _angle = Quaternion.Angle(transform.rotation, playerTransform.rotation);
 
 
         //COMANDOS PARA TESTEAR BOLUDECES
@@ -59,53 +67,65 @@ public class MonsterMovement : MonoBehaviour
         }
 
         //SEGUIR AL PLAYER
-        if (distanceToPlayer <= damageAura && distanceToPlayer > 0.5f)
+        if (_distanceToPlayer <= damageAura && _distanceToPlayer > 0.5f) 
         {
-            transform.position += vectorToPlayer * monsterSpeed * Time.deltaTime;
-            PlayerStats.playerHp -= 0.1f; //daña al player constantemente (como un aura de daño)
+            agent.destination = _playerPosition;
+            PlayerStats.playerHp -= 0.1f; //daña al player constantemente (como un aura de daño), lo vea o no
         }
 
-        //LOGICA DE DESAPARICION DEL MONSTRUO
-        if (angle > 90 && distanceToPlayer <= damageAura) //si estoy mirando al chebola y estoy cerca, lo considero en escena y ya queda liberado para tpearse cuando deje de verlo
+        //LOGICA DE APARICION DEL MONSTRUO
+        if (_angle > 90 && _distanceToPlayer <= damageAura) //si estoy mirando al chebola y estoy cerca, lo considero en escena y ya queda liberado para tpearse cuando deje de verlo
         {
-            enEscena = true;
-            mustStay = false;
-            if (screamerReady)
+            _enEscena = true;
+            _mustStay = false;
+
+            if (_screamerReady) //el screamer arranca cuando lo veo y estoy cerca
             {
                 AudioManager.instance.PlayScreamer1();
                 AudioManager.instance.StopBGM();
-                screamerReady = false;
-                bgmReady = true;
+                _screamerReady = false;
+                _bgmReady = true;
             }
+            
         }
 
-        if (angle < 90 && distanceToPlayer > damageAura) //si no lo miro y me alejo lo suficiente, se debe rajar
+        if (_angle < 90 && _distanceToPlayer > damageAura) //si no lo miro y me alejo lo suficiente, se debe rajar
         {
-            enEscena = false;
+            _enEscena = false;
         }
 
-        if (enEscena == false && mustStay == false) //cuando dejo de mirarlo se tpea lejos
+        if (_enEscena == false && _mustStay == false) //cuando dejo de mirarlo se tpea lejos
         {
             TPFarAway();
-            screamerReady = true;
-            if (bgmReady)
+            _screamerReady = true;
+            if (_bgmReady)
             {
                 AudioManager.instance.FadeOutScreamer1(10);
                 AudioManager.instance.PlayBGM();
-                bgmReady = false;
+                _bgmReady = false;
             }
         }
     }
 
-    void TPBehindYou(float distance)
+    private void OnCollisionEnter(Collision collision)
     {
-        mustStay = true;                                                             //le pido que se quede aunque no lo vea
-        transform.position = playerPosition + (playerTransform.forward * -distance); //teleports behind you
+        if (collision.gameObject.layer == 3) //layer 3 es Player
+        {
+            PlayerStats.playerHp = 0;
+        }
+        
+
+    }
+
+    public void TPBehindYou(float distance)
+    {
+        _mustStay = true;                                                             //le pido que se quede aunque ahi no lo vea
+        transform.position = _playerPosition + (playerTransform.forward * -distance); //teleports behind you
     }
 
     public void TPToPosition(Vector3 position)
     {
-        mustStay = true;               //le pido que se quede aunque no lo vea
+        _mustStay = true;               //le pido que se quede ahi aunque no lo vea
         transform.position = position; //teleports a la posicion pedida
     }
 

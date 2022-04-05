@@ -6,6 +6,7 @@ public class MouseLook : MonoBehaviour
 {
     //controla la vista FP y ademas tiene raycast en la camara.
     //este script incluye algunas interacciones del jugador con objetos
+    //la mayoria de este script lo hizo Fran, despues DK agrego algunas cositas
 
     public Transform playerBody;
 
@@ -65,7 +66,8 @@ public class MouseLook : MonoBehaviour
             sensedObj = null;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && sensedObj)//interactuamo con E -- por Fran
+        //interactuamos con E -- por Fran
+        if (Input.GetKeyDown(KeyCode.E) && sensedObj)
         {
             //Muestra en consola el nombre, tipo y la cantidad de objetos interactuados.
             Debug.LogFormat("Grabbed {0} of Type {1} Amount: {2}", sensedObj.name, sensedObj.pickUpType, sensedObj.amount);
@@ -77,20 +79,23 @@ public class MouseLook : MonoBehaviour
                 print("Conseguiste un Pendrive. Solo te faltan " + (4 - PlayerStats.usbsCollected) + " para ganar.");
             }
 
-            if (sensedObj.gameObject == usb3) //hace aparecer al Chebola justo despues de agarrar el tercer usb. -- por DK
+            //hace aparecer al Chebola justo despues de agarrar el tercer usb. -- por DK
+            if (sensedObj.gameObject == usb3) 
             {
                 Vector3 tpPos = new Vector3(131, 2, -35);
                 MonsterMovement.instance.TPToPosition(tpPos);
                 print("Tenes al Chebola atras tuyo");
             }
 
-            if (sensedObj.pickUpType == EnumPickUpType.trigger_reja) //en el puzzle1, mueve la reja -- por DK
+            //en el puzzle1, mueve la reja -- por DK
+            if (sensedObj.pickUpType == EnumPickUpType.trigger_reja) 
             {
                 //mueve la reja
                 RejaPuzzle1.instance.ToggleReja();
             }
 
-            if (sensedObj.pickUpType == EnumPickUpType.trigger_grav) //en el puzzle1, altera la gravedad -- por DK
+            //en el puzzle1, altera la gravedad -- por DK
+            if (sensedObj.pickUpType == EnumPickUpType.trigger_grav) 
             {
                 InvertGravity.instance.ToggleGrav();
             }

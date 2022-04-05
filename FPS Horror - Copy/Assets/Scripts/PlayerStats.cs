@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
+    public float vidita;
     public static float playerHp;
     public static float playerHpMax;
     public static bool agency = true;
@@ -12,8 +13,10 @@ public class PlayerStats : MonoBehaviour
 
     void Start()
     {
-        playerHpMax = 150;
+        playerHpMax = vidita;
+        //playerHpMax = 150;
         playerHp = playerHpMax;
+
 
     }
 
@@ -36,6 +39,6 @@ public class PlayerStats : MonoBehaviour
         {
             playerHp += 0.04f;
         }
-        //print("HP Actual = " + playerHp);
+        print("HP Actual = " + playerHp);
     }
 }
