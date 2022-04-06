@@ -20796,7 +20796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 264836848}
-  damageAura: 18
+  damageAura: 20
   agent: {fileID: 0}
 --- !u!43 &1661980772
 Mesh:

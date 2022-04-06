@@ -63,7 +63,7 @@ public class AudioManager : MonoBehaviour
     //SCREAMER SFX
     public void PlayScreamer1()
     {
-        screamer1.volume = 0.6f;   
+        screamer1.volume = 0.8f;   
         screamer1.Play();
     }
     public void FadeOutScreamer1(float fadetime)
