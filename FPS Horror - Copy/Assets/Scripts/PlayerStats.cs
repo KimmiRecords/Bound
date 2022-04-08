@@ -42,6 +42,6 @@ public class PlayerStats : MonoBehaviour
 
             }
         }
-        print("HP Actual = " + playerHp);
+        //print("HP Actual = " + playerHp);
     }
 }

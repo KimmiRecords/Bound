@@ -2,27 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoxTrigger : MonoBehaviour
+public class LuzTrigger : MonoBehaviour
 {
+    //este script se lo pones a la pressure plate que prende la luz
+
     public BoxCollider boxCollider;
-    public Vector3 posicionAlzada;
-    public Vector3 posicionInicial;
-    public GameObject gate;
+    public Light luz;
 
     void Start()
     {
-        if (boxCollider != null)
+        if (GetComponent<BoxCollider>() != null)
         {
             boxCollider = GetComponent<BoxCollider>();
         }
-        posicionAlzada = gate.transform.position + Vector3.up * 10;
-        posicionInicial = gate.transform.position;
-
-
     }
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,7 +26,8 @@ public class BoxTrigger : MonoBehaviour
 
         if (other.gameObject.layer == 7 || other.gameObject.layer == 3) //la layer 7 es de las cajas 
         {
-            gate.transform.position = posicionAlzada;
+            //prende la luz
+            luz.intensity = 2;
         }
     }
 
@@ -38,7 +35,8 @@ public class BoxTrigger : MonoBehaviour
     {
         if (other.gameObject.layer == 7 || other.gameObject.layer == 3) //la layer 7 es de las cajas 
         {
-            gate.transform.position = posicionInicial;
+            //apaga la luz
+            luz.intensity = 0;
         }
     }
 }

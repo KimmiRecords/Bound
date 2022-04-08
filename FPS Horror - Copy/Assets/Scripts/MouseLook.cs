@@ -21,6 +21,8 @@ public class MouseLook : MonoBehaviour
 
 
     float xRotation = 0f;
+
+    public InfoPopup infoPopup;
     void Start()
     {
         //Hace que el cursor desaparezca.
