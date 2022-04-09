@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class InfoPopup : MonoBehaviour
 {
+    //este script se lo adjuntas a un interactable que quieras que muestre un mensaje en pantalla
+
     private Interactable yo;
 
     public string message;

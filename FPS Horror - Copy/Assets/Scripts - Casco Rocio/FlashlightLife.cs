@@ -5,14 +5,11 @@ using UnityEngine.UI;
 
 public class FlashlightLife : MonoBehaviour
 {
-
-
     public bool start = false;
     public float startTime = 1f;
     public Text textTimer;
     public float timer = 300;
     public GameObject basicFlashlight;
-
 
     public void Subtract(int amount)
     {
@@ -25,9 +22,7 @@ public class FlashlightLife : MonoBehaviour
             {
                 basicFlashlight.SetActive(false);
             }
-
         }
-
     }
 
     IEnumerator PerSecond() //lo uso para que cuente cada segundo en que enemi y player collisionan, si no está cuenta cada frame. 
@@ -35,6 +30,5 @@ public class FlashlightLife : MonoBehaviour
         start = true;
         yield return new WaitForSeconds(startTime);
         start = false;
-
     }
 }

@@ -11,6 +11,7 @@ public class MonsterMovement : MonoBehaviour
 
     private Vector3 _playerPosition;
     private Vector3 _vectorToPlayer;
+    public Vector3 _farAway;
     private float _distanceToPlayer;
     private float _angle; //angulo entre el player y el chebola
 
@@ -18,10 +19,11 @@ public class MonsterMovement : MonoBehaviour
     private bool _bgmReady = false; //si la musiquita ...
 
     private bool _enEscena = false; //si esta el chebola en vista o no
-    private bool _mustStay = true; //si el chebola debe quedarse en su lugar
+    private bool _mustStay = true; //si el chebola debe quedarse en su lugar. lo uso por si te tiene que esperar despues de tpear.
     
 
     public float damageAura; //el radio del aura
+
     public static float monsterSpeed = 0.25f;
     public static bool fear;
 
@@ -55,7 +57,6 @@ public class MonsterMovement : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(_vectorToPlayer); //que el chebola siempre apunte al player
         _angle = Quaternion.Angle(transform.rotation, playerTransform.rotation);
 
-
         //COMANDOS PARA TESTEAR BOLUDECES
         if (Input.GetKeyDown(KeyCode.P)) //toco P para tpear al monstruo behind you
         {
@@ -67,31 +68,28 @@ public class MonsterMovement : MonoBehaviour
             TPFarAway();
         }
 
-        //SEGUIR AL PLAYER
-        if (_distanceToPlayer <= damageAura && _distanceToPlayer > 0.5f) 
+        if (_distanceToPlayer <= damageAura) //si estas en aura, te comes el daño por bobo, aunque no veas al chebola
         {
-            agent.destination = _playerPosition;
-            PlayerStats.playerHp -= 0.1f; //daña al player constantemente (como un aura de daño), lo vea o no
-            fear = true;
-        }
+            Damage();
 
-        //LOGICA DE APARICION DEL MONSTRUO
-        if (_angle > 90 && _distanceToPlayer <= damageAura) //si estoy mirando al chebola y estoy cerca, lo considero en escena y ya queda liberado para tpearse cuando deje de verlo
-        {
-            _enEscena = true;
-            _mustStay = false;
-
-            if (_screamerReady) //el screamer arranca cuando lo veo y estoy cerca
+            if (_angle > 90) //si ademas estoy mirando al chebola , lo considero en escena y ya queda liberado para tpearse cuando deje de verlo
             {
-                AudioManager.instance.PlayScreamer1();
-                AudioManager.instance.StopBGM();
-                _screamerReady = false;
-                _bgmReady = true;
+                _enEscena = true;
+                _mustStay = false;
+
+                if (_screamerReady) //y si el screamer esta listo...
+                {
+                    agent.destination = _playerPosition; //me muevo hacia el player
+
+                    AudioManager.instance.PlayScreamer1(); //arranca el todo mal
+                    AudioManager.instance.StopBGM();
+                    _screamerReady = false;
+                    _bgmReady = true;
+                }
             }
-            
         }
 
-        if (_angle < 90 && _distanceToPlayer > damageAura) //si no lo miro y me alejo lo suficiente, se debe rajar
+        if (_angle < 90 && _distanceToPlayer > damageAura) //si volteas y te alejas, zafas
         {
             _enEscena = false;
         }
@@ -99,6 +97,7 @@ public class MonsterMovement : MonoBehaviour
         if (_enEscena == false && _mustStay == false) //cuando dejo de mirarlo se tpea lejos
         {
             TPFarAway();
+            agent.destination = _farAway;
             _screamerReady = true;
             if (_bgmReady)
             {
@@ -116,8 +115,6 @@ public class MonsterMovement : MonoBehaviour
         {
             PlayerStats.playerHp = 0; //si me toca, me muero
         }
-        
-
     }
 
     public void TPBehindYou(float distance)
@@ -134,6 +131,12 @@ public class MonsterMovement : MonoBehaviour
 
     public void TPFarAway()
     {
-        transform.position = new Vector3(0, 1000, 0);
+        transform.position = _farAway;
+    }
+
+    public void Damage()
+    {
+        PlayerStats.playerHp -= 0.1f; //daña al player constantemente
+        fear = true;
     }
 }

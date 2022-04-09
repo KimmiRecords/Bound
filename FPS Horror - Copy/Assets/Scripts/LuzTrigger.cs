@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class LuzTrigger : MonoBehaviour
 {
-    //este script se lo pones a la pressure plate que prende la luz
+    //este script se lo pones a una pressure plate para que prenda UNA luz
 
-    public BoxCollider boxCollider;
-    public Light luz;
+    private BoxCollider boxCollider;
+    public Light luz; //la luz que voy a prender. 
+    public float intensidadDeseada;
 
     void Start()
     {
@@ -23,17 +24,16 @@ public class LuzTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
-        if (other.gameObject.layer == 7 || other.gameObject.layer == 3) //la layer 7 es de las cajas 
+        if (other.gameObject.layer == 7 || other.gameObject.layer == 3) //la layer 7 es de las cajas, la 3 es player
         {
             //prende la luz
-            luz.intensity = 2;
+            luz.intensity = intensidadDeseada;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == 7 || other.gameObject.layer == 3) //la layer 7 es de las cajas 
+        if (other.gameObject.layer == 7 || other.gameObject.layer == 3)
         {
             //apaga la luz
             luz.intensity = 0;

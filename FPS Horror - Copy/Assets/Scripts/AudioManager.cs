@@ -10,6 +10,8 @@ public class AudioManager : MonoBehaviour
     public AudioSource screamer1;
     public AudioSource mainMenuMusic;
 
+    private float volumenDeseadoScreamer;
+
     void Start()
     {
         if (instance)
@@ -21,6 +23,8 @@ public class AudioManager : MonoBehaviour
             instance = this;
         }
         DontDestroyOnLoad(this);
+
+        volumenDeseadoScreamer = screamer1.volume;
     }
 
     void Update()
@@ -63,7 +67,7 @@ public class AudioManager : MonoBehaviour
     //SCREAMER SFX
     public void PlayScreamer1()
     {
-        screamer1.volume = 0.8f;   
+        screamer1.volume = volumenDeseadoScreamer;   
         screamer1.Play();
     }
     public void FadeOutScreamer1(float fadetime)

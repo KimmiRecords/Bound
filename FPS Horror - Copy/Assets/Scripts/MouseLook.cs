@@ -19,9 +19,6 @@ public class MouseLook : MonoBehaviour
     public Interactable sensedObj = null;
     public GameObject usb3;
 
-
-    public InfoPopup infoPopup;
-
     void Start()
     {
         //Hace que el cursor desaparezca.
@@ -82,26 +79,23 @@ public class MouseLook : MonoBehaviour
                 print("Conseguiste un Pendrive. Solo te faltan " + (4 - PlayerStats.usbsCollected) + " para ganar.");
             }
 
-            //hace aparecer al Chebola justo despues de agarrar el tercer usb. -- por DK
-            if (sensedObj.gameObject == usb3) 
+            if (sensedObj.gameObject == usb3)  //hace aparecer al Chebola justo despues de agarrar el tercer usb. -- por DK
             {
-                Vector3 tpPos = new Vector3(131, 2, -35);
-                MonsterMovement.instance.TPToPosition(tpPos);
+                //Vector3 tpPos = new Vector3(131, 2, -35);
+                //MonsterMovement.instance.TPToPosition(tpPos);
+                MonsterMovement.instance.TPBehindYou(10f);
                 print("Tenes al Chebola atras tuyo");
             }
 
-            //en el puzzle1, mueve la reja -- por DK
-            if (sensedObj.pickUpType == EnumPickUpType.trigger_reja) 
+            if (sensedObj.pickUpType == EnumPickUpType.trigger_reja)  //en el puzzle1, mueve la reja -- por DK
             {
-                //mueve la reja
                 RejaPuzzle1.instance.ToggleReja();
             }
 
-            //en el puzzle1, altera la gravedad -- por DK
-            if (sensedObj.pickUpType == EnumPickUpType.trigger_grav) 
-            {
-                InvertGravity.instance.ToggleGrav();
-            }
+            //if (sensedObj.pickUpType == EnumPickUpType.trigger_grav) //togglea la gravedad de TODOS los graviobjetos-- por DK
+            //{
+            //    //InvertGravity.instance.ToggleGrav();
+            //}
 
             //si es un pickup, lo destruye -- por Fran
             if (sensedObj.pickUpType == EnumPickUpType.item_usb || sensedObj.pickUpType == EnumPickUpType.item_battery || sensedObj.pickUpType == EnumPickUpType.item_hp)

@@ -11,11 +11,12 @@ public class PlayerStats : MonoBehaviour
     public static bool agency = true;
     public static int usbsCollected;
 
+    public static bool boundToggleFlag = false;
+
     void Start()
     {
         playerHpMax = vidita;
         playerHp = playerHpMax;
-
 
     }
 
