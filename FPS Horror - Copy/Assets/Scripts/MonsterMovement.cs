@@ -9,14 +9,13 @@ public class MonsterMovement : MonoBehaviour
     public static MonsterMovement instance;
     public Transform playerTransform;
 
-    private float _timer;
     private Vector3 _playerPosition;
     private Vector3 _vectorToPlayer;
     private float _distanceToPlayer;
     private float _angle; //angulo entre el player y el chebola
 
-    private bool _screamerReady = true;
-    private bool _bgmReady = false;
+    private bool _screamerReady = true; //si el screamer ta ready para salir
+    private bool _bgmReady = false; //si la musiquita ...
 
     private bool _enEscena = false; //si esta el chebola en vista o no
     private bool _mustStay = true; //si el chebola debe quedarse en su lugar
@@ -26,7 +25,7 @@ public class MonsterMovement : MonoBehaviour
     public static float monsterSpeed = 0.25f;
     public static bool fear;
 
-    public NavMeshAgent agent;
+    private NavMeshAgent agent;
 
     void Start()
     {
