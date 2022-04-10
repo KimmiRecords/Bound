@@ -70,16 +70,18 @@ public class MonsterMovement : MonoBehaviour
 
         if (_distanceToPlayer <= damageAura) //si estas en aura, te comes el daño por bobo, aunque no veas al chebola
         {
-            Damage();
+            //Damage();
 
             if (_angle > 90) //si ademas estoy mirando al chebola , lo considero en escena y ya queda liberado para tpearse cuando deje de verlo
             {
                 _enEscena = true;
                 _mustStay = false;
+                Damage();
 
                 if (_screamerReady) //y si el screamer esta listo...
                 {
                     agent.destination = _playerPosition; //me muevo hacia el player
+
 
                     AudioManager.instance.PlayScreamer1(); //arranca el todo mal
                     AudioManager.instance.StopBGM();

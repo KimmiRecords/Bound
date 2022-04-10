@@ -17,7 +17,7 @@ public class RaycastBatteries : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, 20f))
         {
-            if (hit.transform.tag == "batteries" && Input.GetKeyDown(KeyCode.E))
+            if (hit.transform.tag == "batteries" && (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)))
             {
 
                 Destroy(hit.transform.gameObject);

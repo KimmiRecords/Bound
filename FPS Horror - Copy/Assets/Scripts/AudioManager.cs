@@ -9,6 +9,9 @@ public class AudioManager : MonoBehaviour
     public AudioSource bgm;
     public AudioSource screamer1;
     public AudioSource mainMenuMusic;
+    public AudioSource pPlateOn;
+    public AudioSource pPlateOff;
+
 
     private float volumenDeseadoScreamer;
 
@@ -39,6 +42,16 @@ public class AudioManager : MonoBehaviour
     {
         pickup.pitch = p;
         pickup.Play();
+    }
+
+    //PRESSURE PLATE SFX
+    public void PlayPPlateOn()
+    {
+        pPlateOn.Play();
+    }
+    public void PlayPPlateOff()
+    {
+        pPlateOff.Play();
     }
 
 

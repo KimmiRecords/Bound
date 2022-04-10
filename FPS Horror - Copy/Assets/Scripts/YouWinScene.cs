@@ -34,7 +34,7 @@ public class YouWinScene : MonoBehaviour
             pressAnyKey.color = new Color(0.5f, 1, 0.5f, Mathf.Sin(1.5f * Time.time));
         }
 
-        if (Input.anyKey)
+        if (Input.GetKeyDown(KeyCode.E))
         {
             //AudioManager.instance.StopMainMenuMusic();
             //AudioManager.instance.PlayMainMenuMusic();

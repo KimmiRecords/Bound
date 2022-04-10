@@ -13,19 +13,20 @@ public class DamageFrame : MonoBehaviour
     public GameObject damageFrame2;
     private RawImage damageFrame2RawImg;
 
-    private float alpha;
+    private float opacity;
+    public float maxOpacity; //por ahi no quiero que el max sea 1, sino un poco menos
 
     void Start()
     {
         ruidoBlancoRawImg = ruidoBlanco.GetComponent<RawImage>();
         damageFrame2RawImg = damageFrame2.GetComponent<RawImage>();
-
     }
 
     void Update()
     {
         damageRatio = (PlayerStats.playerHp / PlayerStats.playerHpMax); //damageRatio es 0 cuando estoy nuevo, es 1 cuando me mori
-        alpha = 1 - damageRatio;
+        opacity = 1 - damageRatio; //la opacidad. 1 es que se ve, 0 es invisible.
+        opacity = Mathf.Clamp(opacity, 0, maxOpacity);
 
         if (damageRatio == 1)
         {
@@ -36,14 +37,14 @@ public class DamageFrame : MonoBehaviour
         else
         {
             ruidoBlanco.SetActive(true);
-            ruidoBlancoRawImg.color = new Color(1, 0, 0, alpha); //cuando tengo daño, va apareciendo el recuadro de ruidoblanco
+            ruidoBlancoRawImg.color = new Color(1, 0, 0, opacity); //cuando tengo daño, va apareciendo el recuadro de ruidoblanco
 
             damageFrame2.SetActive(true);
-            damageFrame2RawImg.color = new Color(1, 1, 1, alpha); //cuando tengo daño, va apareciendo el recuadro de ruidoblanco
+            damageFrame2RawImg.color = new Color(1, 1, 1, opacity); //cuando tengo daño, va apareciendo el recuadro de ruidoblanco
 
         }
 
         //print("Damage taken ratio = " + damageRatio);
-        //print("alpha = " + alpha);
+        //print("opacity = " + opacity);
     }
 }

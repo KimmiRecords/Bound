@@ -10,6 +10,7 @@ public class MainMenuSelector : MonoBehaviour
     void Start()
     {
         //AudioManager.instance.PlayMainMenuMusic();
+        PlayerStats.usbsCollected = 0;
     }
 
     void Update()

@@ -67,7 +67,7 @@ public class MouseLook : MonoBehaviour
         //interactuamos con E -- por Fran
         //cuando tenga la confianza suficiente reescribo mi parte para que quede en scripts separados. por ahora lo dejo ahi. (-dk)
 
-        if (Input.GetKeyDown(KeyCode.E) && sensedObj)
+        if ((Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) && sensedObj)
         {
             //Muestra en consola el nombre, tipo y la cantidad de objetos interactuados.
             Debug.LogFormat("Grabbed {0} of Type {1} Amount: {2}", sensedObj.name, sensedObj.pickUpType, sensedObj.amount);
@@ -83,7 +83,7 @@ public class MouseLook : MonoBehaviour
             {
                 //Vector3 tpPos = new Vector3(131, 2, -35);
                 //MonsterMovement.instance.TPToPosition(tpPos);
-                MonsterMovement.instance.TPBehindYou(10f);
+                MonsterMovement.instance.TPBehindYou(12f);
                 print("Tenes al Chebola atras tuyo");
             }
 

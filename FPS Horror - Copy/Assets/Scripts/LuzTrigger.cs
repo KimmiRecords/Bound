@@ -28,6 +28,7 @@ public class LuzTrigger : MonoBehaviour
         {
             //prende la luz
             luz.intensity = intensidadDeseada;
+            AudioManager.instance.pPlateOn.Play();
         }
     }
 
@@ -37,6 +38,8 @@ public class LuzTrigger : MonoBehaviour
         {
             //apaga la luz
             luz.intensity = 0;
+            AudioManager.instance.pPlateOff.Play();
+
         }
     }
 }

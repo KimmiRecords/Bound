@@ -1136,7 +1136,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PRESS ANY KEY TO CONTINUE
+  m_Text: PRESS e TO CONTINUE
 --- !u!222 &1503830350
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -32,7 +32,7 @@ public class YouDiedScene : MonoBehaviour
             pressAnyKey.color = new Color(1, 0.5f, 0.5f, Mathf.Sin(1.5f * Time.time));
         }
 
-        if (Input.anyKey)
+        if (Input.GetKeyDown(KeyCode.E))
         {
             AudioManager.instance.StopScreamer1();
             AudioManager.instance.PlayMainMenuMusic();

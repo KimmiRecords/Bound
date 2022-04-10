@@ -8,7 +8,7 @@ public class FlashlightLife : MonoBehaviour
     public bool start = false;
     public float startTime = 1f;
     public Text textTimer;
-    public float timer = 300;
+    public float timer;
     public GameObject basicFlashlight;
 
     public void Subtract(int amount)
@@ -16,7 +16,7 @@ public class FlashlightLife : MonoBehaviour
         if (!start && timer > 0)
         {
             timer -= amount;
-            textTimer.text = "Vida util: " + timer.ToString("f0");
+            textTimer.text = "battery time left: " + timer.ToString("f0");
             StartCoroutine(PerSecond());
             if (timer == 0)
             {
