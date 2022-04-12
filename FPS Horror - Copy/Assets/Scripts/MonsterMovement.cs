@@ -53,9 +53,10 @@ public class MonsterMovement : MonoBehaviour
         _vectorToPlayer = _playerPosition - transform.position; // calculo vector, distancia y angulo al player
         _distanceToPlayer = _vectorToPlayer.magnitude;
 
-
         transform.rotation = Quaternion.LookRotation(_vectorToPlayer); //que el chebola siempre apunte al player
         _angle = Quaternion.Angle(transform.rotation, playerTransform.rotation);
+
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, transform.eulerAngles.z); //lockeo la rotacion en X. si no cada vez que el player salta, el chebola rota en x.
 
         //COMANDOS PARA TESTEAR BOLUDECES
         if (Input.GetKeyDown(KeyCode.P)) //toco P para tpear al monstruo behind you
@@ -68,11 +69,11 @@ public class MonsterMovement : MonoBehaviour
             TPFarAway();
         }
 
-        if (_distanceToPlayer <= damageAura) //si estas en aura, te comes el daño por bobo, aunque no veas al chebola
+        if (_distanceToPlayer <= damageAura) //si estas en aura, el chebola ya empieza a caminar hacia vos
         {
-            //Damage();
+            agent.destination = _playerPosition; //me muevo hacia el player
 
-            if (_angle > 90) //si ademas estoy mirando al chebola , lo considero en escena y ya queda liberado para tpearse cuando deje de verlo
+            if (_angle > 145) //y en cuanto ves al chebola, lo considero en escena y empieza a hacer daño
             {
                 _enEscena = true;
                 _mustStay = false;
@@ -80,8 +81,6 @@ public class MonsterMovement : MonoBehaviour
 
                 if (_screamerReady) //y si el screamer esta listo...
                 {
-                    agent.destination = _playerPosition; //me muevo hacia el player
-
 
                     AudioManager.instance.PlayScreamer1(); //arranca el todo mal
                     AudioManager.instance.StopBGM();
@@ -109,6 +108,8 @@ public class MonsterMovement : MonoBehaviour
                 _bgmReady = false;
             }
         }
+
+        print(_angle);
     }
 
     private void OnCollisionEnter(Collision collision)

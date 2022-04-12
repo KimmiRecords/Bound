@@ -11,7 +11,7 @@ public class MouseLook : MonoBehaviour
     public Transform playerBody;
     public Camera fpsCamera = null;
 
-    public float mouseSensitivity = 100f;
+    public float mouseSensitivity;
     float xRotation = 0f;
 
     public float pickUpDistance = 100f;
