@@ -72,6 +72,7 @@ public class MonsterMovement : MonoBehaviour
         if (_distanceToPlayer <= damageAura) //si estas en aura, el chebola ya empieza a caminar hacia vos
         {
             agent.destination = _playerPosition; //me muevo hacia el player
+            //chebola.animation.play(walk);
 
             if (_angle > 145) //y en cuanto ves al chebola, lo considero en escena y empieza a hacer daño
             {
@@ -81,7 +82,6 @@ public class MonsterMovement : MonoBehaviour
 
                 if (_screamerReady) //y si el screamer esta listo...
                 {
-
                     AudioManager.instance.PlayScreamer1(); //arranca el todo mal
                     AudioManager.instance.StopBGM();
                     _screamerReady = false;
@@ -99,6 +99,8 @@ public class MonsterMovement : MonoBehaviour
         {
             TPFarAway();
             agent.destination = _farAway;
+            //agent.quedate quieto amigo
+            //anim.play(idle)
             _screamerReady = true;
             if (_bgmReady)
             {
@@ -109,7 +111,7 @@ public class MonsterMovement : MonoBehaviour
             }
         }
 
-        print(_angle);
+        //print(_angle);
     }
 
     private void OnCollisionEnter(Collision collision)
