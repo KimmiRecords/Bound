@@ -12,7 +12,6 @@ public class AudioManager : MonoBehaviour
     public AudioSource pPlateOn;
     public AudioSource pPlateOff;
 
-
     private float volumenDeseadoScreamer;
 
     void Start()
@@ -76,7 +75,6 @@ public class AudioManager : MonoBehaviour
     }
 
 
-
     //SCREAMER SFX
     public void PlayScreamer1()
     {
@@ -104,4 +102,5 @@ public class AudioManager : MonoBehaviour
         mainMenuMusic.Stop();
     }
 
+    
 }

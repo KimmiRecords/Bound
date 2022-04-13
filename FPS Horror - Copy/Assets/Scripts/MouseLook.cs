@@ -39,6 +39,8 @@ public class MouseLook : MonoBehaviour
         playerBody.Rotate(Vector3.up * mouseX); //son muy rebuscados los que escribieron este metodo. como que vector3 euler z x y en ese orden?? por eso usa .up que es (0,1,0).
                                                 //aparte, la camara le dice a su padre como rotar en y? xd igual no me quejo porque anda re cheto
 
+
+
         //LOGICA DEL RAYCAST -- por Fran
         Ray ray = fpsCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -52,16 +54,22 @@ public class MouseLook : MonoBehaviour
             if (obj)
             {
                 sensedObj = obj;
+                //cambiar pixelcito por manito
+                //pixel.set active false
+                //manito.set active true
             }
             else
             {
                 sensedObj = null;
+                //dejar pixelcito
             }
         }
         else
         {
             //si no le pegamos a nada.
             sensedObj = null;
+            //dejar pixelcito
+
         }
 
         //interactuamos con E -- por Fran
