@@ -5,11 +5,14 @@ using UnityEngine.UI;
 
 public class Flashlight : MonoBehaviour
 {
+
+    //LOGICA DE LA LINTERNA, POR MEI
+
     public bool flashlightActive = false;
     public Text textTimer;
     public GameObject flashlight;
     public GameObject flashlightActivatingCollider;
-    public FlashlightLife flashlightOff;
+    public FlashlightLife flashlightOff; //re cheto, llama al otro script
 
 
     void Start()
@@ -25,7 +28,7 @@ public class Flashlight : MonoBehaviour
 
     public void FlashlightFunction()
     {
-        if (flashlightOff.timer > 0 && Input.GetKeyDown(KeyCode.Q))
+        if (flashlightOff.timer > 0 && Input.GetKeyDown(KeyCode.Q)) //toco Q para prender/apagar la linterna, si me queda timer
         {
             flashlightActive = !flashlightActive;
 
@@ -33,12 +36,14 @@ public class Flashlight : MonoBehaviour
             {
                 flashlight.SetActive(true);
                 flashlightActivatingCollider.SetActive(true);
+                AudioManager.instance.PlayLinternaOn();
 
             }
             else if (flashlightActive == false)
             {
                 flashlight.SetActive(false);
                 flashlightActivatingCollider.SetActive(false);
+                AudioManager.instance.PlayLinternaOff();
             }
         }
 

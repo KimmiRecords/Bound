@@ -15,6 +15,7 @@ public class YouWinScene : MonoBehaviour
     void Start()
     {
         AudioManager.instance.StopBGM();
+        AudioManager.instance.StopScreamer1();
         AudioManager.instance.PlayMainMenuMusic();
 
         youWin.color = new Color(0, 1, 0, 0);

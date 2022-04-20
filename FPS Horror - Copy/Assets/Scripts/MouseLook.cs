@@ -18,6 +18,7 @@ public class MouseLook : MonoBehaviour
 
     public Interactable sensedObj = null;
     public GameObject usb3;
+    public GameObject manito;
 
     void Start()
     {
@@ -54,32 +55,32 @@ public class MouseLook : MonoBehaviour
             if (obj)
             {
                 sensedObj = obj;
-                //cambiar pixelcito por manito
-                //pixel.set active false
-                //manito.set active true
+                manito.SetActive(true);
             }
             else
             {
                 sensedObj = null;
-                //dejar pixelcito
+                manito.SetActive(false);
             }
         }
         else
         {
             //si no le pegamos a nada.
             sensedObj = null;
-            //dejar pixelcito
+            manito.SetActive(false);
 
         }
 
         //interactuamos con E -- por Fran
-        //cuando tenga la confianza suficiente reescribo mi parte para que quede en scripts separados. por ahora lo dejo ahi. (-dk)
 
         if ((Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) && sensedObj)
         {
-            //Muestra en consola el nombre, tipo y la cantidad de objetos interactuados.
-            Debug.LogFormat("Grabbed {0} of Type {1} Amount: {2}", sensedObj.name, sensedObj.pickUpType, sensedObj.amount);
-            AudioManager.instance.PlayPickup(1.1f);
+            //Debug.LogFormat("Grabbed {0} of Type {1} Amount: {2}", sensedObj.name, sensedObj.pickUpType, sensedObj.amount);
+
+            if (sensedObj.pickUpType != EnumPickUpType.solo_infoPopup)
+            {
+                AudioManager.instance.PlayPickup(1.1f);
+            }
 
             if (sensedObj.pickUpType == EnumPickUpType.item_usb)
             {
@@ -89,8 +90,6 @@ public class MouseLook : MonoBehaviour
 
             if (sensedObj.gameObject == usb3)  //hace aparecer al Chebola justo despues de agarrar el tercer usb. -- por DK
             {
-                //Vector3 tpPos = new Vector3(131, 2, -35);
-                //MonsterMovement.instance.TPToPosition(tpPos);
                 MonsterMovement.instance.TPBehindYou(12f);
                 print("Tenes al Chebola atras tuyo");
             }
@@ -99,11 +98,6 @@ public class MouseLook : MonoBehaviour
             {
                 RejaPuzzle1.instance.ToggleReja();
             }
-
-            //if (sensedObj.pickUpType == EnumPickUpType.trigger_grav) //togglea la gravedad de TODOS los graviobjetos-- por DK
-            //{
-            //    //InvertGravity.instance.ToggleGrav();
-            //}
 
             //si es un pickup, lo destruye -- por Fran
             if (sensedObj.pickUpType == EnumPickUpType.item_usb || sensedObj.pickUpType == EnumPickUpType.item_battery || sensedObj.pickUpType == EnumPickUpType.item_hp)

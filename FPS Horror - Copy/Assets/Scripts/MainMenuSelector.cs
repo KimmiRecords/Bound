@@ -17,9 +17,9 @@ public class MainMenuSelector : MonoBehaviour
     {
         if (Input.anyKey)
         {
-            AudioManager.instance.StopMainMenuMusic();
-            AudioManager.instance.PlayBGM();
-            SceneManager.LoadScene(0);
+            //AudioManager.instance.StopMainMenuMusic();
+            //AudioManager.instance.PlayBGM();
+            SceneManager.LoadScene(4); //instrucciones
         }
     }
 }

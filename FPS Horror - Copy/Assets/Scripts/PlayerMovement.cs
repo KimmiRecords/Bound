@@ -6,14 +6,15 @@ public class PlayerMovement : MonoBehaviour
 {
     private CharacterController _controller;
     private float _verticalVelocity;
-    private float _groundedTimer;        // to allow jumping when going down ramps
-    private float _playerSpeed = 7f;
-    private float _jumpHeight = 3.0f;
-    public float gravityValue;
+    private float _groundedTimer;       // para que detecte piola en rampas
+    public float _playerSpeed;
+    public float _jumpHeight;
+    public float gravityValue;          //gravedad extra para que quede linda la caida del salto
+
+    public Vector3 move;
 
     private void Start()
     {
-        // always add a controller
         if (GetComponent<CharacterController>() != null)
         {
             _controller = GetComponent<CharacterController>();
@@ -36,10 +37,11 @@ public class PlayerMovement : MonoBehaviour
         if (groundedPlayer && _verticalVelocity < 0) //corta la caida cuando toco el suelo
         {
             _verticalVelocity = 0f;
+            AudioManager.instance.PlayJumpDown();
         }
 
-        _verticalVelocity -= gravityValue * Time.deltaTime; //aplica gravedad
-        Vector3 move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
+        _verticalVelocity -= gravityValue * Time.deltaTime; //aplica gravedad extra
+        move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
         move *= _playerSpeed;
 
         if (PlayerStats.agency)
@@ -48,14 +50,17 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (_groundedTimer > 0)
                 {
+                    AudioManager.instance.StopPasos();
+                    AudioManager.instance.PlayJumpUp();
                     _groundedTimer = 0;
-                    _verticalVelocity += Mathf.Sqrt(_jumpHeight * 2 * gravityValue);
+                    _verticalVelocity += Mathf.Sqrt(_jumpHeight * 2 * gravityValue); //saltar en realidad le da velocidad vertical nomas
                 }
             }
         }
 
         move.y = _verticalVelocity;
-            _controller.Move(move * Time.deltaTime);
+        _controller.Move(move * Time.deltaTime); //para mover al character controller hay que usar el metodo .Move
+
 
     }
 }

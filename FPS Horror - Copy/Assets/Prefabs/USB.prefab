@@ -195,6 +195,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: pendrive
       objectReference: {fileID: 0}
+    - target: {fileID: 1171549304580213878, guid: e482a9a3af99f2140a4855e53898ee35,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9703d407c5d4f29428df44c5bf35fde0, type: 2}
+    - target: {fileID: 3590086638062959488, guid: e482a9a3af99f2140a4855e53898ee35,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9ce1708cf90a8da4d974c3c0b8820fbe, type: 2}
+    - target: {fileID: 6589126927893049898, guid: e482a9a3af99f2140a4855e53898ee35,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6cd28e4f8bb73734d940ef363ae9dcf9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e482a9a3af99f2140a4855e53898ee35, type: 3}
 --- !u!4 &8036484780427396252 stripped
