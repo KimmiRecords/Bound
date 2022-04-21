@@ -28,7 +28,7 @@ public class Flashlight : MonoBehaviour
 
     public void FlashlightFunction()
     {
-        if (flashlightOff.timer > 0 && Input.GetKeyDown(KeyCode.Q)) //toco Q para prender/apagar la linterna, si me queda timer
+        if (flashlightOff.timer > 0 && Input.GetKeyDown(KeyCode.Q) && PlayerStats.hasFlashlight == true) //toco Q para prender/apagar la linterna, si me queda timer
         {
             flashlightActive = !flashlightActive;
 
@@ -37,7 +37,6 @@ public class Flashlight : MonoBehaviour
                 flashlight.SetActive(true);
                 flashlightActivatingCollider.SetActive(true);
                 AudioManager.instance.PlayLinternaOn();
-
             }
             else if (flashlightActive == false)
             {

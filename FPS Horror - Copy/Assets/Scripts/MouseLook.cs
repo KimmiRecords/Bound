@@ -37,9 +37,7 @@ public class MouseLook : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f); //rota la camara en x
 
-        playerBody.Rotate(Vector3.up * mouseX); //son muy rebuscados los que escribieron este metodo. como que vector3 euler z x y en ese orden?? por eso usa .up que es (0,1,0).
-                                                //aparte, la camara le dice a su padre como rotar en y? xd igual no me quejo porque anda re cheto
-
+        playerBody.Rotate(Vector3.up * mouseX); 
 
 
         //LOGICA DEL RAYCAST -- por Fran
@@ -91,16 +89,18 @@ public class MouseLook : MonoBehaviour
             if (sensedObj.gameObject == usb3)  //hace aparecer al Chebola justo despues de agarrar el tercer usb. -- por DK
             {
                 MonsterMovement.instance.TPBehindYou(12f);
-                print("Tenes al Chebola atras tuyo");
+                print("Tenes al Chebola atras tuyo.");
             }
 
-            if (sensedObj.pickUpType == EnumPickUpType.trigger_reja)  //en el puzzle1, mueve la reja -- por DK
+            if (sensedObj.pickUpType == EnumPickUpType.item_flashlight)
             {
-                RejaPuzzle1.instance.ToggleReja();
+                PlayerStats.hasFlashlight = true;
+                print("Conseguiste la linterna. Toca Q para ver.");
             }
 
             //si es un pickup, lo destruye -- por Fran
-            if (sensedObj.pickUpType == EnumPickUpType.item_usb || sensedObj.pickUpType == EnumPickUpType.item_battery || sensedObj.pickUpType == EnumPickUpType.item_hp)
+            if (sensedObj.pickUpType == EnumPickUpType.item_usb || sensedObj.pickUpType == EnumPickUpType.item_battery || 
+                sensedObj.pickUpType == EnumPickUpType.item_hp || sensedObj.pickUpType == EnumPickUpType.item_flashlight)
             {
                 DestroyImmediate(sensedObj.gameObject);
                 sensedObj = null;

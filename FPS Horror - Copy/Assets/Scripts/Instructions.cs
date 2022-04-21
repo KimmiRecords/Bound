@@ -44,7 +44,7 @@ public class Instructions : MonoBehaviour
             credits.color = new Color(1, 1, 1, Mathf.Lerp(0, 1, timer));
         }
 
-        if (Input.anyKey)
+        if (Input.anyKey && instructionsSeen == false)
         {
             instructionsSeen = true;
 

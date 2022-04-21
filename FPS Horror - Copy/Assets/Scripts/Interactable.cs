@@ -5,7 +5,7 @@ using UnityEngine;
 public enum EnumPickUpType
 {
     //Enumerador Para regular que item levantas y que cantidad de cada uno
-    item_usb, item_hp, item_battery, trigger_reja, trigger_grav, solo_infoPopup
+    item_usb, item_hp, item_battery, trigger_reja, trigger_grav, solo_infoPopup, item_flashlight
 }
 public class Interactable : MonoBehaviour
 {

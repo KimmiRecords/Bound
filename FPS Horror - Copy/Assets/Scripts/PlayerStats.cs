@@ -12,16 +12,28 @@ public class PlayerStats : MonoBehaviour
     public static int usbsCollected;
 
     public static bool boundToggleFlag = false;
+    public static bool hasFlashlight = false;
+
+    public GameObject CanvasVidaUtil;
+    public GameObject ModeloLinterna;
+
+    private bool gotFlashlightFlag;
 
     void Start()
     {
         playerHpMax = vidita;
         playerHp = playerHpMax;
-
+        hasFlashlight = false;
+        gotFlashlightFlag = false;
     }
 
     void Update()
     {
+        if (playerHp > playerHpMax) //maxea la vida por si me paso
+        {
+            playerHp = playerHpMax;
+        }
+
         if (playerHp <= 0)
         {
             print("YOU DIED");
@@ -40,9 +52,14 @@ public class PlayerStats : MonoBehaviour
             if (!MonsterMovement.fear) //pero solo si no me esta dañando el chebola
             {
                 playerHp += 0.2f;
-
             }
         }
-        //print("HP Actual = " + playerHp);
+
+        if (hasFlashlight && gotFlashlightFlag == false) //asi sucede una sola vez y no todo el tiempo
+        {
+            CanvasVidaUtil.SetActive(true);
+            ModeloLinterna.SetActive(true);
+            gotFlashlightFlag = true;
+        }
     }
 }
