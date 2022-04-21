@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerStats : MonoBehaviour
 {
     public float vidita;
+    public float hpRegen;
     public static float playerHp;
     public static float playerHpMax;
     public static bool agency = true;
@@ -51,7 +52,7 @@ public class PlayerStats : MonoBehaviour
         {
             if (!MonsterMovement.fear) //pero solo si no me esta dañando el chebola
             {
-                playerHp += 0.2f;
+                playerHp += hpRegen;
             }
         }
 

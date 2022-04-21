@@ -6,6 +6,10 @@ using UnityEngine.AI;
 
 public class MonsterMovement : MonoBehaviour
 {
+
+    //este script se lo adjuntas al chebola para que haga daño en aura al player, y lo persiga si es visto -- por dk
+
+
     public static MonsterMovement instance;
     public Transform playerTransform;
 
@@ -19,7 +23,7 @@ public class MonsterMovement : MonoBehaviour
     private bool _bgmReady = false; //si la musiquita ...
 
     private bool _enEscena = false; //si esta el chebola en vista o no
-    private bool _mustStay = true; //si el chebola debe quedarse en su lugar. lo uso por si te tiene que esperar despues de tpear.
+    private bool _mustStay = true; //si el chebola debe quedarse en su lugar. lo uso por si te tiene que esperar aunque no lo veas.
     
 
     public float damageAura; //el radio del aura
@@ -58,7 +62,7 @@ public class MonsterMovement : MonoBehaviour
 
         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, transform.eulerAngles.z); //lockeo la rotacion en X. si no cada vez que el player salta, el chebola rota en x.
 
-        //COMANDOS PARA TESTEAR BOLUDECES
+        //COMANDOS PARA TESTEAR
         if (Input.GetKeyDown(KeyCode.P)) //toco P para tpear al monstruo behind you
         {
             TPBehindYou(damageAura);
@@ -69,22 +73,23 @@ public class MonsterMovement : MonoBehaviour
             TPFarAway();
         }
 
-        if (_distanceToPlayer <= damageAura) //si estas en aura, el chebola ya empieza a caminar hacia vos
-        {
-            agent.destination = _playerPosition; //me muevo hacia el player
-            //chebola.animation.play(walk);
 
-            if (_angle > 145) //y en cuanto ves al chebola, lo considero en escena y empieza a hacer daño
+        //EL CHEBOLA TE PERSIGUE Y DAÑA
+        if (_distanceToPlayer <= damageAura) //si estas en aura...
+        {
+            if (_angle > 145) //en cuanto ves al chebola, lo considero en escena y empieza a hacer daño
             {
                 _enEscena = true;
                 _mustStay = false;
+                agent.destination = _playerPosition; //me muevo hacia el player
+                //anim.SetBool("isWalking") = true; -- o algo asi jajaja
                 Damage();
 
                 if (_screamerReady) //y si el screamer esta listo...
                 {
                     AudioManager.instance.PlayScreamer1(); //arranca el todo mal
                     AudioManager.instance.StopBGM();
-                    _screamerReady = false;
+                    _screamerReady = false; //flag para que solo pase una vez
                     _bgmReady = true;
                 }
             }
@@ -98,9 +103,8 @@ public class MonsterMovement : MonoBehaviour
         if (_enEscena == false && _mustStay == false) //cuando dejo de mirarlo se tpea lejos
         {
             TPFarAway();
-            agent.destination = _farAway;
-            //agent.quedate quieto amigo
-            //anim.play(idle)
+            agent.destination = transform.position; //o sea, a ningun lado
+            //anim.anim.SetBool("isWalking") = false
             _screamerReady = true;
             if (_bgmReady)
             {
@@ -110,8 +114,6 @@ public class MonsterMovement : MonoBehaviour
                 _bgmReady = false;
             }
         }
-
-        //print(_angle);
     }
 
     private void OnCollisionEnter(Collision collision)
