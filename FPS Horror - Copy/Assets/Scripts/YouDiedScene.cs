@@ -15,6 +15,8 @@ public class YouDiedScene : MonoBehaviour
     void Start()
     {
         AudioManager.instance.StopBGM();
+        AudioManager.instance.StopPasos();
+
 
         youDied.color = new Color(1, 0, 0, 0);
         pressAnyKey.color = new Color(1, 0.5f, 0.5f, 0);

@@ -53,7 +53,10 @@ public class MouseLook : MonoBehaviour
             if (obj)
             {
                 sensedObj = obj;
-                manito.SetActive(true);
+                if (obj.muestraManito)
+                {
+                    manito.SetActive(true);
+                }
             }
             else
             {

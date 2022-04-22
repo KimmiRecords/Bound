@@ -6,10 +6,11 @@ using UnityEngine.UI;
 
 public class InfoPopup : MonoBehaviour
 {
-    //este script se lo adjuntas a un interactable que quieras que muestre un mensaje en pantalla
+    //este script se lo adjuntas a un interactable que quieras que muestre un mensaje en pantalla mientras lo miras
 
     private Interactable yo;
 
+    [TextArea(2, 4)]
     public string message;
     public float messageTime;
 
@@ -36,13 +37,13 @@ public class InfoPopup : MonoBehaviour
         }
     }
 
-    public void Show(string text, float time)
+    public virtual void Show(string text, float time)
     {
         popupText.text = text;
         Invoke("Hide", time);
     }
 
-    public void Hide()
+    public virtual void Hide()
     {
         popupText.text = "";
     }

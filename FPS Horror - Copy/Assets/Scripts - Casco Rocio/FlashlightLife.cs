@@ -16,7 +16,7 @@ public class FlashlightLife : MonoBehaviour
         if (!start && timer > 0)
         {
             timer -= amount;
-            textTimer.text = "battery time left: " + timer.ToString("f0");
+            textTimer.text = "battery life: " + timer.ToString("f0");
             StartCoroutine(PerSecond());
             if (timer == 0)
             {
