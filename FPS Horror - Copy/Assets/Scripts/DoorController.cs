@@ -21,9 +21,9 @@ public class DoorController : MonoBehaviour
         _doorAnim = this.transform.parent.GetComponent<Animator>();
     }
 
+    // Update is called once per frame
     void Update()
     {
         
     }
-
 }

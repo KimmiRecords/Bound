@@ -12,8 +12,6 @@ public class InvertGravity : MonoBehaviour
     private bool isBound;
     private Rigidbody rb;
 
-    public Interactable soyControladoPor;
-
     void Start()
     {
         instance = this;
