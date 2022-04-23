@@ -10,6 +10,9 @@ public class LuzTrigger : MonoBehaviour
     public Light luz; //la luz que voy a prender. 
     public float intensidadDeseada;
 
+    public AudioClip pPlateOnClip;
+    public AudioClip pPlateOffClip;
+
     void Start()
     {
         if (GetComponent<BoxCollider>() != null)
@@ -28,7 +31,11 @@ public class LuzTrigger : MonoBehaviour
         {
             //prende la luz
             luz.intensity = intensidadDeseada;
-            AudioManager.instance.pPlateOn.Play();
+
+            //AudioManager.instance.pPlateOn.Play();
+            AudioSource.PlayClipAtPoint(pPlateOnClip, transform.position);
+            print("le di play al plateOn en " + transform.position);
+
         }
     }
 
@@ -38,7 +45,12 @@ public class LuzTrigger : MonoBehaviour
         {
             //apaga la luz
             luz.intensity = 0;
-            AudioManager.instance.pPlateOff.Play();
+
+            //AudioManager.instance.pPlateOff.Play();
+            AudioSource.PlayClipAtPoint(pPlateOffClip, transform.position);
+            print("le di play al plateOff en " + transform.position);
+
+
 
         }
     }

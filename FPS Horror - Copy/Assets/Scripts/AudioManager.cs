@@ -9,8 +9,12 @@ public class AudioManager : MonoBehaviour
     public AudioSource bgm;
     public AudioSource screamer1;
     public AudioSource mainMenuMusic;
+
     public AudioSource pPlateOn;
+    public AudioClip pPlateOnClip;
     public AudioSource pPlateOff;
+    public AudioClip pPlateOffClip;
+
     public AudioSource linternaOn;
     public AudioSource linternaOff;
     public AudioSource pasos1;
@@ -35,6 +39,11 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(this);
 
         volumenDeseadoScreamer = screamer1.volume;
+
+        pPlateOnClip = pPlateOn.clip;
+        pPlateOffClip = pPlateOff.clip;
+
+
 
     }
 
@@ -87,7 +96,7 @@ public class AudioManager : MonoBehaviour
     }
 
     //PRESSURE PLATE SFX
-    public void PlayPPlateOn()
+    public void PlayPPlateOn(Vector3 point)
     {
         pPlateOn.Play();
     }
