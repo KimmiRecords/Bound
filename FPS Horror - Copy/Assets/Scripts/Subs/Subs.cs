@@ -11,7 +11,7 @@ public class Subs : MonoBehaviour
     //los hijos de este script son las distintas maneras de mostrar subs.
     //overridean el metodo de mostrar para cambiarle el formato u otras cosas.
 
-    public Text subsCanvasText; //el texto del canvas
+    public Text subsCanvasText; //el componente Text del canvas
 
     [TextArea(2,4)]
     public string desiredText;
@@ -30,13 +30,6 @@ public class Subs : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider player)
-    {
-        if (player.gameObject.layer == 3) //la 3 es la del player, obvio
-        {
-            Show(desiredText, desiredTime);
-        }
-    }
 
     public virtual void Show(string text, float time)
     {

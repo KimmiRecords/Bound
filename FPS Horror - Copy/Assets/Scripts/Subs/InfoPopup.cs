@@ -4,47 +4,57 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class InfoPopup : MonoBehaviour
+public class InfoPopup : Subs
 {
-    //este script se lo adjuntas a un interactable que quieras que muestre un mensaje en pantalla mientras lo miras
+    //este script se lo adjuntas a un Interactable que quieras que muestre un mensaje en pantalla mientras lo miras
+
 
     private Interactable yo;
 
-    [TextArea(2, 4)]
-    public string message;
-    public float messageTime;
-
-    public Text popupText;
-    public MouseLook mouseLook;
+    private MouseLook mouseLook;
     
     void Start()
     {
-        if (GetComponent<Text>() != null)
-        {
-           popupText = GetComponent<Text>();
-        }
         if (GetComponent<Interactable>() != null)
         {
             yo = GetComponent<Interactable>();
+        }
+
+        if (FindObjectOfType<MouseLook>() != null)
+        {
+            mouseLook = FindObjectOfType<MouseLook>();
         }
     }
 
     void Update()
     {
-        if (mouseLook.sensedObj == yo)
+        if (mouseLook.sensedObj == yo) //los infopopup se disparan por raycast
         {
-            Show(message, messageTime);
+            Show(desiredText, desiredTime);
+        }
+
+    }
+    private void OnTriggerEnter(Collider player) //los dialogue se disparan por con colliders
+    {
+        if (player.gameObject.layer == 3) //la 3 es la del player, obvio
+        {
+            Show(desiredText, desiredTime);
         }
     }
-
-    public virtual void Show(string text, float time)
+    public override void Show(string text, float time)
     {
-        popupText.text = text;
+        //subsCanvasText.fontStyle = FontStyle.Italic;
+        //subsCanvasText.color = dialogueColor;
+        subsCanvasText.text = text;
+        //subsCanvasText.text = "-" + subsCanvasText.text; //agrega un guioncito vintage
         Invoke("Hide", time);
     }
 
-    public virtual void Hide()
+    public override void Hide()
     {
-        popupText.text = "";
+        subsCanvasText.text = "";
     }
+
+
+
 }

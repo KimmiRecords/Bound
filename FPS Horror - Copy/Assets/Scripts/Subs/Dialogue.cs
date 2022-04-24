@@ -16,6 +16,13 @@ public class Dialogue : Subs
     {
         
     }
+    private void OnTriggerEnter(Collider player) //los dialogue se disparan por con colliders
+    {
+        if (player.gameObject.layer == 3) //la 3 es la del player, obvio
+        {
+            Show(desiredText, desiredTime);
+        }
+    }
 
     public override void Show(string text, float time)
     {
