@@ -17,6 +17,8 @@ public class AudioManager : MonoBehaviour
     public AudioSource pasos2;
     public AudioSource jumpUp;
     public AudioSource jumpDown;
+    public AudioSource doorOpen;
+    public AudioSource doorClose;
 
 
     private float volumenDeseadoScreamer;
@@ -96,6 +98,17 @@ public class AudioManager : MonoBehaviour
         pPlateOff.Play();
     }
 
+    //PUERTAS
+    public void PlayDoorOpen()
+    {
+        doorOpen.Play();
+    }
+    public void PlayDoorClose()
+    {
+        doorClose.Play();
+    }
+
+
     //SCREAMER SFX
     public void PlayScreamer1()
     {
@@ -114,6 +127,7 @@ public class AudioManager : MonoBehaviour
 
 
 
+
     //LINTERNA ON/OFF
     public void PlayLinternaOn()
     {
@@ -123,6 +137,8 @@ public class AudioManager : MonoBehaviour
     {
         linternaOff.Play();
     }
+
+
 
 
     //PASOS
@@ -150,6 +166,8 @@ public class AudioManager : MonoBehaviour
         pasos2.Stop();
     }
 
+
+
     //SALTO
     public void PlayJumpUp()
     {
@@ -175,8 +193,4 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
-
-
-
-
 }

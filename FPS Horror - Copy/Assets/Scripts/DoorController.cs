@@ -5,25 +5,38 @@ using UnityEngine;
 public class DoorController : MonoBehaviour
 {
     Animator _doorAnim;
-
-    private void OnTriggerEnter(Collider other)
-    {
-        _doorAnim.SetBool("isOpening", true);
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        _doorAnim.SetBool("isOpening", false);
-    }
-
     void Start()
     {
         _doorAnim = this.transform.parent.GetComponent<Animator>();
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        OpenDoor();
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        CloseDoor();
+    }
+
 
     // Update is called once per frame
     void Update()
     {
         
     }
+
+    public void OpenDoor()
+    {
+        _doorAnim.SetBool("isOpening", true);
+        //AudioManager.instance.PlayDoorOpen();
+    }
+
+    public void CloseDoor()
+    {
+        _doorAnim.SetBool("isOpening", false);
+        //AudioManager.instance.PlayDoorClose();
+    }
+
 }
