@@ -24,7 +24,6 @@ public class DoorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void OpenDoor()
@@ -38,5 +37,7 @@ public class DoorController : MonoBehaviour
         _doorAnim.SetBool("isOpening", false);
         //AudioManager.instance.PlayDoorClose();
     }
+
+    
 
 }

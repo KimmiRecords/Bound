@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class LuzTrigger : MonoBehaviour
 {
-    //este script se lo pones a una pressure plate para que prenda UNA luz
+    //este script se lo pones a una pressure plate para que prenda n luces
 
     private BoxCollider boxCollider;
-    public Light luz; //la luz que voy a prender. 
+    //public Light luz; //la luz que voy a prender. 
     public float intensidadDeseada;
+
+    public Light[] luces; //las luces que quiero prender
 
     void Start()
     {
@@ -26,9 +28,12 @@ public class LuzTrigger : MonoBehaviour
     {
         if (other.gameObject.layer == 7 || other.gameObject.layer == 3) //la layer 7 es de las cajas, la 3 es player
         {
-            //prende la luz
-            luz.intensity = intensidadDeseada;
-            AudioManager.instance.pPlateOn.Play();
+            //prende las luces
+            for (int i = 0; i < luces.Length; i++)
+            {
+                luces[i].intensity = intensidadDeseada;
+            }
+            AudioManager.instance.PlayPPlateOn(transform.position);
         }
     }
 
@@ -36,9 +41,13 @@ public class LuzTrigger : MonoBehaviour
     {
         if (other.gameObject.layer == 7 || other.gameObject.layer == 3)
         {
-            //apaga la luz
-            luz.intensity = 0;
-            AudioManager.instance.pPlateOff.Play();
+            //apaga la luces
+            for (int i = 0; i < luces.Length; i++)
+            {
+                luces[i].intensity = 0;
+            }
+            AudioManager.instance.PlayPPlateOff(transform.position);
+
         }
     }
 }

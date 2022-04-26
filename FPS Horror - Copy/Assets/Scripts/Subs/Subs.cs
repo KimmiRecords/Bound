@@ -46,6 +46,6 @@ public class Subs : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(transform.position, 1);
+        //Gizmos.DrawSphere(transform.position, 1);
     }
 }

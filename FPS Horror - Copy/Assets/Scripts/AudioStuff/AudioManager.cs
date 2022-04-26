@@ -89,22 +89,30 @@ public class AudioManager : MonoBehaviour
     }
 
     //PRESSURE PLATE SFX
-    public void PlayPPlateOn()
+    public void PlayPPlateOn(Vector3 pos)
     {
+        pPlateOn.gameObject.transform.position = pos; //muevo al audiosource
         pPlateOn.Play();
     }
-    public void PlayPPlateOff()
+    public void PlayPPlateOff(Vector3 pos)
     {
+        pPlateOff.gameObject.transform.position = pos; 
         pPlateOff.Play();
     }
 
     //PUERTAS
-    public void PlayDoorOpen()
+    public void PlayDoorOpen(Vector3 pos)
     {
+        float randomPitch = Random.Range(0.95f, 1.05f);
+        doorOpen.pitch = randomPitch;
+        doorOpen.gameObject.transform.position = pos;
         doorOpen.Play();
     }
-    public void PlayDoorClose()
+    public void PlayDoorClose(Vector3 pos)
     {
+        float randomPitch = Random.Range(0.95f, 1.05f);
+        doorClose.pitch = randomPitch;
+        doorClose.gameObject.transform.position = pos;
         doorClose.Play();
     }
 
