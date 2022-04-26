@@ -17,7 +17,7 @@ public class MouseLook : MonoBehaviour
     public float pickUpDistance = 100f;
 
     public Interactable sensedObj = null;
-    public GameObject usb3;
+    //public GameObject usb3;
     public GameObject manito;
 
     void Start()
@@ -89,11 +89,11 @@ public class MouseLook : MonoBehaviour
                 print("Conseguiste un Pendrive. Solo te faltan " + (4 - PlayerStats.usbsCollected) + " para ganar.");
             }
 
-            if (sensedObj.gameObject == usb3)  //hace aparecer al Chebola justo despues de agarrar el tercer usb. -- por DK
-            {
-                MonsterMovement.instance.TPBehindYou(12f);
-                print("Tenes al Chebola atras tuyo.");
-            }
+            //if (sensedObj.gameObject == usb3)  //hace aparecer al Chebola justo despues de agarrar el tercer usb. -- por DK
+            //{
+            //    MonsterMovement.instance.TPBehindYou(12f);
+            //    print("Tenes al Chebola atras tuyo.");
+            //}
 
             if (sensedObj.pickUpType == EnumPickUpType.item_flashlight)
             {

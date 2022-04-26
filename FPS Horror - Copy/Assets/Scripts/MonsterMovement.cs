@@ -82,7 +82,7 @@ public class MonsterMovement : MonoBehaviour
                 _enEscena = true;
                 _mustStay = false;
                 agent.destination = _playerPosition; //me muevo hacia el player
-                //anim.SetBool("isWalking") = true; -- o algo asi jajaja
+                //anim.SetBool("isWalking", true);
                 Damage();
 
                 if (_screamerReady) //y si el screamer esta listo...
@@ -104,7 +104,7 @@ public class MonsterMovement : MonoBehaviour
         {
             TPFarAway();
             agent.destination = transform.position; //o sea, a ningun lado
-            //anim.anim.SetBool("isWalking") = false
+            //anim.SetBool("isWalking", false);
             _screamerReady = true;
             if (_bgmReady)
             {
@@ -134,11 +134,13 @@ public class MonsterMovement : MonoBehaviour
     {
         _mustStay = true;               //le pido que se quede ahi aunque no lo vea
         transform.position = position; //teleports a la posicion pedida
+        print("el chebola se tpeo a " + position);
     }
 
     public void TPFarAway()
     {
         transform.position = _farAway;
+        print("El Chebola se tpeo LEJOS");
     }
 
     public void Damage()
