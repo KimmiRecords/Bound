@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         _verticalVelocity -= gravityValue * Time.deltaTime; //aplica gravedad extra
         move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
         //move = move.normalized;
-        print(move.magnitude);
+        //print(move.magnitude);
         move *= _playerSpeed;
 
         if (PlayerStats.agency)

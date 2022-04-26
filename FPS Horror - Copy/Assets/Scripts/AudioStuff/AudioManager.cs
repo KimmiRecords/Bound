@@ -19,6 +19,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource jumpDown;
     public AudioSource doorOpen;
     public AudioSource doorClose;
+    public AudioSource hollowRoar;
 
 
     private float volumenDeseadoScreamer;
@@ -82,6 +83,13 @@ public class AudioManager : MonoBehaviour
 
 
     //SFX
+
+    //HOLLOW ROAR
+    public void PlayHollowRoar(Vector3 pos)
+    {
+        hollowRoar.gameObject.transform.position = pos; //muevo al audiosource
+        hollowRoar.PlayDelayed(2);
+    }
 
 
     //PICKUPS SFX
