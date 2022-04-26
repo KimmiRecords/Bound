@@ -64,7 +64,7 @@ public class Instructions : MonoBehaviour
 
 
         MainCamera.position = Vector3.Lerp(MainCamera.position, Camera2.position, cameraTimer);
-        MainCamera.rotation = Quaternion.Lerp(MainCamera.rotation, Camera2.rotation, cameraTimer); //jajajaj tan facil
+        MainCamera.rotation = Quaternion.Lerp(MainCamera.rotation, Camera2.rotation, cameraTimer);
 
 
 
@@ -95,7 +95,7 @@ public class Instructions : MonoBehaviour
         {
             AudioManager.instance.StopMainMenuMusic();
             AudioManager.instance.PlayBGM();
-            SceneManager.LoadScene(0); //0 es el primer nivel
+            SceneManager.LoadScene(1); //1 es el primer nivel
         }
     }
 }

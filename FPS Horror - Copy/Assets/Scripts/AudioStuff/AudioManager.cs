@@ -42,7 +42,10 @@ public class AudioManager : MonoBehaviour
 
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     //ARRANCAN LOS METODOS

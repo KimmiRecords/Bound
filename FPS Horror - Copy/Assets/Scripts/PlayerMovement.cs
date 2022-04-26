@@ -42,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
 
         _verticalVelocity -= gravityValue * Time.deltaTime; //aplica gravedad extra
         move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
+        //move = move.normalized;
+        print(move.magnitude);
         move *= _playerSpeed;
 
         if (PlayerStats.agency)
@@ -60,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
 
         move.y = _verticalVelocity;
         _controller.Move(move * Time.deltaTime); //para mover al character controller hay que usar el metodo .Move
+
 
 
     }
