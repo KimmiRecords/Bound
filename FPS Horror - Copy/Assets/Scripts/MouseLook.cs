@@ -17,7 +17,6 @@ public class MouseLook : MonoBehaviour
     public float pickUpDistance = 100f;
 
     public Interactable sensedObj = null;
-    //public GameObject usb3;
     public GameObject manito;
 
     void Start()
@@ -40,6 +39,72 @@ public class MouseLook : MonoBehaviour
         playerBody.Rotate(Vector3.up * mouseX); 
 
 
+        ////LOGICA DEL RAYCAST -- por Fran
+        //Ray ray = fpsCamera.ScreenPointToRay(Input.mousePosition);
+        //RaycastHit hit;
+
+        //Debug.DrawRay(ray.origin, ray.direction * pickUpDistance, Color.blue);
+
+        //if (Physics.Raycast(ray, out hit, pickUpDistance))
+        //{
+        //    //Si le pegamos a algo interactable .
+        //    Interactable obj = hit.collider.GetComponent<Interactable>();
+        //    if (obj)
+        //    {
+        //        sensedObj = obj;
+        //        if (obj.muestraManito)
+        //        {
+        //            manito.SetActive(true);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        sensedObj = null;
+        //        manito.SetActive(false);
+        //    }
+        //}
+        //else
+        //{
+        //    //si no le pegamos a nada.
+        //    sensedObj = null;
+        //    manito.SetActive(false);
+
+        //}
+
+        //interactuamos con E -- por Fran
+
+        if ((Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) && sensedObj)
+        {
+
+            if (sensedObj.pickUpType != EnumPickUpType.solo_infoPopup)
+            {
+                AudioManager.instance.PlayPickup(1.1f);
+            }
+
+            if (sensedObj.pickUpType == EnumPickUpType.item_usb)
+            {
+                PlayerStats.usbsCollected++;
+                print("Conseguiste un Pendrive. Solo te faltan " + (4 - PlayerStats.usbsCollected) + " para ganar.");
+            }
+
+            if (sensedObj.pickUpType == EnumPickUpType.item_flashlight)
+            {
+                PlayerStats.hasFlashlight = true;
+                print("Conseguiste la linterna. Toca Q para ver.");
+            }
+
+            //si es un pickup, lo destruye -- por Fran
+            if (sensedObj.pickUpType == EnumPickUpType.item_usb || sensedObj.pickUpType == EnumPickUpType.item_battery || 
+                sensedObj.pickUpType == EnumPickUpType.item_hp || sensedObj.pickUpType == EnumPickUpType.item_flashlight)
+            {
+                DestroyImmediate(sensedObj.gameObject);
+                sensedObj = null;
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
         //LOGICA DEL RAYCAST -- por Fran
         Ray ray = fpsCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -70,44 +135,6 @@ public class MouseLook : MonoBehaviour
             sensedObj = null;
             manito.SetActive(false);
 
-        }
-
-        //interactuamos con E -- por Fran
-
-        if ((Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) && sensedObj)
-        {
-            //Debug.LogFormat("Grabbed {0} of Type {1} Amount: {2}", sensedObj.name, sensedObj.pickUpType, sensedObj.amount);
-
-            if (sensedObj.pickUpType != EnumPickUpType.solo_infoPopup)
-            {
-                AudioManager.instance.PlayPickup(1.1f);
-            }
-
-            if (sensedObj.pickUpType == EnumPickUpType.item_usb)
-            {
-                PlayerStats.usbsCollected++;
-                print("Conseguiste un Pendrive. Solo te faltan " + (4 - PlayerStats.usbsCollected) + " para ganar.");
-            }
-
-            //if (sensedObj.gameObject == usb3)  //hace aparecer al Chebola justo despues de agarrar el tercer usb. -- por DK
-            //{
-            //    MonsterMovement.instance.TPBehindYou(12f);
-            //    print("Tenes al Chebola atras tuyo.");
-            //}
-
-            if (sensedObj.pickUpType == EnumPickUpType.item_flashlight)
-            {
-                PlayerStats.hasFlashlight = true;
-                print("Conseguiste la linterna. Toca Q para ver.");
-            }
-
-            //si es un pickup, lo destruye -- por Fran
-            if (sensedObj.pickUpType == EnumPickUpType.item_usb || sensedObj.pickUpType == EnumPickUpType.item_battery || 
-                sensedObj.pickUpType == EnumPickUpType.item_hp || sensedObj.pickUpType == EnumPickUpType.item_flashlight)
-            {
-                DestroyImmediate(sensedObj.gameObject);
-                sensedObj = null;
-            }
         }
     }
 }

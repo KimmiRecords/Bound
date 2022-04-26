@@ -29,18 +29,18 @@ public class YouWinScene : MonoBehaviour
         timer += 0.15f * Time.deltaTime;
         timer2 += Time.deltaTime;
 
-        youWin.color = new Color(0, 1, 0, Mathf.Lerp(0, 1, timer)); //LOS COLORES VAN DE 0 A 1, NO DE 0 A 255 COMO EN EL INSPECTOR. HIJOS DE.
+
+        youWin.color = new Color(0, 1, 0, Mathf.Lerp(0, 1, timer)); //LOS COLORES VAN DE 0 A 1, NO DE 0 A 255 COMO EN EL INSPECTOR.
 
         if (timer2 > 4) //a los 4 segs aparece oscilando
         {
             pressAnyKey.color = new Color(0.5f, 1, 0.5f, Mathf.Sin(1.5f * Time.time));
         }
 
+        
         if (Input.GetKeyDown(KeyCode.E))
         {
-            //AudioManager.instance.StopMainMenuMusic();
-            //AudioManager.instance.PlayMainMenuMusic();
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(0); //volves al main menu
         }
     }
 }

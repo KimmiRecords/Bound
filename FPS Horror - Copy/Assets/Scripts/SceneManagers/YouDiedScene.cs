@@ -38,7 +38,7 @@ public class YouDiedScene : MonoBehaviour
         {
             AudioManager.instance.StopScreamer1();
             AudioManager.instance.PlayMainMenuMusic();
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(1); //volves al nivel asi de una
         }
 
     }

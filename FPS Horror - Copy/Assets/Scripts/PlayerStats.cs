@@ -7,9 +7,12 @@ public class PlayerStats : MonoBehaviour
 {
     public float vidita;
     public float hpRegen;
+
+    public static Transform playerTransform;
     public static float playerHp;
     public static float playerHpMax;
     public static bool agency = true;
+    public static bool playerFear = false;
     public static int usbsCollected;
 
     public static bool boundToggleFlag = false;
@@ -19,6 +22,7 @@ public class PlayerStats : MonoBehaviour
     public GameObject ModeloLinterna;
 
     private bool gotFlashlightFlag;
+    
 
     void Start()
     {
@@ -26,6 +30,7 @@ public class PlayerStats : MonoBehaviour
         playerHp = playerHpMax;
         hasFlashlight = false;
         gotFlashlightFlag = false;
+        playerTransform = transform;
     }
 
     void Update()
@@ -38,19 +43,19 @@ public class PlayerStats : MonoBehaviour
         if (playerHp <= 0)
         {
             print("YOU DIED");
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
 
         if (usbsCollected == 4)
         {
             print("YOU WIN");
             usbsCollected = 0;
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(3);
         }
 
         if (playerHp < playerHpMax) //regenera hp de a poco
         {
-            if (!MonsterMovement.fear) //pero solo si no me esta dañando el chebola
+            if (!playerFear) //pero solo si no me esta dañando el chebola
             {
                 playerHp += hpRegen;
             }
