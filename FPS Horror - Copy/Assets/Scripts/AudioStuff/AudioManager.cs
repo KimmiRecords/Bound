@@ -85,10 +85,10 @@ public class AudioManager : MonoBehaviour
     //SFX
 
     //HOLLOW ROAR
-    public void PlayHollowRoar(Vector3 pos)
+    public void PlayHollowRoar(Vector3 pos, float delayTime)
     {
         hollowRoar.gameObject.transform.position = pos; //muevo al audiosource
-        hollowRoar.PlayDelayed(2);
+        hollowRoar.PlayDelayed(delayTime);
     }
 
 
@@ -198,7 +198,6 @@ public class AudioManager : MonoBehaviour
             jumpDownIsReady = true;
         }
     }
-
     public void PlayJumpDown()
     {
         if (jumpDownIsReady)

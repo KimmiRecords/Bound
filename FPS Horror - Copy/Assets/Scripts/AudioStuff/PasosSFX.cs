@@ -24,10 +24,5 @@ public class PasosSFX : MonoBehaviour
         {
             AudioManager.instance.StopPasos();
         }
-
-
-
-
-
     }
 }

@@ -467,7 +467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97703d6c0df2c4b4f8bb35911b2a73b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chebolaPrefab: {fileID: 6120810417096432153, guid: 68141aeb7da9eea4e817d31840ab7133,
+  chebolaPrefab: {fileID: 7808848037089618967, guid: dfa27c2be20bc854ba76f849923c6257,
     type: 3}
   desiredSpawnPosition: {x: 0, y: 0, z: 0}
 --- !u!65 &5224542322552382295

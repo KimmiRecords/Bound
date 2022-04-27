@@ -24,7 +24,7 @@ public class PlayerStats : MonoBehaviour
     private bool gotFlashlightFlag;
     
 
-    void Start()
+    void Awake()
     {
         playerHpMax = vidita;
         playerHp = playerHpMax;

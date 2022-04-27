@@ -43,10 +43,7 @@ public class InfoPopup : Subs
     }
     public override void Show(string text, float time)
     {
-        //subsCanvasText.fontStyle = FontStyle.Italic;
-        //subsCanvasText.color = dialogueColor;
         subsCanvasText.text = text;
-        //subsCanvasText.text = "-" + subsCanvasText.text; //agrega un guioncito vintage
         Invoke("Hide", time);
     }
 
@@ -55,6 +52,10 @@ public class InfoPopup : Subs
         subsCanvasText.text = "";
     }
 
+    public void OnDestroy()
+    {
+        Hide();
+    }
 
 
 }

@@ -39,40 +39,7 @@ public class MouseLook : MonoBehaviour
         playerBody.Rotate(Vector3.up * mouseX); 
 
 
-        ////LOGICA DEL RAYCAST -- por Fran
-        //Ray ray = fpsCamera.ScreenPointToRay(Input.mousePosition);
-        //RaycastHit hit;
-
-        //Debug.DrawRay(ray.origin, ray.direction * pickUpDistance, Color.blue);
-
-        //if (Physics.Raycast(ray, out hit, pickUpDistance))
-        //{
-        //    //Si le pegamos a algo interactable .
-        //    Interactable obj = hit.collider.GetComponent<Interactable>();
-        //    if (obj)
-        //    {
-        //        sensedObj = obj;
-        //        if (obj.muestraManito)
-        //        {
-        //            manito.SetActive(true);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        sensedObj = null;
-        //        manito.SetActive(false);
-        //    }
-        //}
-        //else
-        //{
-        //    //si no le pegamos a nada.
-        //    sensedObj = null;
-        //    manito.SetActive(false);
-
-        //}
-
         //interactuamos con E -- por Fran
-
         if ((Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) && sensedObj)
         {
 
@@ -97,7 +64,7 @@ public class MouseLook : MonoBehaviour
             if (sensedObj.pickUpType == EnumPickUpType.item_usb || sensedObj.pickUpType == EnumPickUpType.item_battery || 
                 sensedObj.pickUpType == EnumPickUpType.item_hp || sensedObj.pickUpType == EnumPickUpType.item_flashlight)
             {
-                DestroyImmediate(sensedObj.gameObject);
+                Destroy(sensedObj.gameObject, 0.1f);
                 sensedObj = null;
             }
         }

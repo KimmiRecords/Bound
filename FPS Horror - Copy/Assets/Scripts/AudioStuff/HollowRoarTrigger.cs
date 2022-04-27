@@ -17,7 +17,7 @@ public class HollowRoarTrigger : MonoBehaviour
 
     private void OnDestroy()
     {
-        print("le di play al hollow roar en" + soundPosition);
-        AudioManager.instance.PlayHollowRoar(soundPosition);
+        //print("le di play al hollow roar en" + soundPosition);
+        //AudioManager.instance.PlayHollowRoar(soundPosition, 2);
     }
 }

@@ -10,8 +10,6 @@ public class MonsterMovement : MonoBehaviour
     //este script se lo adjuntas al chebola para que haga daño en aura al player, y lo persiga si es visto -- por dk
 
 
-    //public static MonsterMovement instance;
-
     private Transform _playerTransform;
 
     private Vector3 _playerPosition;
@@ -26,37 +24,31 @@ public class MonsterMovement : MonoBehaviour
 
     private bool _enEscena = false; //si esta el chebola en vista o no
     private bool _mustStay = true; //si el chebola debe quedarse en su lugar. lo uso por si te tiene que esperar aunque no lo veas.
-    
 
     private float _damageAura; //el radio del aura
-
-    //public Vector3 usbTriggerPosition0;
-    //public Vector3 usbTriggerPosition1;
-    //public Vector3 usbTriggerPosition2; 
-    //public Vector3 usbTriggerPosition3;
 
     public static float monsterSpeed = 0.25f;
 
     private NavMeshAgent agent;
 
+    private Animator anim;
+
     void Start()
     {
-        //if (instance)
-        //{
-        //    Destroy(gameObject);
-        //}
-        //else
-        //{
-        //    instance = this;
-        //}
-
         if (GetComponent<NavMeshAgent>() != null)
         {
             agent = GetComponent<NavMeshAgent>();
         }
 
+        if (GetComponent<Animator>() != null)
+        {
+            anim = GetComponent<Animator>();
+        }
+
         _playerTransform = PlayerStats.playerTransform;
+
         _damageAura = 18f;
+
         _farAway = new Vector3(0, 0, 0);
         _mustStay = true;
         PlayerStats.playerFear = false;
@@ -102,7 +94,7 @@ public class MonsterMovement : MonoBehaviour
             {
                 if (hit.transform.gameObject.layer == 3) //y ese algo es layer 3 (player)
                 {
-                    print("i see you");
+                    //print("i see you");
                     if (_distanceToPlayer <= _damageAura) //y estas en rango...
                     {
                         if (_angle > 145) //en cuanto tengas al chebola de frente, me considere en escena y empiezo a hacerte daño
@@ -110,7 +102,7 @@ public class MonsterMovement : MonoBehaviour
                             _enEscena = true;
                             _mustStay = false;
                             agent.destination = _playerPosition; //me muevo hacia el player
-                                                                 //anim.SetBool("isWalking", true);
+                            anim.SetBool("isWalking", true);                             
                             Damage();
 
                             if (_screamerReady) //y si el screamer esta listo...
@@ -127,26 +119,6 @@ public class MonsterMovement : MonoBehaviour
         }
 
 
-        //if (_distanceToPlayer <= _damageAura) //si estas en aura...
-        //{
-        //    if (_angle > 145) //en cuanto ves al chebola, lo considero en escena y empieza a hacer daño
-        //    {
-        //        _enEscena = true;
-        //        _mustStay = false;
-        //        agent.destination = _playerPosition; //me muevo hacia el player
-        //        //anim.SetBool("isWalking", true);
-        //        Damage();
-
-        //        if (_screamerReady) //y si el screamer esta listo...
-        //        {
-        //            AudioManager.instance.PlayScreamer1(); //arranca el todo mal
-        //            AudioManager.instance.StopBGM();
-        //            _screamerReady = false; //flag para que solo pase una vez
-        //            _bgmReady = true;
-        //        }
-        //    }
-        //}
-
         if (_angle < 90 && _distanceToPlayer > _damageAura) //si volteas y te alejas, zafas
         {
             _enEscena = false;
@@ -154,9 +126,8 @@ public class MonsterMovement : MonoBehaviour
 
         if (_enEscena == false && _mustStay == false) //cuando dejo de mirarlo se tpea lejos
         {
-            //TPFarAway();
             agent.destination = transform.position; //o sea, a ningun lado
-            //anim.SetBool("isWalking", false);
+            anim.SetBool("isWalking", false);
             _screamerReady = true;
             if (_bgmReady)
             {
