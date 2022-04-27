@@ -13,12 +13,18 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 move;
 
+    //private Animator anim;
     private void Start()
     {
         if (GetComponent<CharacterController>() != null)
         {
             _controller = GetComponent<CharacterController>();
         }
+
+        //if (GetComponent<Animator>() != null)
+        //{
+        //    anim = GetComponent<Animator>();
+        //}
     }
 
     void Update()
@@ -37,13 +43,13 @@ public class PlayerMovement : MonoBehaviour
         if (groundedPlayer && _verticalVelocity < 0) //corta la caida cuando toco el suelo
         {
             _verticalVelocity = 0f;
+            //anim.SetBool("isJumping", false);
             AudioManager.instance.PlayJumpDown();
         }
 
         _verticalVelocity -= gravityValue * Time.deltaTime; //aplica gravedad extra
         move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
-        //move = move.normalized;
-        //print(move.magnitude);
+        move = move.normalized;
         move *= _playerSpeed;
 
         if (PlayerStats.agency)
@@ -55,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
                     AudioManager.instance.StopPasos();
                     AudioManager.instance.PlayJumpUp();
                     _groundedTimer = 0;
+                    //anim.SetBool("isJumping", true);
                     _verticalVelocity += Mathf.Sqrt(_jumpHeight * 2 * gravityValue); //saltar en realidad le da velocidad vertical nomas
                 }
             }
@@ -64,6 +71,14 @@ public class PlayerMovement : MonoBehaviour
         _controller.Move(move * Time.deltaTime); //para mover al character controller hay que usar el metodo .Move
 
 
+        //if (move.magnitude == 0)
+        //{
+        //    //anim.SetBool("isWalking", false);
+        //}
+        //else
+        //{
+        //    //anim.SetBool("isWalking", true);
+        //}
 
     }
 }

@@ -6,7 +6,8 @@ public class GraviBox : MonoBehaviour
 {
     //este script se lo adjuntas a una caja que tenga gravedad loca.
     //acordate de cargar en el inspector qué interactable le va a togglear la grav, y cuales son sus gravedad normal y loca.
-    //-por dk
+
+    //-por valen y dk
 
     public Interactable quienMeControla;
 
@@ -58,7 +59,7 @@ public class GraviBox : MonoBehaviour
     {
         if (isBound)
         {
-            appliedGrav = alteredGrav; //altero la grav
+            appliedGrav = alteredGrav; //suelto a la caja para que flote (altero la grav)
             isBound = false;
         }
         else
