@@ -8,7 +8,7 @@ public class DamageFrame : MonoBehaviour
     private float damageRatio;
 
     public GameObject ruidoBlanco;
-    private RawImage ruidoBlancoRawImg;
+    public RawImage ruidoBlancoRawImg;
 
     public GameObject damageFrame2;
     private RawImage damageFrame2RawImg;
