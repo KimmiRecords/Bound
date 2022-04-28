@@ -188,6 +188,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vidita: 0
+  hpRegen: 0
+  CanvasVidaUtil: {fileID: 0}
+  ModeloLinterna: {fileID: 0}
 --- !u!114 &6342895206379118316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -688,7 +691,6 @@ MonoBehaviour:
   mouseSensitivity: 475
   pickUpDistance: 5
   sensedObj: {fileID: 0}
-  usb3: {fileID: 0}
   manito: {fileID: 5628344689197761627}
 --- !u!1 &6342895207641989286
 GameObject:
