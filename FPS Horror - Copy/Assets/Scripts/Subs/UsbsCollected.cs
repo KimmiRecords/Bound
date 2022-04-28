@@ -20,7 +20,10 @@ public class UsbsCollected : MonoBehaviour
 
     void Update()
     {
-        amount = PlayerStats.usbsCollected.ToString();
-        usbsCollectedText.text = FirstPartOfText + amount;
+        if (PlayerStats.usbsCollected != 0)
+        {
+            amount = PlayerStats.usbsCollected.ToString();
+            usbsCollectedText.text = FirstPartOfText + amount;
+        }
     }
 }

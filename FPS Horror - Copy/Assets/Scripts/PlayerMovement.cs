@@ -11,9 +11,11 @@ public class PlayerMovement : MonoBehaviour
     public float _jumpHeight;
     public float gravityValue;          //gravedad extra para que quede linda la caida del salto
 
-    public Vector3 move;
+    private Vector3 move;
 
-    //private Animator anim;
+    Animator _anim;
+    PlayerAnimations _pAnims;
+
     private void Start()
     {
         if (GetComponent<CharacterController>() != null)
@@ -21,10 +23,12 @@ public class PlayerMovement : MonoBehaviour
             _controller = GetComponent<CharacterController>();
         }
 
-        //if (GetComponent<Animator>() != null)
-        //{
-        //    anim = GetComponent<Animator>();
-        //}
+        if (GetComponent<Animator>() != null)
+        {
+            _anim = GetComponent<Animator>();
+        }
+
+        _pAnims = new PlayerAnimations(_anim);
     }
 
     void Update()
@@ -70,15 +74,6 @@ public class PlayerMovement : MonoBehaviour
         move.y = _verticalVelocity;
         _controller.Move(move * Time.deltaTime); //para mover al character controller hay que usar el metodo .Move
 
-
-        //if (move.magnitude == 0)
-        //{
-        //    //anim.SetBool("isWalking", false);
-        //}
-        //else
-        //{
-        //    //anim.SetBool("isWalking", true);
-        //}
-
+        _pAnims.CheckMagnitude(move.x + move.z);
     }
 }
