@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
             _anim = GetComponent<Animator>();
         }
 
-        _pAnims = new PlayerAnimations(_anim);
+        _pAnims = new PlayerAnimations(_anim); //construyo el script de playerAnimations
     }
 
     void Update()
@@ -47,13 +47,17 @@ public class PlayerMovement : MonoBehaviour
         if (groundedPlayer && _verticalVelocity < 0) //corta la caida cuando toco el suelo
         {
             _verticalVelocity = 0f;
-            //anim.SetBool("isJumping", false);
             AudioManager.instance.PlayJumpDown();
         }
 
         _verticalVelocity -= gravityValue * Time.deltaTime; //aplica gravedad extra
         move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
-        move = move.normalized;
+
+        if (move.magnitude > 1)
+        {
+            move = move.normalized;
+        }
+
         move *= _playerSpeed;
 
         if (PlayerStats.agency)
@@ -65,7 +69,6 @@ public class PlayerMovement : MonoBehaviour
                     AudioManager.instance.StopPasos();
                     AudioManager.instance.PlayJumpUp();
                     _groundedTimer = 0;
-                    //anim.SetBool("isJumping", true);
                     _verticalVelocity += Mathf.Sqrt(_jumpHeight * 2 * gravityValue); //saltar en realidad le da velocidad vertical nomas
                 }
             }
@@ -74,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
         move.y = _verticalVelocity;
         _controller.Move(move * Time.deltaTime); //para mover al character controller hay que usar el metodo .Move
 
-        _pAnims.CheckMagnitude(move.x + move.z);
+
+        _pAnims.CheckMagnitude(move.x + move.z); //en el script de playerAnimations, chequea si me estoy moviendo o no
     }
 }

@@ -9,7 +9,7 @@ public class PlayerAnimations
 
     public PlayerAnimations(Animator a)
     {
-        _anim = a;
+        _anim = a; //pido el componente por parametro. cuando lo construyan me lo dan.
     }
     
     public void PlayWalking()
@@ -27,12 +27,11 @@ public class PlayerAnimations
         _moveMag = moveMag;
         if (_moveMag != 0)
         {
-            PlayWalking();
+            PlayWalking(); //si me muevo
         }
         else
         {
-            StopWalking();
+            StopWalking(); //si estoy quieto
         }
-        Debug.Log("movemag = " + _moveMag);
     }
 }

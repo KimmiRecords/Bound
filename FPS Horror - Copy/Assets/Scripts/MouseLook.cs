@@ -101,7 +101,6 @@ public class MouseLook : MonoBehaviour
             //si no le pegamos a nada.
             sensedObj = null;
             manito.SetActive(false);
-
         }
     }
 }

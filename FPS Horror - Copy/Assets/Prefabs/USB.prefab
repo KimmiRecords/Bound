@@ -115,6 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUpType: 0
   amount: 1
+  muestraManito: 1
 --- !u!65 &5446133689603267685
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -126,8 +127,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.68689483, y: 0.11719351, z: 0.15600525}
-  m_Center: {x: -0.002328998, y: 0.0028057403, z: -0.007260173}
+  m_Size: {x: 1.1131669, y: 0.2833685, z: 0.37721348}
+  m_Center: {x: -0.0068536755, y: 0.08589315, z: -0.007260168}
 --- !u!1001 &7497909716510057335
 PrefabInstance:
   m_ObjectHideFlags: 0

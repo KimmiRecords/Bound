@@ -19,7 +19,6 @@ public class RaycastBatteries : MonoBehaviour
         {
             if (hit.transform.tag == "batteries" && (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)))
             {
-
                 Destroy(hit.transform.gameObject);
                 batteriesObtained += currentBatteries;
                 Debug.Log("bateria obtenida");

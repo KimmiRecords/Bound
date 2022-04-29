@@ -11,9 +11,10 @@ public class ToxicGas : MonoBehaviour
     public MouseLook mouseLook;
 
     public DamageFrame DF;
+
     void Start()
     {
-        
+
     }
 
     
@@ -48,7 +49,6 @@ public class ToxicGas : MonoBehaviour
 
     public void DestroyGas()
     {
-
         Destroy(this.gameObject);
 
     }

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ChebolaSpawner : MonoBehaviour
 {
+
+    //Este script se lo agregas a un pickup para que haga spawnear un chebola al destruirse. por ej, los usb.
+
     public GameObject chebolaPrefab;
     public Vector3 desiredSpawnPosition;
 
@@ -18,9 +21,6 @@ public class ChebolaSpawner : MonoBehaviour
         
     }
 
-    void OnApplicationQuit()
-    {
-    }
 
     private void OnDestroy()
     {
