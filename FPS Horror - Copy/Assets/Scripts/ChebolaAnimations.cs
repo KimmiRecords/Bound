@@ -15,6 +15,8 @@ public class ChebolaAnimations : MonoBehaviour
     private float _initialSpeed;
     private float _attackRange; //que tan cerca te ataca
     private bool screamIsReady;
+    //private Vector3 _vectorToPlayer;
+
 
     void Start()
     {
@@ -31,6 +33,7 @@ public class ChebolaAnimations : MonoBehaviour
         _initialSpeed = agent.speed;
         _attackRange = 5f;
         screamIsReady = true;
+        //_vectorToPlayer = transform.position - PlayerStats.playerTransform.position;
 
     }
 
@@ -65,6 +68,8 @@ public class ChebolaAnimations : MonoBehaviour
         {
             anim.SetBool("isAttacking", false);
         }
+
+        //print(agent.remainingDistance);
     }
 
     void Scream()
