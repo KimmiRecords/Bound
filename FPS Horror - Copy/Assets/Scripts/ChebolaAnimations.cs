@@ -5,13 +5,15 @@ using UnityEngine.AI;
 
 public class ChebolaAnimations : MonoBehaviour
 {
+
+    //este script controla las animaciones del chebola
+    //por valen y dk
+
     private Animator anim;
     private NavMeshAgent agent;
+
     private float _initialSpeed;
     private float _attackRange; //que tan cerca te ataca
-
-
-    private AnimatorStateInfo stateInfo;
     private bool screamIsReady;
 
     void Start()
@@ -27,15 +29,16 @@ public class ChebolaAnimations : MonoBehaviour
         }
 
         _initialSpeed = agent.speed;
-        _attackRange = 3f;
+        _attackRange = 5f;
         screamIsReady = true;
+
     }
 
     void Update()
     {
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("chebola_scream"))
         {
-            if (screamIsReady)
+            if (screamIsReady) //para que reproduzca el audio una sola vez
             {
                 Scream();
                 screamIsReady = false;
@@ -62,8 +65,6 @@ public class ChebolaAnimations : MonoBehaviour
         {
             anim.SetBool("isAttacking", false);
         }
-
-
     }
 
     void Scream()

@@ -87,8 +87,11 @@ public class AudioManager : MonoBehaviour
     //HOLLOW ROAR
     public void PlayHollowRoar(Vector3 pos, float delayTime)
     {
-        hollowRoar.gameObject.transform.position = pos; //muevo al audiosource
-        hollowRoar.PlayDelayed(delayTime);
+        if (!hollowRoar.isPlaying)
+        {
+            hollowRoar.gameObject.transform.position = pos; //muevo al audiosource
+            hollowRoar.PlayDelayed(delayTime);
+        }
     }
 
 

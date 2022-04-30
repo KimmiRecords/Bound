@@ -75,7 +75,9 @@ public class Instructions : MonoBehaviour
             credits.color = new Color(1, 1, 1, Mathf.Lerp(0, 1, timer));
         }
 
-        if (Input.anyKey && instructionsSeen == false) //paso a mostrar las instrucciones
+        //print(timer);
+
+        if (Input.anyKey && instructionsSeen == false && timer >= 0.5) //paso a mostrar las instrucciones
         {
             instructionsSeen = true;
             timer = 0; //reseteo el timer para fadear las instrucciones tambien
@@ -96,6 +98,13 @@ public class Instructions : MonoBehaviour
             AudioManager.instance.StopMainMenuMusic();
             AudioManager.instance.PlayBGM();
             SceneManager.LoadScene(1); //1 es el primer nivel
+        }
+
+        if (Input.GetKeyDown(KeyCode.T) && instructionsSeen == true)
+        {
+            AudioManager.instance.StopMainMenuMusic();
+            AudioManager.instance.PlayBGM();
+            SceneManager.LoadScene(5); //5 es la escena de prueba
         }
     }
 }

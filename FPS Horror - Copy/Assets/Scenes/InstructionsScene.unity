@@ -99,7 +99,8 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 1160070fd3b10054e855995c22c1411a,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -922,7 +923,10 @@ MonoBehaviour:
   m_Text: 'get the usb drives and escape
 
 
-    press e to start'
+    press e  for level one
+
+    press
+    t  for test scene'
 --- !u!222 &940369522
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1473,7 +1477,10 @@ MonoBehaviour:
   m_Text: 'get the usb drives and escape
 
 
-    press e to start'
+    press e  for level one
+
+    press
+    t  for test scene'
 --- !u!222 &1740217707
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -12962,7 +12962,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh17638
+  m_Name: pb_Mesh203522
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -23887,7 +23887,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh18348
+  m_Name: pb_Mesh178058
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -27423,7 +27423,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16888
+  m_Name: pb_Mesh202822
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -45396,7 +45396,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &1139826081
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -55263,7 +55263,7 @@ PrefabInstance:
     - target: {fileID: 4972167997025983191, guid: 22d2c44fed4ffa743aac7afe4d993905,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22d2c44fed4ffa743aac7afe4d993905, type: 3}
@@ -55283,7 +55283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &1932051973
 Light:
   m_ObjectHideFlags: 0
@@ -57724,6 +57724,11 @@ PrefabInstance:
       propertyPath: CanvasVidaUtil
       value: 
       objectReference: {fileID: 654279803}
+    - target: {fileID: 6567147963033166818, guid: 7560b309413f82a4e826fe8d8c2db003,
+        type: 3}
+      propertyPath: _playerSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6567147963033166819, guid: 7560b309413f82a4e826fe8d8c2db003,
         type: 3}
       propertyPath: m_RootOrder
@@ -57742,7 +57747,7 @@ PrefabInstance:
     - target: {fileID: 6567147963033166819, guid: 7560b309413f82a4e826fe8d8c2db003,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 73
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 6567147963033166819, guid: 7560b309413f82a4e826fe8d8c2db003,
         type: 3}
@@ -62015,6 +62020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 572c6b9a71fce56449bf3bd122765232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundPosition: {x: 0, y: 0, z: 0}
 --- !u!33 &7716967555073777257
 MeshFilter:
   m_ObjectHideFlags: 0

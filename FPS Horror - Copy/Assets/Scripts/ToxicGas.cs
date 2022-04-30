@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class ToxicGas : MonoBehaviour
 {
+    //este script se lo pones a un collider bien grandote para que funcione como area de gas toxico
+    //por mateo
+
     public float GasDamage;
-
     public Interactable quienMeControla;
-
     public MouseLook mouseLook;
-
-    public DamageFrame DF;
 
     void Start()
     {
 
     }
-
     
     void Update()
     {
@@ -29,27 +27,23 @@ public class ToxicGas : MonoBehaviour
         }
     }
 
-
     private void OnTriggerStay(Collider collider)
     {
         if (collider.gameObject.layer == 3) 
         {
             GasPassiveDamage();
-
         }
     }
 
     public void GasPassiveDamage()
     {
         PlayerStats.playerHp -= GasDamage;
-        DF.ruidoBlancoRawImg.color = new Color(0, 1, 0, DF.ruidoBlancoRawImg.color.a);
-        print("Me queda " + PlayerStats.playerHp + " de vida");
+        //print("Me queda " + PlayerStats.playerHp + " de vida");
         
     }
 
     public void DestroyGas()
     {
         Destroy(this.gameObject);
-
     }
 }
