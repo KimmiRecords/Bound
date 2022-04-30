@@ -37,6 +37,9 @@ public class PlayerMovement : MonoBehaviour
         if (groundedPlayer)
         {
             _groundedTimer = 0.2f; //mientras este en el suelo
+            _pAnims.StopJumping();
+            _pAnims.StopFalling();
+            _pAnims.PlayLanding();
         }
 
         if (_groundedTimer > 0)
@@ -44,10 +47,18 @@ public class PlayerMovement : MonoBehaviour
             _groundedTimer -= Time.deltaTime; //lo vuelve a 0
         }
 
-        if (groundedPlayer && _verticalVelocity < 0) //corta la caida cuando toco el suelo
+        if (!groundedPlayer && _verticalVelocity <= 0) //si esta cayendo pero no tocando el suelo empieza a caer
+        {
+            _pAnims.StopJumping();
+            _pAnims.PlayFalling();
+        }
+
+        if (groundedPlayer && _verticalVelocity <= 0) //corta la caida cuando toco el suelo
         {
             _verticalVelocity = 0f;
             AudioManager.instance.PlayJumpDown();
+            //_pAnims.StopFalling();
+            //_pAnims.PlayLanding();
         }
 
         _verticalVelocity -= gravityValue * Time.deltaTime; //aplica gravedad extra
@@ -70,6 +81,8 @@ public class PlayerMovement : MonoBehaviour
                     AudioManager.instance.PlayJumpUp();
                     _groundedTimer = 0;
                     _verticalVelocity += Mathf.Sqrt(_jumpHeight * 2 * gravityValue); //saltar en realidad le da velocidad vertical nomas
+                    _pAnims.PlayJumping();
+                    _pAnims.StopLanding();
                 }
             }
         }
@@ -79,5 +92,6 @@ public class PlayerMovement : MonoBehaviour
 
 
         _pAnims.CheckMagnitude(move.x + move.z); //en el script de playerAnimations, chequea si me estoy moviendo o no
+
     }
 }
