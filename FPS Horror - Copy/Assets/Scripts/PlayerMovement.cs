@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //el movimiento del player. con character controller y a mano
+    //por todos, basicamente.
+
     private CharacterController _controller;
     private float _verticalVelocity;
     private float _groundedTimer;       // para que detecte piola en rampas
@@ -37,6 +40,9 @@ public class PlayerMovement : MonoBehaviour
         if (groundedPlayer)
         {
             _groundedTimer = 0.2f; //mientras este en el suelo
+            _pAnims.StopJumping();
+            _pAnims.StopFalling();
+            _pAnims.PlayLanding();
         }
 
         if (_groundedTimer > 0)
@@ -44,7 +50,13 @@ public class PlayerMovement : MonoBehaviour
             _groundedTimer -= Time.deltaTime; //lo vuelve a 0
         }
 
-        if (groundedPlayer && _verticalVelocity < 0) //corta la caida cuando toco el suelo
+        if (!groundedPlayer && _verticalVelocity <= -8f) //si esta cayendo pero no tocando el suelo empieza a caer
+        {
+            _pAnims.StopJumping();
+            _pAnims.PlayFalling();
+        }
+
+        if (groundedPlayer && _verticalVelocity <= 0) //corta la caida cuando toco el suelo
         {
             _verticalVelocity = 0f;
             AudioManager.instance.PlayJumpDown();
@@ -70,6 +82,8 @@ public class PlayerMovement : MonoBehaviour
                     AudioManager.instance.PlayJumpUp();
                     _groundedTimer = 0;
                     _verticalVelocity += Mathf.Sqrt(_jumpHeight * 2 * gravityValue); //saltar en realidad le da velocidad vertical nomas
+                    _pAnims.PlayJumping();
+                    _pAnims.StopLanding();
                 }
             }
         }

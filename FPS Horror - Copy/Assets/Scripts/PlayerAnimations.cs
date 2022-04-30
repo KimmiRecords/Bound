@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerAnimations
 {
+    //este script es construido por PlayerMovement. maneja las animaciones de idle, caminar, y las 3 de saltar.
+    //por valen y dk
+
     private Animator _anim;
     private float _moveMag;
 
@@ -33,5 +36,35 @@ public class PlayerAnimations
         {
             StopWalking(); //si estoy quieto
         }
+    }
+    
+    public void PlayJumping()
+    {
+        _anim.SetBool("IsJumping", true);
+    }
+
+    public void StopJumping()
+    {
+        _anim.SetBool("IsJumping", false);
+    }
+
+    public void PlayFalling()
+    {
+        _anim.SetBool("IsFalling", true);
+    }
+
+    public void StopFalling()
+    {
+        _anim.SetBool("IsFalling", false);
+    }
+
+    public void PlayLanding()
+    {
+        _anim.SetBool("IsGrounded", true);
+    }
+
+    public void StopLanding()
+    {
+        _anim.SetBool("IsGrounded", false);
     }
 }
