@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class Subs : MonoBehaviour
 {
-    //este script se lo adjuntas a un collider-trigger. cuando el player lo atraviesa, muestra un texto cheto a modo de subtitulos.
+    //este script es padre de otros. muestra un texto a modo de subtitulos.
 
     //los hijos de este script son las distintas maneras de mostrar subs.
-    //overridean el metodo de mostrar para cambiarle el formato u otras cosas.
+    //overridean el metodo Show para cambiarle el formato u otras cosas.
 
     public Text subsCanvasText; //el componente Text del canvas
 

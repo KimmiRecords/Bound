@@ -33,7 +33,6 @@ public class DoorControllerTrigger : MonoBehaviour
         if (other.gameObject.layer == 7 || other.gameObject.layer == 3)
         {
             AudioManager.instance.PlayPPlateOff(transform.position);
-
             quePuertaAbro.CloseDoor();
         }
     }

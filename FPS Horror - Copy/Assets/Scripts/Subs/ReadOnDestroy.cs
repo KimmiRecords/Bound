@@ -2,21 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HollowRoarTrigger : MonoBehaviour
+public class ReadOnDestroy : Subs
 {
-    //este script se lo adjuntas a un pickup para que cuando lo pickupees (y destruyas) reproduzca un tenebroso audio de chebola en la posicion deseada.
-    //por fran y dk
+    public GameObject dialogueTriggerPrefab;
 
-    public Vector3 soundPosition;
-
+    private Vector3 _playerPos;
     void Start()
     {
-
     }
 
     void Update()
     {
-        
+        _playerPos = PlayerStats.playerTransform.position;
+
     }
 
     private void OnDestroy()
@@ -25,7 +23,8 @@ public class HollowRoarTrigger : MonoBehaviour
         {
             return;
         }
-        print("le di play al hollow roar en" + soundPosition);
-        AudioManager.instance.PlayHollowRoar(soundPosition, 2);
+
+
+        //Show(desiredText, desiredTime);
     }
 }
