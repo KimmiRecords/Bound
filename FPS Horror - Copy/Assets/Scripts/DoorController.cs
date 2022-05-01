@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-    Animator _doorAnim;
+    [HideInInspector]
+    public Animator _doorAnim;
+
     void Start()
     {
         _doorAnim = this.transform.parent.GetComponent<Animator>();

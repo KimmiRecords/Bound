@@ -8603,7 +8603,7 @@ PrefabInstance:
     - target: {fileID: 8926552377476100552, guid: fc00ee916f0eb8a4ba2d72db4322ab7d,
         type: 3}
       propertyPath: m_Name
-      value: DoorTrigger1
+      value: DoorTriggerButton1
       objectReference: {fileID: 0}
     - target: {fileID: 8926552377476100556, guid: fc00ee916f0eb8a4ba2d72db4322ab7d,
         type: 3}
@@ -8627,6 +8627,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8926552377476100559, guid: fc00ee916f0eb8a4ba2d72db4322ab7d,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8926552377476100559, guid: fc00ee916f0eb8a4ba2d72db4322ab7d,
+        type: 3}
       propertyPath: m_Center.x
       value: 0.06789342
       objectReference: {fileID: 0}
@@ -8637,6 +8642,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc00ee916f0eb8a4ba2d72db4322ab7d, type: 3}
+--- !u!114 &543624394 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8926552377476100547, guid: fc00ee916f0eb8a4ba2d72db4322ab7d,
+    type: 3}
+  m_PrefabInstance: {fileID: 543624393}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 710eb7b01ba4c5844bd88886f4b12701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &546296911
 Mesh:
   m_ObjectHideFlags: 0
@@ -19843,6 +19860,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3491894390173606202, guid: 0f891b965551c7f4a95c33bb89ddb89b,
+        type: 3}
+      propertyPath: m_Name
+      value: ButtonsInteractable
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0f891b965551c7f4a95c33bb89ddb89b,
         type: 3}
       propertyPath: m_Name
@@ -20361,6 +20383,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1277854053}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1374439737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374439736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0029cd56959726446baf59beeb8f7ce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quePuertaAbro: {fileID: 543624394}
 --- !u!114 &1374439738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20374,8 +20409,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpType: 7
-  amount: 1
+  amount: 0
   muestraManito: 1
+--- !u!65 &1374439739
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374439736}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.010889229, y: 0.011260549, z: 0.019526312}
+  m_Center: {x: -0.00084332394, y: 0.0026386187, z: -0.0000056517842}
 --- !u!1 &1376542538
 GameObject:
   m_ObjectHideFlags: 0
