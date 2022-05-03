@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class FlashlightLife : MonoBehaviour
 {
-    public bool start = false;
-    public float startTime = 1f;
-    public Text textTimer;
-    public float timer;
-    public GameObject basicFlashlight;
+    private bool       start = false;
+    public  float      startTime = 1f;
+    public  float      timer;
+    public  Text       textTimer;
+    public  GameObject basicFlashlight;
 
     public void Subtract(int amount)
     {
