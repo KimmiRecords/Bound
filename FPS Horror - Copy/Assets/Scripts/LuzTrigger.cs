@@ -7,7 +7,7 @@ public class LuzTrigger : MonoBehaviour
     //este script se lo pones a una pressure plate para que prenda n luces
 
     private BoxCollider boxCollider;
-    //public Light luz; //la luz que voy a prender. 
+    
     public float intensidadDeseada;
 
     public Light[] luces; //las luces que quiero prender
@@ -18,10 +18,6 @@ public class LuzTrigger : MonoBehaviour
         {
             boxCollider = GetComponent<BoxCollider>();
         }
-    }
-    void Update()
-    {
-
     }
 
     private void OnTriggerEnter(Collider other)
