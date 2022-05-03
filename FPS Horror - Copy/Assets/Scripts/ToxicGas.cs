@@ -10,11 +10,6 @@ public class ToxicGas : MonoBehaviour
     public float GasDamage;
     public Interactable quienMeControla;
     public MouseLook mouseLook;
-
-    void Start()
-    {
-
-    }
     
     void Update()
     {
