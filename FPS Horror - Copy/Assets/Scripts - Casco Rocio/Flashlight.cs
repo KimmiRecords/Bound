@@ -7,12 +7,11 @@ public class Flashlight : MonoBehaviour
 {
 
     //LOGICA DE LA LINTERNA, POR MEI
-
-    public bool flashlightActive = false;
-    public Text textTimer;
-    public GameObject flashlight;
-    public GameObject flashlightActivatingCollider;
-    public FlashlightLife flashlightOff; //re cheto, llama al otro script
+    private bool           flashlightActive = false;
+    public  Text           textTimer;
+    public  GameObject     flashlight;
+    public  GameObject     flashlightActivatingCollider;
+    public  FlashlightLife flashlightOff; //re cheto, llama al otro script
 
 
     void Start()

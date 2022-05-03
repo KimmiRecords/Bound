@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class RaycastBatteries : MonoBehaviour
 {
-    public int batteriesObtained;
-    public int currentBatteries;
-    public int batteryRecharge;
-    public Text count;
-    public FlashlightLife wasteBattery;
+    
+    private int             batteriesObtained = 0;
+    private int             currentBatteries  = 1;
+    public  int             batteryRecharge;
+    public  Text            count;
+    public  FlashlightLife  wasteBattery;
 
 
     void Update()
@@ -22,7 +23,7 @@ public class RaycastBatteries : MonoBehaviour
                 Destroy(hit.transform.gameObject);
                 batteriesObtained += currentBatteries;
                 Debug.Log("bateria obtenida");
-                count.text = "Baterias: " + batteriesObtained.ToString("f0");
+                count.text = "Baterias: " + batteriesObtained.ToString("f0") + "/3";
 
                 AudioManager.instance.PlayPickup(1);
 
