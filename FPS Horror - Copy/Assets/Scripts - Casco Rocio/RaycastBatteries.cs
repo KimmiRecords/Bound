@@ -23,7 +23,7 @@ public class RaycastBatteries : MonoBehaviour
                 Destroy(hit.transform.gameObject);
                 batteriesObtained += currentBatteries;
                 Debug.Log("bateria obtenida");
-                count.text = "Baterias: " + batteriesObtained.ToString("f0") + "/3";
+                count.text = "batteries: " + batteriesObtained.ToString("f0") + "/3";
 
                 AudioManager.instance.PlayPickup(1);
 
