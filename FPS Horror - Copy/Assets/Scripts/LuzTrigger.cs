@@ -11,6 +11,9 @@ public class LuzTrigger : MonoBehaviour
     public float intensidadDeseada;
 
     public Light[] luces; //las luces que quiero prender
+    public bool haceRuido;
+    private bool yaPrendiLasLuces;
+
 
     void Start()
     {
@@ -18,6 +21,7 @@ public class LuzTrigger : MonoBehaviour
         {
             boxCollider = GetComponent<BoxCollider>();
         }
+        yaPrendiLasLuces = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,7 +33,27 @@ public class LuzTrigger : MonoBehaviour
             {
                 luces[i].intensity = intensidadDeseada;
             }
-            AudioManager.instance.PlayPPlateOn(transform.position);
+            yaPrendiLasLuces = true;
+
+            if (haceRuido)
+            {
+                AudioManager.instance.PlayPPlateOn(transform.position);
+                print("hice ruido luztrigger enter");
+            }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.layer == 7 || other.gameObject.layer == 3) 
+        {
+            if (!yaPrendiLasLuces) //en el stay, solo las prende si estaban apagadas. 
+            {
+                for (int i = 0; i < luces.Length; i++)
+                {
+                    luces[i].intensity = intensidadDeseada;
+                }
+            }
         }
     }
 
@@ -42,8 +66,15 @@ public class LuzTrigger : MonoBehaviour
             {
                 luces[i].intensity = 0;
             }
-            AudioManager.instance.PlayPPlateOff(transform.position);
 
+            if (haceRuido)
+            {
+                AudioManager.instance.PlayPPlateOff(transform.position);
+                print("hice ruido luztrigger exit");
+
+            }
+
+            yaPrendiLasLuces = false;
         }
     }
 }

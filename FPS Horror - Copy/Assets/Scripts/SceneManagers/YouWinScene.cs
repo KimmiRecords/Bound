@@ -9,8 +9,12 @@ public class YouWinScene : MonoBehaviour
 {
     public Text youWin;
     public Text pressAnyKey;
-    public float timer;
-    public float timer2;
+    private float timer;
+    private float timer2;
+
+    public float timeUntilFadeIn;
+    public float oscillationFrequency;
+    public float transparencyOffset;
 
     void Start()
     {
@@ -26,15 +30,14 @@ public class YouWinScene : MonoBehaviour
 
     void Update()
     {
-        timer += 0.15f * Time.deltaTime;
-        timer2 += Time.deltaTime;
+        timer += 0.15f * Time.deltaTime; //timer del youwin
+        timer2 += Time.deltaTime; //timer del press e to continue
 
+        youWin.color = new Color(0, 1, 0, Mathf.Lerp(0, 1, timer)); 
 
-        youWin.color = new Color(0, 1, 0, Mathf.Lerp(0, 1, timer)); //LOS COLORES VAN DE 0 A 1, NO DE 0 A 255 COMO EN EL INSPECTOR.
-
-        if (timer2 > 4) //a los 4 segs aparece oscilando
+        if (timer2 > timeUntilFadeIn) //a los tantos segs aparece oscilando
         {
-            pressAnyKey.color = new Color(0.5f, 1, 0.5f, Mathf.Sin(1.5f * Time.time));
+            pressAnyKey.color = new Color(0.5f, 1, 0.5f, Mathf.Sin(oscillationFrequency * Time.time)+transparencyOffset);
         }
 
         

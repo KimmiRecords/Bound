@@ -15,24 +15,24 @@ public class Instructions : MonoBehaviour
     public Transform MainCamera;
     public Transform Camera2;
 
-    private Color controlsInitialColor;
-    private Color objectiveRedInitialColor;
-    private Color creditsInitialColor;
+    private Color _controlsInitialColor;
+    private Color _objectiveRedInitialColor;
+    private Color _creditsInitialColor;
 
-    private bool instructionsSeen = false;
-    private float timer;
+    private bool _instructionsSeen = false;
+    private float _timer;
+    private float _cameraTimer;
     public float canvasTimerSpeed;
-    private float cameraTimer;
     public float cameraTimerSpeed;
 
 
     void Start()
     {
-        timer = 0;
+        _timer = 0;
 
-        controlsInitialColor = controls.color; //guardo el color inicial
-        objectiveRedInitialColor = objectiveRed.color;
-        creditsInitialColor = credits.color;
+        _controlsInitialColor = controls.color; //guardo el color inicial
+        _objectiveRedInitialColor = objectiveRed.color;
+        _creditsInitialColor = credits.color;
 
         controls.color = Color.clear; //arrancan invisibles
         objectiveRed.color = Color.clear;
@@ -42,12 +42,16 @@ public class Instructions : MonoBehaviour
 
     void Update()
     {
-        timer += (Time.deltaTime / canvasTimerSpeed);
-        cameraTimer += (Time.deltaTime / cameraTimerSpeed);
+        _timer += (Time.deltaTime / canvasTimerSpeed);
+        _cameraTimer += (Time.deltaTime / cameraTimerSpeed);
 
 
         //MOVIMIENTO CINEMATICO DE LA CAMARA
         //HAGO QUE VAYA DESDE LA POSICION Y ROTACION INICIAL HASTA LAS NUEVAS
+
+        MainCamera.position = Vector3.Lerp(MainCamera.position, Camera2.position, _cameraTimer);
+        MainCamera.rotation = Quaternion.Lerp(MainCamera.rotation, Camera2.rotation, _cameraTimer);
+
 
         ////lerpeo la posicion de la maincamera, desde su posicion inicial hasta la de la camera2
         //MainCamera.position = new Vector3(Mathf.Lerp(MainCamera.position.x, Camera2.position.x, cameraTimer),
@@ -63,48 +67,42 @@ public class Instructions : MonoBehaviour
         //                                       Mathf.Lerp(MainCamera.rotation.eulerAngles.x, Camera2.rotation.eulerAngles.x, cameraTimer));
 
 
-        MainCamera.position = Vector3.Lerp(MainCamera.position, Camera2.position, cameraTimer);
-        MainCamera.rotation = Quaternion.Lerp(MainCamera.rotation, Camera2.rotation, cameraTimer);
-
-
-
-
         //LOGICA DEL CANVAS
-        if (!instructionsSeen) //fadein de los creditos
+        if (!_instructionsSeen) //fadein de los creditos
         {
-            credits.color = new Color(1, 1, 1, Mathf.Lerp(0, 1, timer));
+            credits.color = new Color(1, 1, 1, Mathf.Lerp(0, 1, _timer));
         }
 
         //print(timer);
 
-        if (Input.anyKey && instructionsSeen == false && timer >= 0.5) //paso a mostrar las instrucciones
+        if (Input.anyKey && _instructionsSeen == false && _timer >= 0.5) //paso a mostrar las instrucciones
         {
-            instructionsSeen = true;
-            timer = 0; //reseteo el timer para fadear las instrucciones tambien
+            _instructionsSeen = true;
+            _timer = 0; //reseteo el timer para fadear las instrucciones tambien
         }
 
-        if (instructionsSeen) //fadein de las instrucciones
+        if (_instructionsSeen) //fadein de las instrucciones
         {
             credits.color = Color.clear; //apaga los credits
 
-            controls.color = new Color(controlsInitialColor.r, controlsInitialColor.g, controlsInitialColor.b, Mathf.Lerp(0, 1, timer)); //y muestra las instrus
-            objectiveRed.color = new Color(objectiveRedInitialColor.r, objectiveRedInitialColor.g, objectiveRedInitialColor.b, Mathf.Lerp(0, 1, timer-0.5f));
-            objectiveWhite.color = new Color(1, 1, 1, Mathf.Lerp(0, 1, timer-0.5f));
+            controls.color = new Color(_controlsInitialColor.r, _controlsInitialColor.g, _controlsInitialColor.b, Mathf.Lerp(0, 1, _timer)); //y muestra las instrus
+            objectiveRed.color = new Color(_objectiveRedInitialColor.r, _objectiveRedInitialColor.g, _objectiveRedInitialColor.b, Mathf.Lerp(0, 1, _timer-0.5f));
+            objectiveWhite.color = new Color(1, 1, 1, Mathf.Lerp(0, 1, _timer-0.5f));
         }
 
         //CAMBIO DE ESCENA
-        if (Input.GetKeyDown(KeyCode.E) && instructionsSeen == true)
+        if (Input.GetKeyDown(KeyCode.E) && _instructionsSeen == true)
         {
             AudioManager.instance.StopMainMenuMusic();
             AudioManager.instance.PlayBGM();
-            SceneManager.LoadScene(1); //1 es el primer nivel
+            SceneManager.LoadScene("Nivel1"); //1 es el primer nivel
         }
 
-        if (Input.GetKeyDown(KeyCode.T) && instructionsSeen == true)
+        if (Input.GetKeyDown(KeyCode.T) && _instructionsSeen == true)
         {
             AudioManager.instance.StopMainMenuMusic();
             AudioManager.instance.PlayBGM();
-            SceneManager.LoadScene(5); //5 es la escena de prueba
+            SceneManager.LoadScene("EscenarioDePrueba"); //5 es la escena de prueba
         }
     }
 }

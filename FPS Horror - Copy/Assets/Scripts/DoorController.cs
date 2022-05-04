@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
+    //este script se lo pones a una puerta para que se abra automaticamente al acercarte. 
+    //las puertas que se abren con boton o placa de presion llaman a los metodos de este script.
+    //por fran
+
     [HideInInspector]
     public Animator _doorAnim;
 

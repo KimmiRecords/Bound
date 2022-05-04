@@ -456,8 +456,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   youWin: {fileID: 1232287785}
   pressAnyKey: {fileID: 1503830349}
-  timer: 0
-  timer2: 0
+  timeUntilFadeIn: 2
+  oscillationFrequency: 3
+  transparencyOffset: 1
 --- !u!114 &853737524
 MonoBehaviour:
   m_ObjectHideFlags: 0

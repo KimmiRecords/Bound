@@ -380,8 +380,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   youDied: {fileID: 1232287785}
   pressAnyKey: {fileID: 1503830349}
-  timer: 0
-  timer2: 0
+  timeUntilFadeIn: 2
+  oscillationFrequency: 3
+  transparencyOffset: 1
 --- !u!114 &853737524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -909,7 +910,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PRESS e TO CONTINUE
+  m_Text: 'PRESS  e  for main menu
+
+    press  r  for level restart'
 --- !u!222 &1503830350
 CanvasRenderer:
   m_ObjectHideFlags: 0
