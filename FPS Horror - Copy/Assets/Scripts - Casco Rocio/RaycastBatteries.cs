@@ -8,9 +8,9 @@ public class RaycastBatteries : MonoBehaviour
     
     private int             batteriesObtained = 0;
     private int             currentBatteries  = 1;
-    public  int             batteryRecharge;
-    public  Text            count;
-    public  FlashlightLife  wasteBattery;
+    public  int             batteryRecharge; //cuanto recarga cada pickup
+    public  Text            count; //cuantos pickups de bateria conseguiste
+    public  FlashlightLife  wasteBattery; //cantidad de vida de bateria
 
 
     void Update()

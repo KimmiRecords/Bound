@@ -123,7 +123,7 @@ public class MonsterMovement : MonoBehaviour
     {
         if (collision.gameObject.layer == 3) //layer 3 es Player
         {
-            PlayerStats.playerHp = 0; //si me toca, me muero
+            PlayerStats.TakeDamage(PlayerStats.playerHpMax);
         }
     }
 
@@ -143,7 +143,7 @@ public class MonsterMovement : MonoBehaviour
 
     public void Damage()
     {
-        PlayerStats.playerHp -= 0.1f; //daña al player constantemente
+        PlayerStats.TakeDamage(0.1f); //daña al player constantemente
         PlayerStats.playerFear = true;
     }
 }

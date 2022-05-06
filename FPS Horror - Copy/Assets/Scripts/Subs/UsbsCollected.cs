@@ -5,11 +5,10 @@ using UnityEngine.UI;
 
 public class UsbsCollected : MonoBehaviour
 {
-    private Text usbsCollectedText;
-
     public string FirstPartOfText;
-
+    private Text usbsCollectedText;
     private string amount;
+
     void Start()
     {
         if (GetComponent<Text>() != null)
@@ -20,9 +19,9 @@ public class UsbsCollected : MonoBehaviour
 
     void Update()
     {
-        if (PlayerStats.usbsCollected != 0)
+        if (PlayerStats.UsbsCollected != 0)
         {
-            amount = PlayerStats.usbsCollected.ToString();
+            amount = PlayerStats.UsbsCollected.ToString();
             usbsCollectedText.text = FirstPartOfText + amount;
         }
     }

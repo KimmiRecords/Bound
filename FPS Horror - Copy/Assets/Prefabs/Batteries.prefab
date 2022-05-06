@@ -334,7 +334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8159982325764567552}
   - component: {fileID: 8553652685613880806}
-  - component: {fileID: 8553652685613880800}
+  - component: {fileID: 6603491061077828330}
   m_Layer: 0
   m_Name: Batteries
   m_TagString: batteries
@@ -373,7 +373,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7.2259545, y: 5.2672057, z: 8.195307}
   m_Center: {x: 2.16, y: 2.1336026, z: -0.87045234}
---- !u!114 &8553652685613880800
+--- !u!114 &6603491061077828330
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -382,9 +382,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8824174675985295546}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e6f3f26f4fdb2b4f9913adb4dc08dc3, type: 3}
+  m_Script: {fileID: 11500000, guid: 9571e96860df6644f9b7c5edf8d67c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpType: 5
-  amount: 0
+  pickUpType: 1
   muestraManito: 1

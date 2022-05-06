@@ -24,7 +24,7 @@ public class DamageFrame : MonoBehaviour
 
     void Update()
     {
-        damageRatio = (PlayerStats.playerHp / PlayerStats.playerHpMax); //damageRatio es 0 cuando estoy nuevo, es 1 cuando me mori
+        damageRatio = PlayerStats.PlayerHp / PlayerStats.playerHpMax; //damageRatio es 0 cuando estoy nuevo, es 1 cuando me mori
         opacity = 1 - damageRatio; //la opacidad. 1 es que se ve, 0 es invisible.
         opacity = Mathf.Clamp(opacity, 0, maxOpacity);
 
@@ -40,7 +40,7 @@ public class DamageFrame : MonoBehaviour
             ruidoBlancoRawImg.color = new Color(1, 0, 0, opacity); //cuando tengo daño, va apareciendo el recuadro de ruidoblanco
 
             damageFrame2.SetActive(true);
-            damageFrame2RawImg.color = new Color(1, 1, 1, opacity); //cuando tengo daño, va apareciendo el recuadro de ruidoblanco
+            damageFrame2RawImg.color = new Color(1, 1, 1, opacity);
 
         }
 

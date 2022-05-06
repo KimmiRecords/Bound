@@ -8,20 +8,6 @@ public class ToxicGas : MonoBehaviour
     //por mateo
 
     public float GasDamage;
-    public Interactable quienMeControla;
-    public MouseLook mouseLook;
-    
-    void Update()
-    {
-        if (mouseLook.sensedObj == quienMeControla)
-        {
-            if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
-            {
-                DestroyGas();
-            }
-        }
-    }
-
     private void OnTriggerStay(Collider collider)
     {
         if (collider.gameObject.layer == 3) 
@@ -29,16 +15,9 @@ public class ToxicGas : MonoBehaviour
             GasPassiveDamage();
         }
     }
-
     public void GasPassiveDamage()
     {
-        PlayerStats.playerHp -= GasDamage;
+        PlayerStats.TakeDamage(GasDamage);
         //print("Me queda " + PlayerStats.playerHp + " de vida");
-        
-    }
-
-    public void DestroyGas()
-    {
-        Destroy(this.gameObject);
     }
 }

@@ -39,34 +39,11 @@ public class MouseLook : MonoBehaviour
         playerBody.Rotate(Vector3.up * mouseX); 
 
 
-        //interactuamos con E -- por Fran
+        //interactuo con E -- por Fran
         if ((Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) && sensedObj)
         {
-
-            if (sensedObj.pickUpType != EnumPickUpType.solo_infoPopup)
-            {
-                AudioManager.instance.PlayPickup(1.1f);
-            }
-
-            if (sensedObj.pickUpType == EnumPickUpType.item_usb)
-            {
-                PlayerStats.usbsCollected++;
-                print("Conseguiste un Pendrive. Solo te faltan " + (4 - PlayerStats.usbsCollected) + " para ganar.");
-            }
-
-            if (sensedObj.pickUpType == EnumPickUpType.item_flashlight)
-            {
-                PlayerStats.hasFlashlight = true;
-                print("Conseguiste la linterna. Toca Q para ver.");
-            }
-
-            //si es un pickup, lo destruye -- por Fran
-            if (sensedObj.pickUpType == EnumPickUpType.item_usb || sensedObj.pickUpType == EnumPickUpType.item_battery || 
-                sensedObj.pickUpType == EnumPickUpType.item_hp || sensedObj.pickUpType == EnumPickUpType.item_flashlight)
-            {
-                Destroy(sensedObj.gameObject, 0.1f);
-                sensedObj = null;
-            }
+            sensedObj.Interact(); //llamo al metodo comun a todos los interactables
+                                  //si es un hijo de interactable, va a polimorfear.
         }
     }
 

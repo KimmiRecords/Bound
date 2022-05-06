@@ -350,9 +350,9 @@ GameObject:
   - component: {fileID: 7716967555396851050}
   - component: {fileID: 7716967555396851049}
   - component: {fileID: 7716967555396851031}
-  - component: {fileID: 7716967555396851030}
   - component: {fileID: 7716967555396851048}
   - component: {fileID: 5224542322552382295}
+  - component: {fileID: 7030046772087988926}
   m_Layer: 0
   m_Name: USBconSpawn
   m_TagString: Untagged
@@ -440,21 +440,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7716967555396851030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7716967555396851028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e6f3f26f4fdb2b4f9913adb4dc08dc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickUpType: 0
-  amount: 1
-  muestraManito: 1
 --- !u!114 &7716967555396851048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,3 +468,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1179594, y: 0.21537863, z: 0.59410286}
   m_Center: {x: -0.0012322791, y: 0.070590936, z: -0.002750094}
+--- !u!114 &7030046772087988926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7716967555396851028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c376752d2f163df4aa5170c925a901db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickUpType: 0
+  muestraManito: 1

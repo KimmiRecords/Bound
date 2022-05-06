@@ -9,45 +9,23 @@ public class GraviBox : MonoBehaviour
 
     //-por valen y dk
 
-    public Interactable quienMeControla;
-
     public Vector3 normalGrav;
     public Vector3 alteredGrav;
 
     private Vector3 appliedGrav;
     private bool isBound;
-
-    private MouseLook mouseLook;
     private Rigidbody rb;
 
     void Start()
     {
-        appliedGrav = normalGrav;
-
-        if (FindObjectOfType<MouseLook>() != null)
-        {
-            mouseLook = FindObjectOfType<MouseLook>();
-        }
-
         if (GetComponent<Rigidbody>() != null)
         {
             rb = GetComponent<Rigidbody>();
         }
 
+        appliedGrav = normalGrav;
         isBound = true;
         rb.useGravity = false;
-    }
-    
-    void Update()
-    {
-        if(mouseLook.sensedObj == quienMeControla)
-        {
-            if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
-            {
-                ToggleGrav();
-            }
-        }
-
     }
 
     void FixedUpdate()

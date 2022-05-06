@@ -4,23 +4,23 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class ViewFiles : MonoBehaviour
+public class ViewFiles : Interactable
 {
 
     //este script se lo agregas a una pc para que te muestre los text files de los usb recolectados.
     //por dk
 
     public GameObject canvasViewFiles; //el canvas que contiene todos los files
+    public MouseLook mouseLook; 
 
     private Text[] files; 
     private Interactable pc; //yo
-    private MouseLook mouseLook; //el unico mouseLook del juego, que esta en el player
 
     void Start()
     {
         files = canvasViewFiles.GetComponentsInChildren<Text>(); //lleno el array. todos los text files son hijos de ese canvas
 
-        if (FindObjectOfType<MouseLook>() != null)
+        if (mouseLook == null)
         {
             mouseLook = FindObjectOfType<MouseLook>();
         }
@@ -35,7 +35,7 @@ public class ViewFiles : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.R) && mouseLook.sensedObj == pc)
         {
-            switch(PlayerStats.usbsCollected) //para cada caso, muestro el canvas + los files conseguidos
+            switch(PlayerStats.UsbsCollected) //para cada caso, muestro el canvas + los files conseguidos
             {
                 case 0:
                     canvasViewFiles.SetActive(true);

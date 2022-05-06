@@ -5,21 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuSelector : MonoBehaviour
 {
-
-
     void Start()
     {
-        //AudioManager.instance.PlayMainMenuMusic();
-        PlayerStats.usbsCollected = 0;
+        PlayerStats.UsbsCollected = 0;
     }
 
     void Update()
     {
         if (Input.anyKey)
         {
-            //AudioManager.instance.StopMainMenuMusic();
-            //AudioManager.instance.PlayBGM();
-            SceneManager.LoadScene(4); //instrucciones
+            SceneManager.LoadScene("InstructionsScene"); //instrucciones
         }
     }
 }

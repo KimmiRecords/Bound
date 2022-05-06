@@ -11,7 +11,7 @@ public class InfoPopup : Subs
 
     private Interactable yo;
 
-    private MouseLook mouseLook;
+    public MouseLook mouseLook;
     
     void Start()
     {
@@ -20,7 +20,7 @@ public class InfoPopup : Subs
             yo = GetComponent<Interactable>();
         }
 
-        if (FindObjectOfType<MouseLook>() != null)
+        if (mouseLook == null)
         {
             mouseLook = FindObjectOfType<MouseLook>();
         }
