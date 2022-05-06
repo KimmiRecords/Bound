@@ -30,8 +30,6 @@ public class Footprints : MonoBehaviour
                 footprints[0].SetActive(true);
                 footprints[1].SetActive(true);
                 footprints[2].SetActive(true);
-
-
             }
             else if (!activator)
             {
