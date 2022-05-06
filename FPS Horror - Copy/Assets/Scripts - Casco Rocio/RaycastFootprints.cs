@@ -15,12 +15,32 @@ public class RaycastFootprints : Footprints
             if (timerFlashlight.timer > 0 && hit.transform.tag == "footprints")
             {
 
-                seeFootprints.SetActive(true);
+                seeFootprints[0].SetActive(true);
 
             }
             else if (timerFlashlight.timer <= 0 || hit.transform.tag != "footprints")
             {
-                seeFootprints.SetActive(false);
+                seeFootprints[0].SetActive(false);
+            }
+            if (timerFlashlight.timer > 0 && hit.transform.tag == "footprints1")
+            {
+
+                seeFootprints[1].SetActive(true);
+
+            }
+            else if (timerFlashlight.timer <= 0 || hit.transform.tag != "footprints1")
+            {
+                seeFootprints[1].SetActive(false);
+            }
+            if (timerFlashlight.timer > 0 && hit.transform.tag == "footprints2")
+            {
+
+                seeFootprints[2].SetActive(true);
+
+            }
+            else if (timerFlashlight.timer <= 0 || hit.transform.tag != "footprints2")
+            {
+                seeFootprints[2].SetActive(false);
             }
 
         }

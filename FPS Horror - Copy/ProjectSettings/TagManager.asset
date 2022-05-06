@@ -7,6 +7,8 @@ TagManager:
   - flash light life
   - batteries
   - footprints
+  - footprints1
+  - footprints2
   layers:
   - Default
   - TransparentFX
