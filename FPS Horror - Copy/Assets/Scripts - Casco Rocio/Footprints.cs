@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Footprints : MonoBehaviour
 {
-    public GameObject     footprints;
-    public GameObject     seeFootprints;
+    public GameObject []  footprints;
+    public GameObject []  seeFootprints;
     public FlashlightLife timerLife;
     bool                  activator;
 
     void Start()
     {
-        footprints.SetActive(false);
-        seeFootprints.SetActive(false);
+        footprints[0].SetActive(false);
+        footprints[1].SetActive(false);
+        footprints[2].SetActive(false);
+        seeFootprints[0].SetActive(false);
+        seeFootprints[1].SetActive(false);
+        seeFootprints[2].SetActive(false);
     }
 
 
@@ -23,17 +27,24 @@ public class Footprints : MonoBehaviour
             activator = !activator;
             if (activator)
             {
-                footprints.SetActive(true);
+                footprints[0].SetActive(true);
+                footprints[1].SetActive(true);
+                footprints[2].SetActive(true);
+
 
             }
             else if (!activator)
             {
-                footprints.SetActive(false);
+                footprints[0].SetActive(false);
+                footprints[1].SetActive(false);
+                footprints[2].SetActive(false);
             }
         }
         else if (timerLife.timer <= 0)
         {
-            footprints.SetActive(false);
+            footprints[0].SetActive(false);
+            footprints[1].SetActive(false);
+            footprints[2].SetActive(false);
         }
 
 
