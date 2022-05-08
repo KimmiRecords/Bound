@@ -31,4 +31,10 @@ public class ChebolaSpawner : MonoBehaviour
 
         Instantiate(chebolaPrefab, desiredSpawnPosition, Quaternion.identity);
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(desiredSpawnPosition, 1);
+    }
 }
