@@ -8,6 +8,7 @@ public class HollowRoarTrigger : MonoBehaviour
     //por fran y dk
 
     public Vector3 soundPosition;
+    public float delay;
 
     void Start()
     {
@@ -26,6 +27,11 @@ public class HollowRoarTrigger : MonoBehaviour
             return;
         }
         print("le di play al hollow roar en" + soundPosition);
-        AudioManager.instance.PlayHollowRoar(soundPosition, 2);
+        AudioManager.instance.PlayHollowRoar(soundPosition, delay);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawSphere(soundPosition, 1);
     }
 }

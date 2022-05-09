@@ -15,10 +15,23 @@ public class ViewFiles : Interactable
 
     private Text[] files; 
     private Interactable pc; //yo
+    private bool isShowing;
+
+
+    private void Awake()
+    {
+        files = canvasViewFiles.GetComponentsInChildren<Text>(); //lleno el array. todos los text files son hijos de ese canvas
+    }
 
     void Start()
     {
-        files = canvasViewFiles.GetComponentsInChildren<Text>(); //lleno el array. todos los text files son hijos de ese canvas
+        
+        isShowing = false;
+
+        for (int i = 0; i < files.Length; i++)
+        {
+            files[i].gameObject.SetActive(false);
+        }
 
         if (mouseLook == null)
         {
@@ -31,11 +44,12 @@ public class ViewFiles : Interactable
         }
     }
 
-    void Update()
+    public override void Interact()
     {
-        if (Input.GetKey(KeyCode.R) && mouseLook.sensedObj == pc)
+        base.Interact();
+        if (!isShowing)
         {
-            switch(PlayerStats.UsbsCollected) //para cada caso, muestro el canvas + los files conseguidos
+            switch (PlayerStats.UsbsCollected) //para cada caso, muestro el canvas + los files conseguidos
             {
                 case 0:
                     canvasViewFiles.SetActive(true);
@@ -67,14 +81,16 @@ public class ViewFiles : Interactable
                     files[3].gameObject.SetActive(true);
                     break;
             }
+            isShowing = true;
         }
-        else  //apago todo
+        else
         {
             canvasViewFiles.SetActive(false);
             for (int i = 0; i < files.Length; i++)
             {
                 files[i].gameObject.SetActive(false);
             }
+            isShowing = false;
         }
     }
 }

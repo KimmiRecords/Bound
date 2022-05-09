@@ -7,10 +7,22 @@ public class PlayerStats : MonoBehaviour
 {
     public float vidita;
     public float hpRegen;
+    public GameObject CanvasVidaUtil;
+    public GameObject ModeloLinterna;
+    
+    private bool _gotFlashlightFlag;
 
     public static Transform playerTransform;
-    
+    public static float playerHpMax;
+    public static bool agency = true;
+    public static bool playerFear = false;
+    public static bool boundToggleFlag = false;
+    public static bool hasFlashlight = false;
+
     private static float _playerHp;
+    private static int _usbsCollected;
+
+
 
     public static float PlayerHp
     {
@@ -25,7 +37,6 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    private static int _usbsCollected;
     public static int UsbsCollected
     {
         get
@@ -44,39 +55,20 @@ public class PlayerStats : MonoBehaviour
             }
         }
     }
-
-
-    public static float playerHpMax;
-    public static bool agency = true;
-    public static bool playerFear = false;
-
-    public static bool boundToggleFlag = false;
-    public static bool hasFlashlight = false;
-
-    public GameObject CanvasVidaUtil;
-    public GameObject ModeloLinterna;
-
-    private bool gotFlashlightFlag;
     
 
     void Awake()
     {
         playerHpMax = vidita;
-        _playerHp = playerHpMax;
         hasFlashlight = false;
-        gotFlashlightFlag = false;
         playerTransform = transform;
+        _playerHp = playerHpMax;
+        _gotFlashlightFlag = false;
+        UsbsCollected = 0;
     }
 
     void Update()
     {
-        //if (_usbsCollected == 4)
-        //{
-        //    print("YOU WIN");
-        //    _usbsCollected = 0;
-        //    SceneManager.LoadScene(3);
-        //}
-
         if (_playerHp < playerHpMax) //regenera hp de a poco
         {
             if (!playerFear) //pero solo si no me esta dañando el chebola
@@ -90,11 +82,11 @@ public class PlayerStats : MonoBehaviour
             }
         }
 
-        if (hasFlashlight && gotFlashlightFlag == false) //asi sucede una sola vez y no todo el tiempo
+        if (hasFlashlight && _gotFlashlightFlag == false) //asi sucede una sola vez y no todo el tiempo
         {
             CanvasVidaUtil.SetActive(true);
             ModeloLinterna.SetActive(true);
-            gotFlashlightFlag = true;
+            _gotFlashlightFlag = true;
         }
     }
 
