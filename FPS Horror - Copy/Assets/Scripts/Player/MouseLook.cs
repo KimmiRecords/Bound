@@ -12,12 +12,13 @@ public class MouseLook : MonoBehaviour
     public Camera fpsCamera = null;
 
     public float mouseSensitivity;
-    float xRotation = 0f;
 
     public float pickUpDistance;
 
     public Interactable sensedObj = null;
     public GameObject manito;
+
+    float xRotation = 0f;
 
     void Start()
     {

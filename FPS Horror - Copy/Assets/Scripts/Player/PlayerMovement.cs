@@ -7,17 +7,16 @@ public class PlayerMovement : MonoBehaviour
     //el movimiento del player. con character controller y a mano
     //por todos, basicamente.
 
-    private CharacterController _controller;
-    private float _verticalVelocity;
-    private float _groundedTimer;       // para que detecte piola en rampas
-    private float _walkingSpeed;
     public float playerSpeed;
     public float runningSpeed;
     public float jumpHeight;
     public float gravityValue;          //gravedad extra para que quede linda la caida del salto
 
-    private Vector3 _move;
-
+    float _verticalVelocity;
+    float _groundedTimer;       // para que detecte piola en rampas
+    float _walkingSpeed;
+    Vector3 _move;
+    CharacterController _controller;
     Animator _anim;
     PlayerAnimations _pAnims;
 

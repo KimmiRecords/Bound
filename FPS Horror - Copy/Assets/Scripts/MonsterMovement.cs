@@ -9,29 +9,26 @@ public class MonsterMovement : MonoBehaviour
 
     //este script se lo adjuntas al chebola para que haga daño en aura al player, y lo persiga si es visto -- por dk
 
-
-    private Transform _playerTransform;
-
-    private Vector3 _playerPosition;
-    private Vector3 _vectorToPlayer;
-
-    private float _distanceToPlayer;
-    private float _angle; //angulo entre el player y el chebola
-
-    private bool _screamerReady = true; //si el screamer ta ready para salir
-    private bool _bgmReady = false; //si la musiquita ...
-
-    private bool _enEscena = false; //si esta el chebola en vista o no
-    private bool _mustStay = true; //si el chebola debe quedarse en su lugar. lo uso por si te tiene que esperar aunque no lo veas.
-
+    public static float monsterSpeed = 0.25f;
     public float damageAura; //el radio del aura
     public float monsterDamage; // el daño que hace
 
-    public static float monsterSpeed = 0.25f;
+    Transform _playerTransform;
 
-    private NavMeshAgent agent;
+    Vector3 _playerPosition;
+    Vector3 _vectorToPlayer;
 
-    private Animator anim;
+    float _distanceToPlayer;
+    float _angle; //angulo entre el player y el chebola
+
+    bool _screamerReady = true; //si el screamer ta ready para salir
+    bool _bgmReady = false; //si la musiquita ...
+
+    bool _enEscena = false; //si esta el chebola en vista o no
+    bool _mustStay = true; //si el chebola debe quedarse en su lugar. lo uso por si te tiene que esperar aunque no lo veas.
+
+    NavMeshAgent agent;
+    Animator anim;
 
     void Start()
     {
