@@ -11078,10 +11078,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 2560, y: 1440}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -11178,10 +11178,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 2560, y: 1440}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -12218,10 +12218,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 2560, y: 1440}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -12262,7 +12262,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh45242
+  m_Name: pb_Mesh59528
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14330,10 +14330,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 2560, y: 1440}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -15631,7 +15631,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh45090
+  m_Name: pb_Mesh78232
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18139,10 +18139,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 2560, y: 1440}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -19822,7 +19822,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUpType: 4
   muestraManito: 1
-  queGasesApago: []
+  queGasesApago:
+  - {fileID: 1542655763}
 --- !u!114 &1362015298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20977,7 +20978,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-254000
+  m_Name: pb_Mesh78646
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21581,6 +21582,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718688847374098271, guid: 037a0ed9859b77b4a9480e02d0ffc2f0,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718688847374098271, guid: 037a0ed9859b77b4a9480e02d0ffc2f0,
+        type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 2560
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718688847374098271, guid: 037a0ed9859b77b4a9480e02d0ffc2f0,
+        type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1440
       objectReference: {fileID: 0}
     - target: {fileID: 4718688848139792929, guid: 037a0ed9859b77b4a9480e02d0ffc2f0,
         type: 3}
@@ -25571,10 +25587,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 2560, y: 1440}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -26664,27 +26680,27 @@ PrefabInstance:
     - target: {fileID: 7427923726236907181, guid: dfa27c2be20bc854ba76f849923c6257,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.6608486
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7427923726236907181, guid: dfa27c2be20bc854ba76f849923c6257,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.6608481
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7427923726236907181, guid: dfa27c2be20bc854ba76f849923c6257,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.000004
+      value: -15.999996
       objectReference: {fileID: 0}
     - target: {fileID: 7427923726236907181, guid: dfa27c2be20bc854ba76f849923c6257,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.9481845
+      value: -2.9481845
       objectReference: {fileID: 0}
     - target: {fileID: 7427923726236907181, guid: dfa27c2be20bc854ba76f849923c6257,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.000003
+      value: 9.000003
       objectReference: {fileID: 0}
     - target: {fileID: 7427923726236907181, guid: dfa27c2be20bc854ba76f849923c6257,
         type: 3}
@@ -27947,6 +27963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUpType: 3
   muestraManito: 1
+  chebolaCrux: {fileID: 0}
 --- !u!114 &1878618878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29842,7 +29859,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-254014
+  m_Name: pb_Mesh78798
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -33840,6 +33857,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6718208575797854365, guid: ad879de42b68c7d4183d06578ee93335,
+        type: 3}
+      propertyPath: jumpHeight
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6718208575797854365, guid: ad879de42b68c7d4183d06578ee93335,
+        type: 3}
+      propertyPath: playerSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6718208575797854365, guid: ad879de42b68c7d4183d06578ee93335,
+        type: 3}
+      propertyPath: runningSpeed
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 6718208575797854367, guid: ad879de42b68c7d4183d06578ee93335,
         type: 3}
       propertyPath: CanvasVidaUtil
@@ -33924,6 +33956,11 @@ PrefabInstance:
       propertyPath: mouseLook
       value: 
       objectReference: {fileID: 6567147963254830201}
+    - target: {fileID: 457406879252921173, guid: ad6225bf60f34e547aa8555880755d83,
+        type: 3}
+      propertyPath: desiredText
+      value: press E to view files stored in your USBs
+      objectReference: {fileID: 0}
     - target: {fileID: 457406879252921173, guid: ad6225bf60f34e547aa8555880755d83,
         type: 3}
       propertyPath: subsCanvasText

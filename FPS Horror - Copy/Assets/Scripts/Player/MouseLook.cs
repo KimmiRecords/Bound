@@ -14,7 +14,7 @@ public class MouseLook : MonoBehaviour
     public float mouseSensitivity;
     float xRotation = 0f;
 
-    public float pickUpDistance = 100f;
+    public float pickUpDistance;
 
     public Interactable sensedObj = null;
     public GameObject manito;
@@ -50,7 +50,9 @@ public class MouseLook : MonoBehaviour
     private void FixedUpdate()
     {
         //LOGICA DEL RAYCAST -- por Fran
-        Ray ray = fpsCamera.ScreenPointToRay(Input.mousePosition);
+        //Ray ray = fpsCamera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = new Ray(transform.position, transform.forward);
+
         RaycastHit hit;
 
         Debug.DrawRay(ray.origin, ray.direction * pickUpDistance, Color.blue);

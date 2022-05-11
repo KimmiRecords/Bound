@@ -1955,8 +1955,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3405fb0b03277641bd619158a567202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  footprints: {fileID: 0}
-  seeFootprints: {fileID: 0}
+  footprints:
+  - {fileID: 0}
+  seeFootprints:
+  - {fileID: 0}
   timerLife: {fileID: 0}
   timerFlashlight: {fileID: 0}
 --- !u!1 &6718208575797854338
@@ -2031,8 +2033,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a6df78fc9083d49973293de9cbdbeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerSpeed: 7
-  _jumpHeight: 2.5
+  playerSpeed: 7
+  runningSpeed: 10
+  jumpHeight: 3
   gravityValue: 20
 --- !u!114 &2662333412612807085
 MonoBehaviour:
@@ -2075,7 +2078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97fb7351948ee9c4eabc9d395f24ac4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidita: 400
+  vidita: 300
   hpRegen: 0.2
   CanvasVidaUtil: {fileID: 0}
   ModeloLinterna: {fileID: 6718208575338287036}
@@ -2158,8 +2161,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c423e72cc4ce7e34387c3c3917baba13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  footprints: {fileID: 0}
-  seeFootprints: {fileID: 0}
+  footprints:
+  - {fileID: 0}
+  seeFootprints:
+  - {fileID: 0}
   timerLife: {fileID: 0}
 --- !u!1 &6718208575965016203
 GameObject:

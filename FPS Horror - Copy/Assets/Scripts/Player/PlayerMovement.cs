@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
 
     Animator _anim;
     PlayerAnimations _pAnims;
-    //Running _run;
 
     private void Start()
     {
@@ -36,8 +35,6 @@ public class PlayerMovement : MonoBehaviour
 
         _walkingSpeed = playerSpeed;
         _pAnims = new PlayerAnimations(_anim); //construyo el script de playerAnimations
-
-        //_run = new Running(this); //construyo el script de runnin
 
     }
 

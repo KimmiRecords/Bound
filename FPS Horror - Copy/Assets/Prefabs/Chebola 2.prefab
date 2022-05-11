@@ -2003,6 +2003,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407ce0d39d81da243b116f481132a6fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAura: 25
+  monsterDamage: 0.2
 --- !u!1 &7994345373475715123
 GameObject:
   m_ObjectHideFlags: 0

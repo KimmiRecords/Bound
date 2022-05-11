@@ -88,6 +88,8 @@ public class PlayerStats : MonoBehaviour
             ModeloLinterna.SetActive(true);
             _gotFlashlightFlag = true;
         }
+
+        print(_playerHp);
     }
 
     public static void TakeDamage(float dmg)
