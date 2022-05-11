@@ -44,6 +44,19 @@ public class ViewFiles : Interactable
         }
     }
 
+    private void Update()
+    {
+        if (isShowing && mouseLook.sensedObj == null) //para que apague lo mostrado por la pc cuando la dejo de mirar
+        {
+            canvasViewFiles.SetActive(false);
+            for (int i = 0; i < files.Length; i++)
+            {
+                files[i].gameObject.SetActive(false);
+            }
+            isShowing = false;
+        }
+    }
+
     public override void Interact()
     {
         base.Interact();
