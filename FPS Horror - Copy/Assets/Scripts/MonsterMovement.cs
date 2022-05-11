@@ -24,7 +24,8 @@ public class MonsterMovement : MonoBehaviour
     private bool _enEscena = false; //si esta el chebola en vista o no
     private bool _mustStay = true; //si el chebola debe quedarse en su lugar. lo uso por si te tiene que esperar aunque no lo veas.
 
-    private float _damageAura; //el radio del aura
+    public float damageAura; //el radio del aura
+    public float monsterDamage; // el daño que hace
 
     public static float monsterSpeed = 0.25f;
 
@@ -45,7 +46,6 @@ public class MonsterMovement : MonoBehaviour
         }
 
         _playerTransform = PlayerStats.playerTransform;
-        _damageAura = 18f;
         _mustStay = true;
         PlayerStats.playerFear = false;
     }
@@ -72,9 +72,9 @@ public class MonsterMovement : MonoBehaviour
         //raycast
         Ray ray = new Ray(transform.position, _vectorToPlayer); //el rayo va desde mi hasta el player
         RaycastHit hit;
-        Debug.DrawRay(ray.origin, ray.direction * _damageAura, Color.red);
+        Debug.DrawRay(ray.origin, ray.direction * damageAura, Color.red);
 
-        if (Physics.Raycast(ray, out hit, _damageAura)) //si el raycast le pega a algo
+        if (Physics.Raycast(ray, out hit, damageAura)) //si el raycast le pega a algo
         {
             if (hit.transform.gameObject.layer != 13) //y ese algo no es una pared o una puerta
             {
@@ -98,7 +98,7 @@ public class MonsterMovement : MonoBehaviour
 
         //EL CHEBOLA SE VA
 
-        if (_angle < 90 && _distanceToPlayer > _damageAura) //si volteas y te alejas, zafas
+        if (_angle < 90 && _distanceToPlayer > damageAura) //si volteas y te alejas, zafas
         {
             _enEscena = false;
         }
@@ -143,7 +143,7 @@ public class MonsterMovement : MonoBehaviour
 
     public void Damage()
     {
-        PlayerStats.TakeDamage(0.1f); //daña al player constantemente
+        PlayerStats.TakeDamage(monsterDamage); //daña al player constantemente
         PlayerStats.playerFear = true;
     }
 }
