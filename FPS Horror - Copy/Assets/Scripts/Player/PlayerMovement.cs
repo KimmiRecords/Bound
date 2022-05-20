@@ -44,8 +44,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        print(_verticalVelocity);
-
         _controls.CheckControls();
 
         bool groundedPlayer = _controller.isGrounded;
