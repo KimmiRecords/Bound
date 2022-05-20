@@ -10,11 +10,8 @@ public class MouseLook : MonoBehaviour
 
     public Transform playerBody;
     public Camera fpsCamera = null;
-
     public float mouseSensitivity;
-
     public float pickUpDistance;
-
     public Interactable sensedObj = null;
     public GameObject manito;
 

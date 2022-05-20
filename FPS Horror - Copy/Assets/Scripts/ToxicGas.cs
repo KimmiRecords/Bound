@@ -8,7 +8,7 @@ public class ToxicGas : MonoBehaviour
     //por mateo
 
     public float GasDamage;
-    private void OnTriggerStay(Collider collider)
+    void OnTriggerStay(Collider collider)
     {
         if (collider.gameObject.layer == 3) 
         {

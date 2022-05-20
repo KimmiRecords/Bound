@@ -12,7 +12,6 @@ public class ToxicGasButton : Interactable
     public override void Interact()
     {
         base.Interact();
-        print("soy un toxicGasButton");
 
         for (int i = 0; i < queGasesApago.Length; i++) //destruyo cada gas
         {

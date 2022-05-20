@@ -13,12 +13,12 @@ public class Interactable : MonoBehaviour
 
     public virtual void Interact() //la base. todos los pickups hacen esto cuando los interactuas con E.
     {
-        print("llamé al Interact de " + this.gameObject);
+        //print("llamé al Interact de " + this.gameObject);
 
         if (this.pickUpType != EnumPickUpType.solo_infoPopup) //si no es solo informativo, hace ruidito
         {
             AudioManager.instance.PlayPickup(1.1f);
-            print("reproduje el pickup sfx");
+            //print("reproduje el pickup sfx");
         }
     }
 }

@@ -13,12 +13,12 @@ public class ViewFiles : Interactable
     public GameObject canvasViewFiles; //el canvas que contiene todos los files
     public MouseLook mouseLook; 
 
-    private Text[] files; 
-    private Interactable pc; //yo
-    private bool isShowing;
+    Text[] files; 
+    Interactable pc; //yo
+    bool isShowing;
 
 
-    private void Awake()
+    void Awake()
     {
         files = canvasViewFiles.GetComponentsInChildren<Text>(); //lleno el array. todos los text files son hijos de ese canvas
     }
@@ -30,17 +30,17 @@ public class ViewFiles : Interactable
 
         for (int i = 0; i < files.Length; i++)
         {
-            files[i].gameObject.SetActive(false);
+            files[i].gameObject.SetActive(false); //para empezar, pone a todos en false
         }
 
         if (mouseLook == null)
         {
-            mouseLook = FindObjectOfType<MouseLook>();
+            mouseLook = FindObjectOfType<MouseLook>(); //encuentro al mouselook si me olvide de cargarlo en inspector
         }
 
         if (GetComponent<Interactable>() != null)
         {
-            pc = GetComponent<Interactable>();
+            pc = GetComponent<Interactable>(); //encuentro el script interactable de esta pc (en realidad va a encontrar ViewFiles, que hereda de interactable)
         }
     }
 
@@ -60,39 +60,17 @@ public class ViewFiles : Interactable
     public override void Interact()
     {
         base.Interact();
+
         if (!isShowing)
         {
-            switch (PlayerStats.UsbsCollected) //para cada caso, muestro el canvas + los files conseguidos
+            canvasViewFiles.SetActive(true); //prende el canvas
+
+            if (PlayerStats.UsbsCollected != 0)
             {
-                case 0:
-                    canvasViewFiles.SetActive(true);
-                    break;
-
-                case 1:
-                    canvasViewFiles.SetActive(true);
-                    files[0].gameObject.SetActive(true);
-                    break;
-
-                case 2:
-                    canvasViewFiles.SetActive(true);
-                    files[0].gameObject.SetActive(true);
-                    files[1].gameObject.SetActive(true);
-                    break;
-
-                case 3:
-                    canvasViewFiles.SetActive(true);
-                    files[0].gameObject.SetActive(true);
-                    files[1].gameObject.SetActive(true);
-                    files[2].gameObject.SetActive(true);
-                    break;
-
-                case 4:
-                    canvasViewFiles.SetActive(true);
-                    files[0].gameObject.SetActive(true);
-                    files[1].gameObject.SetActive(true);
-                    files[2].gameObject.SetActive(true);
-                    files[3].gameObject.SetActive(true);
-                    break;
+                for (int i = 0; i < PlayerStats.UsbsCollected; i++) //prende los textos que tenga
+                {
+                    files[i].gameObject.SetActive(true);
+                }
             }
             isShowing = true;
         }
