@@ -11,7 +11,7 @@ public class FlashlightPickup : Interactable
     {
         base.Interact();
 
-        PlayerStats.hasFlashlight = true; //obtengo la linterna
+        PlayerStats.instance.hasFlashlight = true; //obtengo la linterna
         print("Conseguiste la linterna. Toca Q para ver.");
 
         Destroy(chebolaCrux, 0.1f); //destruye al chebola colgado

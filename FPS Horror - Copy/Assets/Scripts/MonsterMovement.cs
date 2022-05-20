@@ -35,9 +35,9 @@ public class MonsterMovement : MonoBehaviour
             anim = GetComponent<Animator>();
         }
 
-        _playerTransform = PlayerStats.playerTransform;
+        _playerTransform = PlayerStats.instance.playerTransform;
         _mustStay = true;
-        PlayerStats.playerFear = false;
+        PlayerStats.instance.playerFear = false;
     }
 
     void Update()
@@ -102,7 +102,7 @@ public class MonsterMovement : MonoBehaviour
             {
                 AudioManager.instance.FadeOutScreamer1(10);
                 AudioManager.instance.PlayBGM();
-                PlayerStats.playerFear = false;
+                PlayerStats.instance.playerFear = false;
                 _bgmReady = false;
             }
             Destroy(this.gameObject);
@@ -113,7 +113,7 @@ public class MonsterMovement : MonoBehaviour
     {
         if (collision.gameObject.layer == 3) //layer 3 es Player
         {
-            PlayerStats.TakeDamage(PlayerStats.playerHpMax);
+            PlayerStats.instance.TakeDamage(PlayerStats.instance.playerHpMax); //me mata de una si me toca
         }
     }
 
@@ -133,7 +133,7 @@ public class MonsterMovement : MonoBehaviour
 
     public void Damage()
     {
-        PlayerStats.TakeDamage(monsterDamage); //daña al player constantemente
-        PlayerStats.playerFear = true;
+        PlayerStats.instance.TakeDamage(monsterDamage); //daña al player constantemente
+        PlayerStats.instance.playerFear = true;
     }
 }

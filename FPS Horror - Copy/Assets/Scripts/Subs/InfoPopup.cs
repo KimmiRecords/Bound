@@ -8,9 +8,7 @@ public class InfoPopup : Subs
 {
     //este script se lo adjuntas a un Interactable que quieras que muestre un mensaje en pantalla mientras lo miras
 
-
-    private Interactable yo;
-
+    Interactable yo;
     public MouseLook mouseLook;
     
     void Start()
@@ -31,16 +29,10 @@ public class InfoPopup : Subs
         if (mouseLook.sensedObj == yo) //los infopopup se disparan por raycast
         {
             Show(desiredText, desiredTime);
+            print("estoy mirando al metal cabinet");
         }
+    }
 
-    }
-    private void OnTriggerEnter(Collider player) //los dialogue se disparan por con colliders
-    {
-        if (player.gameObject.layer == 3) //la 3 es la del player, obvio
-        {
-            Show(desiredText, desiredTime);
-        }
-    }
     public override void Show(string text, float time)
     {
         subsCanvasText.text = text;
@@ -54,8 +46,10 @@ public class InfoPopup : Subs
 
     public void OnDestroy()
     {
+        if (!this.gameObject.scene.isLoaded) 
+        {
+            return;
+        }
         Hide();
     }
-
-
 }

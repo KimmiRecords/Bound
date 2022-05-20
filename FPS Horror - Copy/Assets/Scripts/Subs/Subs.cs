@@ -4,32 +4,25 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class Subs : MonoBehaviour
+public abstract class Subs : MonoBehaviour
 {
     //este script es padre de otros. muestra un texto a modo de subtitulos.
 
     //los hijos de este script son las distintas maneras de mostrar subs.
-    //overridean el metodo Show para cambiarle el formato u otras cosas.
-
-    public Text subsCanvasText; //el componente Text del canvas
+    //polymorphean el metodo Show para cambiarle el formato u otras cosas.
 
     [TextArea(2,4)]
     public string desiredText;
 
     public float desiredTime;
+    public Text subsCanvasText; //el componente Text del canvas
 
-    private Color initialColor;
+    Color initialColor;
 
     void Start()
     {
         initialColor = subsCanvasText.color;
     }
-
-    void Update()
-    {
-        
-    }
-
 
     public virtual void Show(string text, float time)
     {
@@ -42,10 +35,5 @@ public class Subs : MonoBehaviour
     {
         subsCanvasText.text = "";
         Destroy(this.gameObject);
-    }
-
-    private void OnDrawGizmos()
-    {
-        //Gizmos.DrawSphere(transform.position, 1);
     }
 }
