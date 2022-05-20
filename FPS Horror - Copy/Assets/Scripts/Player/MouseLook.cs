@@ -48,9 +48,8 @@ public class MouseLook : MonoBehaviour
     private void FixedUpdate()
     {
         //LOGICA DEL RAYCAST -- por Fran
-        //Ray ray = fpsCamera.ScreenPointToRay(Input.mousePosition);
-        Ray ray = new Ray(transform.position, transform.forward);
 
+        Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
 
         Debug.DrawRay(ray.origin, ray.direction * pickUpDistance, Color.blue);

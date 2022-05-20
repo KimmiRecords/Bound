@@ -2101,10 +2101,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97fb7351948ee9c4eabc9d395f24ac4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidita: 300
+  playerHpMax: 300
   hpRegen: 0.2
   CanvasVidaUtil: {fileID: 0}
   ModeloLinterna: {fileID: 0}
+  playerTransform: {fileID: 0}
+  playerFear: 0
+  hasFlashlight: 0
 --- !u!114 &6718208575797854360
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1884,7 +1884,6 @@ GameObject:
   - component: {fileID: 6962547686125482413}
   - component: {fileID: 6962547686125482415}
   - component: {fileID: 6962547686125482414}
-  - component: {fileID: 7808848037089618966}
   - component: {fileID: 6962547686125482412}
   m_Layer: 0
   m_Name: Chebola 2
@@ -1979,18 +1978,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &7808848037089618966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7808848037089618967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7a31f06d1bd34f4096b22f2a7b4dc46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6962547686125482412
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -22,7 +22,7 @@ public class Footprints : MonoBehaviour
 
     void Update()
     {
-        if (timerLife.timer > 0 && Input.GetKeyDown(KeyCode.Q) && PlayerStats.hasFlashlight == true)
+        if (timerLife.timer > 0 && Input.GetKeyDown(KeyCode.Q) && PlayerStats.instance.hasFlashlight == true)
         {
             activator = !activator;
             if (activator)

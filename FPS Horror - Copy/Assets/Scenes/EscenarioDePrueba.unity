@@ -12335,7 +12335,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-25152
+  m_Name: pb_Mesh33452
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19562,9 +19562,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7ded5aa7c833e74f9038e4e94650f5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subsCanvasText: {fileID: 1050959956}
   desiredText: press E or Click to interact
   desiredTime: 3
+  subsCanvasText: {fileID: 1050959956}
   mouseLook: {fileID: 6567147963254830201}
 --- !u!65 &1362015299
 BoxCollider:
@@ -20880,9 +20880,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7ded5aa7c833e74f9038e4e94650f5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subsCanvasText: {fileID: 1050959956}
   desiredText: press E or Click to pickup
   desiredTime: 3
+  subsCanvasText: {fileID: 1050959956}
   mouseLook: {fileID: 6567147963254830201}
 --- !u!1 &1432147292
 GameObject:
@@ -43406,7 +43406,7 @@ PrefabInstance:
     - target: {fileID: 2542155326360645505, guid: 9231819ec8ae6484bb6a9f5483e66044,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 4947
+      value: 4950
       objectReference: {fileID: 0}
     - target: {fileID: 2542155326360645506, guid: 9231819ec8ae6484bb6a9f5483e66044,
         type: 3}
@@ -46905,9 +46905,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7ded5aa7c833e74f9038e4e94650f5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subsCanvasText: {fileID: 1050959956}
   desiredText: press E or Click to unbind objects
   desiredTime: 3
+  subsCanvasText: {fileID: 1050959956}
   mouseLook: {fileID: 6567147963254830201}
 --- !u!114 &8519491737552483262
 MonoBehaviour:

@@ -5,26 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
-    public float vidita;
+    public static PlayerStats instance;
+
+    public float playerHpMax;
     public float hpRegen;
     public GameObject CanvasVidaUtil;
     public GameObject ModeloLinterna;
-    
-    private bool _gotFlashlightFlag;
 
-    public static Transform playerTransform;
-    public static float playerHpMax;
-    public static bool agency = true;
-    public static bool playerFear = false;
-    public static bool boundToggleFlag = false;
-    public static bool hasFlashlight = false;
+    [HideInInspector]
+    public Transform playerTransform;
 
-    private static float _playerHp;
-    private static int _usbsCollected;
+    [HideInInspector]
+    public bool playerFear = false;
 
+    [HideInInspector]
+    public bool hasFlashlight = false;
 
+    bool _gotFlashlightFlag;
+    float _playerHp;
+    int _usbsCollected;
 
-    public static float PlayerHp
+    public float PlayerHp
     {
         get
         {
@@ -37,7 +38,7 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public static int UsbsCollected
+    public int UsbsCollected
     {
         get
         {
@@ -55,11 +56,18 @@ public class PlayerStats : MonoBehaviour
             }
         }
     }
-    
 
     void Awake()
     {
-        playerHpMax = vidita;
+        if (instance)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
+
         hasFlashlight = false;
         playerTransform = transform;
         _playerHp = playerHpMax;
@@ -88,11 +96,9 @@ public class PlayerStats : MonoBehaviour
             ModeloLinterna.SetActive(true);
             _gotFlashlightFlag = true;
         }
-
-        print(_playerHp);
     }
 
-    public static void TakeDamage(float dmg)
+    public void TakeDamage(float dmg)
     {
         PlayerHp -= dmg;
         if (_playerHp <= 0)

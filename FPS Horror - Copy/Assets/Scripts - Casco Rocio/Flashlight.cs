@@ -27,7 +27,7 @@ public class Flashlight : MonoBehaviour
 
     public void FlashlightFunction()
     {
-        if (flashlightOff.timer > 0 && Input.GetKeyDown(KeyCode.Q) && PlayerStats.hasFlashlight == true) //toco Q para prender/apagar la linterna, si me queda timer
+        if (flashlightOff.timer > 0 && Input.GetKeyDown(KeyCode.Q) && PlayerStats.instance.hasFlashlight == true) //toco Q para prender/apagar la linterna, si me queda timer
         {
             flashlightActive = !flashlightActive;
 

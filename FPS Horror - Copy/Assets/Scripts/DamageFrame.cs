@@ -24,7 +24,7 @@ public class DamageFrame : MonoBehaviour
 
     void Update()
     {
-        damageRatio = PlayerStats.PlayerHp / PlayerStats.playerHpMax; //damageRatio es 0 cuando estoy nuevo, es 1 cuando me mori
+        damageRatio = PlayerStats.instance.PlayerHp / PlayerStats.instance.playerHpMax; //damageRatio es 0 cuando estoy nuevo, es 1 cuando me mori
         opacity = 1 - damageRatio; //la opacidad. 1 es que se ve, 0 es invisible.
         opacity = Mathf.Clamp(opacity, 0, maxOpacity);
 

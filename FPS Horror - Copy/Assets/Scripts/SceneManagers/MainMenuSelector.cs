@@ -7,7 +7,7 @@ public class MainMenuSelector : MonoBehaviour
 {
     void Start()
     {
-        PlayerStats.UsbsCollected = 0;
+        PlayerStats.instance.UsbsCollected = 0;
     }
 
     void Update()
