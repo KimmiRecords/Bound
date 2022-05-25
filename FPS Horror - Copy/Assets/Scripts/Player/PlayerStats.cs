@@ -21,6 +21,9 @@ public class PlayerStats : MonoBehaviour
     [HideInInspector]
     public bool hasFlashlight = false;
 
+    [HideInInspector]
+    public bool hasCardKey = false;
+
     bool _gotFlashlightFlag;
     float _playerHp;
     int _usbsCollected;
