@@ -34,5 +34,10 @@ public class Controls
         {
             isJump = true;
         }
+
+        if (Input.GetButtonUp("Jump"))
+        {
+            isJump = false;
+        }
     }
 }

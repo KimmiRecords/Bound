@@ -99,6 +99,12 @@ public class PlayerStats : MonoBehaviour
             ModeloLinterna.SetActive(true);
             _gotFlashlightFlag = true;
         }
+
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    UsbsCollected++;
+        //    print("CHEAT: te sumaste un usb");
+        //}
     }
 
     public void TakeDamage(float dmg)
