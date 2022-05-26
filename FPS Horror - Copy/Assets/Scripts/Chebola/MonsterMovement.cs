@@ -59,13 +59,18 @@ public class MonsterMovement : MonoBehaviour
         _agent.updateRotation = false;
 
 
+
         //EL CHEBOLA TE PERSIGUE Y DAÑA
+        //Vector3 posicionOjos = transform.position + (Vector3.up * 4);
         Ray ray = new Ray(transform.position, _vectorToPlayer); //el rayo va desde mi hasta el player
         RaycastHit hit;
         Debug.DrawRay(ray.origin, ray.direction * damageAura, Color.red);
 
         if (Physics.Raycast(ray, out hit, damageAura)) //si el raycast le pega a algo
         {
+            //print("el chebola esta mirando a " + hit.transform.gameObject);
+            //print("su layer es " + hit.transform.gameObject.layer);
+
             if (hit.transform.gameObject.layer != 13) //y ese algo no es una pared o una puerta
             {
                 if (hit.transform.gameObject.layer == 3 && _angle > 135) //y ese algo es layer 3 (player)

@@ -10,7 +10,10 @@ public class InfoPopup : Subs
 
     Interactable yo;
     public MouseLook mouseLook;
-    
+
+    private Color infoColor;
+
+
     void Start()
     {
         if (GetComponent<Interactable>() != null)
@@ -22,6 +25,9 @@ public class InfoPopup : Subs
         {
             mouseLook = FindObjectOfType<MouseLook>();
         }
+
+        infoColor = new Color(226f/255f, 180f/255f, 180f/255f, 1); //rosita
+
     }
 
     void Update()
@@ -29,19 +35,21 @@ public class InfoPopup : Subs
         if (mouseLook.sensedObj == yo) //los infopopup se disparan por raycast
         {
             Show(desiredText, desiredTime);
-            print("estoy mirando al metal cabinet");
         }
     }
 
     public override void Show(string text, float time)
     {
         subsCanvasText.text = text;
+        subsCanvasText.fontStyle = FontStyle.Normal;
+        subsCanvasText.color = infoColor;
         Invoke("Hide", time);
     }
 
     public override void Hide()
     {
         subsCanvasText.text = "";
+
     }
 
     public void OnDestroy()

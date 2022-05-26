@@ -4,12 +4,13 @@ using UnityEngine;
 
 public enum EnumPickUpType
 {
-    item_usb, item_battery, solo_infoPopup, item_flashlight, trigger_button
+    item_usb, item_battery, solo_infoPopup, item_flashlight, trigger_button, item_cardKey
 }
 public abstract class Interactable : MonoBehaviour
 {
     public EnumPickUpType pickUpType = EnumPickUpType.item_usb; //esto solo determina cual aparece x default en inspector. hay que ir a setearlo igual.
     public bool muestraManito = true;
+    
 
     public virtual void Interact() //la base. todos los pickups hacen esto cuando los interactuas con E.
     {
