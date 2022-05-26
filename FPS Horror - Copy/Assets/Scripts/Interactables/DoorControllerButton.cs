@@ -9,20 +9,31 @@ public class DoorControllerButton : Interactable
 
     public DoorController quePuertaAbro;
 
+    [HideInInspector]
+    public bool access = false;
+
     public override void Interact() //los doorControllerbutton polimorfean el metodo base, y hacen esto cuando los interactuas con E.
     {
         base.Interact(); //el base es reproducir audio nomas
         print("en particular, soy un doorControllerButton");
 
-        if (quePuertaAbro._doorAnim.GetBool("isOpening"))
+        if (access)
         {
-            quePuertaAbro.CloseDoor();
-            print("cerre la puerta");
+            if (quePuertaAbro._doorAnim.GetBool("isOpening"))
+            {
+                quePuertaAbro.CloseDoor();
+                print("cerre la puerta");
+            }
+            else
+            {
+                quePuertaAbro.OpenDoor();
+                print("abri la puerta");
+            }
         }
         else
         {
-            quePuertaAbro.OpenDoor();
-            print("abri la puerta");
+            print("no tenes permiso para operar este panel");
         }
+
     }
 }
