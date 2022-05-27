@@ -23,7 +23,7 @@ public class UsbsCollected : MonoBehaviour
     {
         if (PlayerStats.instance.UsbsCollected != 0)
         {
-            amount = PlayerStats.instance.UsbsCollected.ToString();
+            amount = PlayerStats.instance.UsbsCollected.ToString() + "/4";
             usbsCollectedText.text = FirstPartOfText + amount;
         }
     }

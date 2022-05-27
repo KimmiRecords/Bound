@@ -6,14 +6,18 @@ using UnityEngine.UI;
 
 public class CardKeyPickup : Interactable
 {
-    public CardKeyAccess cardKeyAccess; //referencio al panel que necesita esta llave para operar
+    public CardKeyAccess[] cardKeyAccesses; //referencio a los paneles que necesitan esta llave para operar
+
     public override void Interact()
     {
         base.Interact();
 
         PlayerStats.instance.hasCardKey = true;
-        cardKeyAccess.dcb.access = true; //ahora tengo acceso para operar
-        cardKeyAccess.infoPopup.desiredText = cardKeyAccess.textoConCardKey; //cambio el texto que muestra aquel panel
+        for (int i = 0; i < cardKeyAccesses.Length; i++)
+        {
+            cardKeyAccesses[i].dcb.access = true; //ahora tengo acceso para operar
+            cardKeyAccesses[i].infoPopup.desiredText = cardKeyAccesses[i].textoConCardKey; //cambio el texto que muestran aquellos paneles
+        }
 
         print("Conseguiste una llave. Tal vez abra alguna puerta.");
 

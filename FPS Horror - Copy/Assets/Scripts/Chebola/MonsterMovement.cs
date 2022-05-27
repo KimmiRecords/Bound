@@ -6,7 +6,8 @@ using UnityEngine.AI;
 
 public class MonsterMovement : MonoBehaviour
 {
-    //este script se lo adjuntas al chebola para que haga daño en aura al player, y lo persiga si es visto -- por dk
+    //este script se lo adjuntas al chebola para que haga daño en aura al player, y lo persiga si es visto
+    //por diego katabian y valentino roman
 
     public float damageAura; //el radio del aura
     public float monsterDamage; // el daño que hace

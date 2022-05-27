@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Controls
 {
+    //clase construida por playerMovement
+    //por diego katabian
+
     public float h;
     public float v;
     public bool isJump;
