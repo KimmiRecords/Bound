@@ -335,6 +335,7 @@ GameObject:
   - component: {fileID: 8159982325764567552}
   - component: {fileID: 8553652685613880806}
   - component: {fileID: 6603491061077828330}
+  - component: {fileID: 8011110996900340236}
   m_Layer: 0
   m_Name: Batteries
   m_TagString: batteries
@@ -387,3 +388,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUpType: 1
   muestraManito: 1
+  inventory: {fileID: 0}
+--- !u!114 &8011110996900340236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8824174675985295546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e4afda29d2f4b438fded0a1d55efea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 1
+  type: batteries
+  icon: {fileID: 21300000, guid: d101bbcc9b938ee43b4a863299e083f5, type: 3}
+  pickedUp: 0
