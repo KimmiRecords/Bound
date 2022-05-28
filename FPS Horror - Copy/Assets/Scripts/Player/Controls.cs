@@ -26,11 +26,15 @@ public class Controls
         if (Input.GetKey(KeyCode.LeftShift))
         {
             _playerMovement.Run();
+            AudioManager.instance.isRunning = true;
+            AudioManager.instance.ChangePitchPasos(true);
         }
 
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             _playerMovement.StopRunning();
+            AudioManager.instance.isRunning = false;
+            AudioManager.instance.ChangePitchPasos(false);
         }
 
         if (Input.GetButtonDown("Jump"))

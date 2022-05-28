@@ -22,9 +22,10 @@ public class AudioManager : MonoBehaviour
     public AudioSource hollowRoar;
     public AudioSource accessDenied;
 
+    public bool isRunning;
 
-    private float volumenDeseadoScreamer;
-    private bool jumpDownIsReady;
+    float volumenDeseadoScreamer;
+    bool jumpDownIsReady;
 
     void Start()
     {
@@ -175,19 +176,40 @@ public class AudioManager : MonoBehaviour
     //PASOS
     public void PlayPasos()
     {
-        if (pasos1.isPlaying == false && pasos2.isPlaying == false) //solo da play si no estaba sonando ya
+        if (!isRunning)
         {
-            float randomPitch = Random.Range(0.95f, 1.05f); // para un poquito de variedad
-            int randomClip = Random.Range(0, 2); // 50/50 chances de reproducir uno o el otro
-            if (randomClip == 0)
+            if (pasos1.isPlaying == false && pasos2.isPlaying == false) //solo da play si no estaba sonando ya
             {
-                pasos1.pitch = randomPitch;
-                pasos1.Play();
+                float randomPitch = Random.Range(0.95f, 1.05f); // para un poquito de variedad
+                int randomClip = Random.Range(0, 2); // 50/50 chances de reproducir uno o el otro
+                if (randomClip == 0)
+                {
+                    pasos1.pitch = randomPitch;
+                    pasos1.Play();
+                }
+                else
+                {
+                    pasos2.pitch = randomPitch;
+                    pasos2.Play();
+                }
             }
-            else
+        }
+        else
+        {
+            if (pasos1.isPlaying == false && pasos2.isPlaying == false) //solo da play si no estaba sonando ya
             {
-                pasos2.pitch = randomPitch;
-                pasos2.Play();
+                float randomPitch = Random.Range(1.1f, 1.2f); // para un poquito de variedad
+                int randomClip = Random.Range(0, 2); // 50/50 chances de reproducir uno o el otro
+                if (randomClip == 0)
+                {
+                    pasos1.pitch = randomPitch;
+                    pasos1.Play();
+                }
+                else
+                {
+                    pasos2.pitch = randomPitch;
+                    pasos2.Play();
+                }
             }
         }
     }
@@ -196,7 +218,21 @@ public class AudioManager : MonoBehaviour
         pasos1.Stop();
         pasos2.Stop();
     }
-
+    public void ChangePitchPasos(bool keyDown)
+    {
+        if (keyDown)
+        {
+            float randomPitch = Random.Range(1.1f, 1.2f);
+            pasos1.pitch = randomPitch;
+            pasos2.pitch = randomPitch;
+        }
+        else
+        {
+            float randomPitch = Random.Range(0.95f, 1.05f);
+            pasos1.pitch = randomPitch;
+            pasos2.pitch = randomPitch;
+        }
+    }
 
 
     //SALTO
