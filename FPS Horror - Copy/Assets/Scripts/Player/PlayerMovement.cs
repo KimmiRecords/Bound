@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     //el movimiento del player. con character controller y a mano
     //llama por composicion a playeranimations y controls
-    //por dk, fran, valen, mateo, mei.
+    //por diego katabian, francisco serra, valentino roman, mateo palma, rocio casco.
 
     public float playerSpeed;
     public float runningSpeed;
@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     float _verticalVelocity;
 
-    float _groundedTimer;       // para que detecte piola en rampas
+    float _groundedTimer;
     float _walkingSpeed;
     Vector3 _move;
     CharacterController _controller;

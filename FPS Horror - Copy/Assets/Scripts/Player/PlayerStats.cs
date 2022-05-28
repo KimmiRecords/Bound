@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
+    //todos los stats del personaje principal
+    //incluye getter y setter para hp y usbs recolectados
+    //inluye metodos para hacerme daño, y variables para los estados del player (si tiene linterna, llaves, etc)
+    //por diego katabian, francisco serra y rocio casco
+
     public static PlayerStats instance;
 
     public float playerHpMax;

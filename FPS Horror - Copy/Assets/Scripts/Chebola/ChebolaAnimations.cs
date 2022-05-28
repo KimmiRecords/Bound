@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class ChebolaAnimations
 {
     //este script controla las animaciones del chebola
-    //por valen y dk
+    //por valentino roman y diego katabian
 
     Animator _anim;
     NavMeshAgent _agent;
