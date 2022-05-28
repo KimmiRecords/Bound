@@ -5,14 +5,13 @@ using UnityEngine;
 public class GraviBoxButton : Interactable
 {
     //este script se lo agregas a un boton para que altere la gravedad de cajas
-    //por valen y dk
+    //por valentino roman y diego katabian
 
     public GraviBox[] graviBoxes; //cargamos en el inspector que cajas seran controlas por este boton
 
     public override void Interact()
     {
         base.Interact();
-        print("en particular, soy un graviBoxButton");
 
         for (int i = 0; i < graviBoxes.Length; i++)
         {

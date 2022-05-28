@@ -17,10 +17,7 @@ public class RaycastBatteries : MonoBehaviour
 
     void Update()
     {
-
         _inventory.GetComponent<Inventory>().InventoryOpen();
-
-
 
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, 20f))
@@ -28,8 +25,8 @@ public class RaycastBatteries : MonoBehaviour
             if (hit.transform.tag == "batteries" && (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)))
             {
                 batteriesObtained += currentBatteries;
-                Debug.Log("bateria obtenida");
-                count.text = "batteries: " + batteriesObtained.ToString("f0") + "/3";
+                //Debug.Log("bateria obtenida");
+                count.text = "batteries: " + batteriesObtained.ToString("f0") + "/5";
 
                 AudioManager.instance.PlayPickup(1);
 
@@ -37,9 +34,8 @@ public class RaycastBatteries : MonoBehaviour
 
                 GameObject itemPickedUp = hit.transform.gameObject;
                 Items item = itemPickedUp.GetComponent<Items>();
-
-
                 _inventory.AddItem(itemPickedUp, item.id, item.type, item.icon);
+
                 Destroy(hit.transform.gameObject);
             }
         }

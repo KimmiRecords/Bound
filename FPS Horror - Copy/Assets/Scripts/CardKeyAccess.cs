@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class CardKeyAccess : MonoBehaviour
 {
     //este script se lo adjuntas a un fbx panel para que pida llave para abrir la puerta.
+    //por diego katabian
 
     public InfoPopup infoPopup; //el info popup a actualizar
     public DoorControllerButton dcb; //el script, en este mismo objeto

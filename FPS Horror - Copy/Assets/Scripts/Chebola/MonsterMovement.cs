@@ -140,4 +140,9 @@ public class MonsterMovement : MonoBehaviour
         PlayerStats.instance.TakeDamage(monsterDamage); //daña al player constantemente
         PlayerStats.instance.playerFear = true;
     }
+
+    public void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawSphere(transform.position, damageAura);
+    }
 }

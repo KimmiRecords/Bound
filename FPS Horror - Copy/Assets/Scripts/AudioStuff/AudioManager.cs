@@ -20,6 +20,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource doorOpen;
     public AudioSource doorClose;
     public AudioSource hollowRoar;
+    public AudioSource accessDenied;
 
 
     private float volumenDeseadoScreamer;
@@ -38,6 +39,7 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(this);
 
         volumenDeseadoScreamer = screamer1.volume;
+        
 
     }
 
@@ -50,6 +52,8 @@ public class AudioManager : MonoBehaviour
     }
 
     //ARRANCAN LOS METODOS
+
+
 
     //BACKGROUNDMUSIC
     public void PlayBGM()
@@ -100,6 +104,11 @@ public class AudioManager : MonoBehaviour
     {
         pickup.pitch = p;
         pickup.Play();
+    }
+
+    public void PlayAccessDenied()
+    {
+        accessDenied.Play();
     }
 
     //PRESSURE PLATE SFX

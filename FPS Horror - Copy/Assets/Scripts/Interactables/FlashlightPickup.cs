@@ -2,27 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlashlightPickup : Interactable
+public class FlashlightPickup : Collectables
 {
     //cuando tocas E, levantas la linterna y desaperece el chebola colgante. 
-
+    //por diego katabian
 
     public GameObject chebolaCrux;
+
     public override void Interact()
     {
-        base.Interact();
-
         PlayerStats.instance.hasFlashlight = true; //obtengo la linterna
-        print("Conseguiste la linterna. Toca Q para ver.");
-
         Destroy(chebolaCrux, 0.1f); //destruye al chebola colgado
-        GameObject itemPickedUp = this.gameObject;
-        Items item = itemPickedUp.GetComponent<Items>();
-
-
-        inventory.AddItem(itemPickedUp, item.id, item.type, item.icon);
-        Destroy(this.gameObject, 0.1f); //como es un pickup, lo destruyo
-
+        base.Interact();
     }
 }
 
