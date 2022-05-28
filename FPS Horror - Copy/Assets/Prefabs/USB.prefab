@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7497909716518529637}
   - component: {fileID: 5446133689603267685}
   - component: {fileID: -8872647943966696616}
+  - component: {fileID: 6270843050187295747}
   m_Layer: 0
   m_Name: USB
   m_TagString: Untagged
@@ -128,6 +129,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUpType: 0
   muestraManito: 1
+  inventory: {fileID: 0}
+--- !u!114 &6270843050187295747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7497909716518529638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e4afda29d2f4b438fded0a1d55efea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 3
+  type: USB
+  icon: {fileID: 21300000, guid: d134b2765fe442c4f8604b3491d31f5e, type: 3}
+  pickedUp: 0
 --- !u!1001 &7497909716510057335
 PrefabInstance:
   m_ObjectHideFlags: 0

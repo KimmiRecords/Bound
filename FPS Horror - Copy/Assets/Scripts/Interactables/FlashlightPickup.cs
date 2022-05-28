@@ -6,6 +6,7 @@ public class FlashlightPickup : Interactable
 {
     //cuando tocas E, levantas la linterna y desaperece el chebola colgante. 
 
+
     public GameObject chebolaCrux;
     public override void Interact()
     {
@@ -15,7 +16,13 @@ public class FlashlightPickup : Interactable
         print("Conseguiste la linterna. Toca Q para ver.");
 
         Destroy(chebolaCrux, 0.1f); //destruye al chebola colgado
+        GameObject itemPickedUp = this.gameObject;
+        Items item = itemPickedUp.GetComponent<Items>();
+
+
+        inventory.AddItem(itemPickedUp, item.id, item.type, item.icon);
         Destroy(this.gameObject, 0.1f); //como es un pickup, lo destruyo
 
     }
 }
+

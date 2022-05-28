@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 2542155326360645243}
   - component: {fileID: 2542155326360645242}
   - component: {fileID: 2542155326360645241}
+  - component: {fileID: 861944104528442754}
   m_Layer: 0
   m_Name: LinternaPickup
   m_TagString: Untagged
@@ -1681,7 +1682,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUpType: 3
   muestraManito: 1
+  inventory: {fileID: 0}
   chebolaCrux: {fileID: 0}
+--- !u!114 &861944104528442754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2542155326360645240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e4afda29d2f4b438fded0a1d55efea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 2
+  type: flashlight
+  icon: {fileID: 21300000, guid: 70e383e366034fd4b8ab6a8fcd6c6a93, type: 3}
+  pickedUp: 0
 --- !u!1 &2542155326695551569
 GameObject:
   m_ObjectHideFlags: 0
