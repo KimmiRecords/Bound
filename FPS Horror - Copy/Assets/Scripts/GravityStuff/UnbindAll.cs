@@ -17,7 +17,7 @@ public class UnbindAll : MonoBehaviour
     void Start()
     {
         _allRBs = FindObjectsOfType<Rigidbody>(); //hallo todos los rigidbodies de la escena
-        _areBound = false;
+        _areBound = true;
     }
 
     void Update()
@@ -50,10 +50,12 @@ public class UnbindAll : MonoBehaviour
             {
                 _allRBs[i].useGravity = true; //los ato de nuevo
                 alteredGrav = Vector3.zero;
+
                 //_areBound = true;
             }
         }
 
+        print("Afecté a " + _allRBs.Length + " rigidbodies.");
         _areBound = !_areBound;
 
     }
