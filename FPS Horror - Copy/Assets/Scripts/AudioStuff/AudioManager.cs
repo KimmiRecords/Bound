@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource pickup;
     public AudioSource bgm;
     public AudioSource screamer1;
+    public AudioSource screamer2;
     public AudioSource mainMenuMusic;
     public AudioSource pPlateOn;
     public AudioSource pPlateOff;
@@ -21,6 +22,12 @@ public class AudioManager : MonoBehaviour
     public AudioSource doorClose;
     public AudioSource hollowRoar;
     public AudioSource accessDenied;
+    public AudioSource alarmaNorway;
+    public AudioSource alarmaTriple;
+    public AudioSource derrumbe1;
+    public AudioSource derrumbe2;
+    public AudioSource derrumbe3;
+
 
     public bool isRunning;
 
@@ -39,7 +46,7 @@ public class AudioManager : MonoBehaviour
         }
         DontDestroyOnLoad(this);
 
-        volumenDeseadoScreamer = screamer1.volume;
+        volumenDeseadoScreamer = screamer1.volume; //ojo, esto significa que los 2 screamers tendran el mismo volumen
         
 
     }
@@ -86,8 +93,53 @@ public class AudioManager : MonoBehaviour
         mainMenuMusic.Stop();
     }
 
+    public void PlayAlarmaNorway()
+    {
+        alarmaNorway.Play();
+    }
+    public void StopAlarmaNorway()
+    {
+        alarmaNorway.Stop();
+    }
+    public void PlayAlarmaTriple()
+    {
+        alarmaTriple.Play();
+    }
+    public void StopAlarmaTriple()
+    {
+        alarmaTriple.Stop();
+    }
+
+    public void PlayDerrumbe(int i)
+    {
+        switch(i)
+        {
+            case 1:
+                derrumbe1.Play();
+                break;
+
+            case 2:
+                derrumbe2.Play();
+                break;
+
+            case 3:
+                derrumbe3.Play();
+                break;
+
+            default:
+                break;
+        }
+    }
+
+
+
+
+
 
     //SFX
+
+
+
 
     //HOLLOW ROAR
     public void PlayHollowRoar(Vector3 pos, float delayTime)
@@ -142,19 +194,72 @@ public class AudioManager : MonoBehaviour
 
 
     //SCREAMER SFX
-    public void PlayScreamer1()
+    //public void PlayScreamer1()
+    //{
+    //    screamer1.volume = volumenDeseadoScreamer;   //para resetear el volumen en caso de que otro metodo lo haya alterado
+    //    screamer1.Play();
+    //}
+    //public void FadeOutScreamer1(float fadetime)
+    //{
+    //    float timer = Time.time / fadetime;
+    //    screamer1.volume = Mathf.Lerp(1, 0, timer);
+    //}
+    //public void StopScreamer1()
+    //{
+    //    screamer1.Stop();
+    //}
+
+    public void PlayScreamer(int i)
     {
-        screamer1.volume = volumenDeseadoScreamer;   //para resetear el volumen en caso de que otro metodo lo haya alterado
-        screamer1.Play();
+        switch (i)
+        {
+            case 1:
+                screamer1.volume = volumenDeseadoScreamer;   //para resetear el volumen en caso de que otro metodo lo haya alterado
+                screamer1.Play();
+                break;
+
+            case 2:
+                screamer2.volume = volumenDeseadoScreamer;   //para resetear el volumen en caso de que otro metodo lo haya alterado
+                screamer2.Play();
+                break;
+
+            default:
+                break;
+        }
     }
-    public void FadeOutScreamer1(float fadetime)
+    public void FadeOutScreamer(int i, float fadetime)
     {
         float timer = Time.time / fadetime;
-        screamer1.volume = Mathf.Lerp(1, 0, timer);
+
+        switch (i)
+        {
+            case 1:
+                screamer1.volume = Mathf.Lerp(1, 0, timer);
+                break;
+
+            case 2:
+                screamer2.volume = Mathf.Lerp(1, 0, timer);
+                break;
+
+            default:
+                break;
+        }
     }
-    public void StopScreamer1()
+    public void StopScreamer(int i)
     {
-        screamer1.Stop();
+        switch (i)
+        {
+            case 1:
+                screamer1.Stop();
+                break;
+
+            case 2:
+                screamer2.Stop();
+                break;
+
+            default:
+                break;
+        }
     }
 
 
@@ -218,7 +323,7 @@ public class AudioManager : MonoBehaviour
         pasos1.Stop();
         pasos2.Stop();
     }
-    public void ChangePitchPasos(bool keyDown)
+    public void ChangePitchPasos(bool keyDown) //asi cuando corres suenan distinto
     {
         if (keyDown)
         {

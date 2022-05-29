@@ -40,14 +40,16 @@ public class YouDiedScene : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            AudioManager.instance.StopScreamer1();
+            AudioManager.instance.StopScreamer(1);
+            AudioManager.instance.StopScreamer(2);
             AudioManager.instance.PlayMainMenuMusic();
             SceneManager.LoadScene("MainMenuScene"); //volves al main menu
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            AudioManager.instance.StopScreamer1();
+            AudioManager.instance.StopScreamer(1);
+            AudioManager.instance.StopScreamer(2);
             AudioManager.instance.StopMainMenuMusic();
             AudioManager.instance.PlayBGM();
             SceneManager.LoadScene("Nivel1"); //volves al nivel

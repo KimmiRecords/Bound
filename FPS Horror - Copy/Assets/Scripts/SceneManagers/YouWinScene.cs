@@ -19,7 +19,8 @@ public class YouWinScene : MonoBehaviour
     void Start()
     {
         AudioManager.instance.StopBGM();
-        AudioManager.instance.StopScreamer1();
+        AudioManager.instance.StopScreamer(1);
+        AudioManager.instance.StopScreamer(2);
         AudioManager.instance.StopPasos();
         AudioManager.instance.PlayMainMenuMusic();
 

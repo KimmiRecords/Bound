@@ -25,6 +25,8 @@ public class MonsterMovement : MonoBehaviour
     NavMeshAgent _agent;
     ChebolaAnimations _chebolaAnims;
 
+    int desiredScreamer; //si voy a pedir el screamer 1 o 2
+
     void Start()
     {
         if (GetComponent<NavMeshAgent>() != null)
@@ -41,6 +43,8 @@ public class MonsterMovement : MonoBehaviour
         _mustStay = true;
         PlayerStats.instance.playerFear = false;
         _chebolaAnims = new ChebolaAnimations(_anim, _agent);
+
+        desiredScreamer = 1;
     }
 
     void Update()
@@ -83,7 +87,7 @@ public class MonsterMovement : MonoBehaviour
 
                     if (_screamerReady)
                     {
-                        AudioManager.instance.PlayScreamer1();
+                        AudioManager.instance.PlayScreamer(1);
                         AudioManager.instance.StopBGM();
                         _screamerReady = false; //flags para que solo pase una vez
                         _bgmReady = true;
@@ -106,7 +110,7 @@ public class MonsterMovement : MonoBehaviour
             _screamerReady = true;
             if (_bgmReady)
             {
-                AudioManager.instance.FadeOutScreamer1(10);
+                AudioManager.instance.FadeOutScreamer(desiredScreamer, 1);
                 AudioManager.instance.PlayBGM();
                 PlayerStats.instance.playerFear = false;
                 _bgmReady = false;
