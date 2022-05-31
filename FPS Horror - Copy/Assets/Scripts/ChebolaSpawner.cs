@@ -9,20 +9,11 @@ public class ChebolaSpawner : MonoBehaviour
 
     public GameObject chebolaPrefab;
     public Vector3 desiredSpawnPosition;
+    public int screamerID; //cual screamer reproduce este chebola
 
+    MonsterMovement _mm;
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
-
-    private void OnDestroy()
+    void OnDestroy()
     {
         if (!this.gameObject.scene.isLoaded) //esto es clave. solo va a instanciar si la escena esta activa. no sea cosa que queden instancias rancias colgando por ahi.
         { 
@@ -30,9 +21,12 @@ public class ChebolaSpawner : MonoBehaviour
         }
 
         Instantiate(chebolaPrefab, desiredSpawnPosition, Quaternion.identity);
+        _mm = chebolaPrefab.GetComponent<MonsterMovement>();
+        _mm.desiredScreamer = screamerID;
+
     }
 
-    private void OnDrawGizmosSelected()
+    void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(desiredSpawnPosition, 1);

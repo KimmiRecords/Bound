@@ -25,7 +25,7 @@ public class MonsterMovement : MonoBehaviour
     NavMeshAgent _agent;
     ChebolaAnimations _chebolaAnims;
 
-    int desiredScreamer; //si voy a pedir el screamer 1 o 2
+    public int desiredScreamer; //si voy a pedir el screamer 1 o 2 o cual
 
     void Start()
     {
@@ -44,7 +44,10 @@ public class MonsterMovement : MonoBehaviour
         PlayerStats.instance.playerFear = false;
         _chebolaAnims = new ChebolaAnimations(_anim, _agent);
 
-        desiredScreamer = 1;
+        if (desiredScreamer == 0)
+        {
+            desiredScreamer = 1;
+        }
     }
 
     void Update()
@@ -87,7 +90,7 @@ public class MonsterMovement : MonoBehaviour
 
                     if (_screamerReady)
                     {
-                        AudioManager.instance.PlayScreamer(1);
+                        AudioManager.instance.PlayScreamer(desiredScreamer);
                         AudioManager.instance.StopBGM();
                         _screamerReady = false; //flags para que solo pase una vez
                         _bgmReady = true;

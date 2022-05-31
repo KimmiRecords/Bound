@@ -28,7 +28,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource derrumbe2;
     public AudioSource derrumbe3;
 
-
+    AudioSource[] allSounds;
     public bool isRunning;
 
     float volumenDeseadoScreamer;
@@ -47,7 +47,8 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(this);
 
         volumenDeseadoScreamer = screamer1.volume; //ojo, esto significa que los 2 screamers tendran el mismo volumen
-        
+
+        allSounds = GetComponentsInChildren<AudioSource>();
 
     }
 
@@ -93,6 +94,9 @@ public class AudioManager : MonoBehaviour
         mainMenuMusic.Stop();
     }
 
+
+    //ALARMAS
+
     public void PlayAlarmaNorway()
     {
         alarmaNorway.Play();
@@ -110,9 +114,16 @@ public class AudioManager : MonoBehaviour
         alarmaTriple.Stop();
     }
 
-    public void PlayDerrumbe(int i)
+
+
+
+
+    //SFX
+
+
+    public void PlayDerrumbe(int derrumbeID)
     {
-        switch(i)
+        switch(derrumbeID)
         {
             case 1:
                 derrumbe1.Play();
@@ -130,15 +141,6 @@ public class AudioManager : MonoBehaviour
                 break;
         }
     }
-
-
-
-
-
-
-    //SFX
-
-
 
 
     //HOLLOW ROAR
@@ -192,26 +194,9 @@ public class AudioManager : MonoBehaviour
         doorClose.Play();
     }
 
-
-    //SCREAMER SFX
-    //public void PlayScreamer1()
-    //{
-    //    screamer1.volume = volumenDeseadoScreamer;   //para resetear el volumen en caso de que otro metodo lo haya alterado
-    //    screamer1.Play();
-    //}
-    //public void FadeOutScreamer1(float fadetime)
-    //{
-    //    float timer = Time.time / fadetime;
-    //    screamer1.volume = Mathf.Lerp(1, 0, timer);
-    //}
-    //public void StopScreamer1()
-    //{
-    //    screamer1.Stop();
-    //}
-
-    public void PlayScreamer(int i)
+    public void PlayScreamer(int screamerID)
     {
-        switch (i)
+        switch (screamerID)
         {
             case 1:
                 screamer1.volume = volumenDeseadoScreamer;   //para resetear el volumen en caso de que otro metodo lo haya alterado
@@ -227,11 +212,11 @@ public class AudioManager : MonoBehaviour
                 break;
         }
     }
-    public void FadeOutScreamer(int i, float fadetime)
+    public void FadeOutScreamer(int screamerID, float fadetime)
     {
         float timer = Time.time / fadetime;
 
-        switch (i)
+        switch (screamerID)
         {
             case 1:
                 screamer1.volume = Mathf.Lerp(1, 0, timer);
@@ -245,9 +230,9 @@ public class AudioManager : MonoBehaviour
                 break;
         }
     }
-    public void StopScreamer(int i)
+    public void StopScreamer(int screamerID)
     {
-        switch (i)
+        switch (screamerID)
         {
             case 1:
                 screamer1.Stop();
@@ -263,8 +248,6 @@ public class AudioManager : MonoBehaviour
     }
 
 
-
-
     //LINTERNA ON/OFF
     public void PlayLinternaOn()
     {
@@ -274,8 +257,6 @@ public class AudioManager : MonoBehaviour
     {
         linternaOff.Play();
     }
-
-
 
 
     //PASOS
@@ -361,6 +342,34 @@ public class AudioManager : MonoBehaviour
                 jumpDown.pitch = randomPitch;
                 jumpDown.Play();
                 jumpDownIsReady = false;
+            }
+        }
+    }
+
+
+
+    //AUDIO TRIGGERS
+    //a este metodo le pasas un sonido, duracion y volumen de fade, y te lo da play con fade
+    public void TriggerSound(AudioSource auso, float fadeDuration, float initialVolume, float finalVolume, bool isPlay)
+    {
+        if (isPlay)
+        {
+            auso.Play();
+            StartCoroutine(FadeAudioSource.StartFade(auso, fadeDuration, initialVolume, finalVolume));
+        }
+        else
+        {
+            auso.Stop();
+        }
+    }
+
+    public void StopAll()
+    {
+        for (int i = 0; i < allSounds.Length; i++)
+        {
+            if (allSounds[i].isPlaying)
+            {
+                allSounds[i].Stop();
             }
         }
     }
