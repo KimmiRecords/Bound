@@ -15,6 +15,8 @@ public class Instructions : MonoBehaviour
     public Transform MainCamera;
     public Transform Camera2;
 
+    public GameObject usbsgroup;
+
     private Color _controlsInitialColor;
     private Color _objectiveRedInitialColor;
     private Color _creditsInitialColor;
@@ -85,24 +87,41 @@ public class Instructions : MonoBehaviour
         {
             credits.color = Color.clear; //apaga los credits
 
-            controls.color = new Color(_controlsInitialColor.r, _controlsInitialColor.g, _controlsInitialColor.b, Mathf.Lerp(0, 1, _timer)); //y muestra las instrus
+            //muestro los controles
+            controls.color = new Color(_controlsInitialColor.r, _controlsInitialColor.g, _controlsInitialColor.b, Mathf.Lerp(0, 1, _timer)); 
+
+            //y muestra las instrus
             objectiveRed.color = new Color(_objectiveRedInitialColor.r, _objectiveRedInitialColor.g, _objectiveRedInitialColor.b, Mathf.Lerp(0, 1, _timer-0.5f));
             objectiveWhite.color = new Color(1, 1, 1, Mathf.Lerp(0, 1, _timer-0.5f));
+
+            //hago aparecer el usb group
+            Invoke("ShowUSBGroup", 6);
+
         }
 
         //CAMBIO DE ESCENA
         if (Input.GetKeyDown(KeyCode.E) && _instructionsSeen == true)
         {
             AudioManager.instance.StopMainMenuMusic();
-            AudioManager.instance.PlayBGM();
+
+            Destroy(AudioManager.instance.gameObject);
+            //AudioManager.instance.PlayBGM();
             SceneManager.LoadScene("Nivel1"); //1 es el primer nivel
         }
 
         if (Input.GetKeyDown(KeyCode.T) && _instructionsSeen == true)
         {
             AudioManager.instance.StopMainMenuMusic();
-            AudioManager.instance.PlayBGM();
+            Destroy(AudioManager.instance.gameObject);
+
+
+            //AudioManager.instance.PlayBGM();
             SceneManager.LoadScene("EscenarioDePrueba"); //5 es la escena de prueba
         }
+    }
+
+    void ShowUSBGroup()
+    {
+        usbsgroup.SetActive(true);
     }
 }

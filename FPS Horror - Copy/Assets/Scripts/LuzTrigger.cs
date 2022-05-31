@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class LuzTrigger : MonoBehaviour
 {
-    //este script se lo pones a una pressure plate para que prenda n luces
+    //este script se lo pones a un collider para que prenda n luces MIENTRAS lo pisas
+    //lo uso para prender luces con placas de presion
+    //por diego katabian
 
-    private BoxCollider boxCollider;
     
     public float intensidadDeseada;
-
     public Light[] luces; //las luces que quiero prender
     public bool haceRuido;
-    private bool yaPrendiLasLuces;
+
+    BoxCollider boxCollider;
+    bool yaPrendiLasLuces;
 
 
     void Start()

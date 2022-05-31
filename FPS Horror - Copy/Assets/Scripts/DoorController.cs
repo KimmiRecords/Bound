@@ -6,7 +6,7 @@ public class DoorController : MonoBehaviour
 {
     //este script se lo pones a una puerta para que se abra automaticamente al acercarte. 
     //las puertas que se abren con boton o placa de presion llaman a los metodos de este script.
-    //por fran
+    //por francisco serra
 
     [HideInInspector]
     public Animator _doorAnim;
@@ -24,12 +24,6 @@ public class DoorController : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         CloseDoor();
-    }
-
-
-    void Update()
-    {
-
     }
 
     public void OpenDoor()

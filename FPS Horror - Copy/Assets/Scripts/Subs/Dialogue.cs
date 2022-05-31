@@ -12,11 +12,6 @@ public class Dialogue : Subs
         dialogueColor = new Color(255f/255f, 205f/255f, 120f/255f, 1); //amarillito vintage
     }
 
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider player) //los dialogue se disparan por con colliders
     {
         if (player.gameObject.layer == 3) //la 3 es la del player, obvio

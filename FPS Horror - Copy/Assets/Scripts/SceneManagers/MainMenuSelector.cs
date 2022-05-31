@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuSelector : MonoBehaviour
 {
-    void Start()
-    {
-        PlayerStats.instance.UsbsCollected = 0;
-    }
+    //void Start()
+    //{
+    //    PlayerStats.instance.UsbsCollected = 0;
+    //}
 
     void Update()
     {

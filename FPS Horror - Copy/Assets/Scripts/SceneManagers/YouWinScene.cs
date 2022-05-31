@@ -18,9 +18,7 @@ public class YouWinScene : MonoBehaviour
 
     void Start()
     {
-        AudioManager.instance.StopBGM();
-        AudioManager.instance.StopScreamer1();
-        AudioManager.instance.StopPasos();
+        AudioManager.instance.StopAll();
         AudioManager.instance.PlayMainMenuMusic();
 
         youWin.color = new Color(0, 1, 0, 0);
@@ -43,7 +41,10 @@ public class YouWinScene : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.E))
         {
-            SceneManager.LoadScene(0); //volves al main menu
+            if (timer2 > 4)
+            {
+                SceneManager.LoadScene(0); //volves al main menu
+            }
         }
     }
 }

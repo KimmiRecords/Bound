@@ -56,12 +56,12 @@ public class PlayerStats : MonoBehaviour
         set
         {
             _usbsCollected = value;
-            if (_usbsCollected == 4)
-            {
-                print("YOU WIN");
-                _usbsCollected = 0;
-                SceneManager.LoadScene(3);
-            }
+            //if (_usbsCollected == 4)
+            //{
+            //    print("YOU WIN");
+            //    _usbsCollected = 0;
+            //    SceneManager.LoadScene(3);
+            //}
         }
     }
 
@@ -105,11 +105,11 @@ public class PlayerStats : MonoBehaviour
             _gotFlashlightFlag = true;
         }
 
-        //if (Input.GetKeyDown(KeyCode.L))
-        //{
-        //    UsbsCollected++;
-        //    print("CHEAT: te sumaste un usb");
-        //}
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            UsbsCollected++;
+            print("CHEAT: te sumaste un usb");
+        }
     }
 
     public void TakeDamage(float dmg)
@@ -118,7 +118,14 @@ public class PlayerStats : MonoBehaviour
         if (_playerHp <= 0)
         {
             print("YOU DIED");
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene("YouDiedScene");
         }
+    }
+
+    public void Win()
+    {
+        print("YOU WIN");
+        _usbsCollected = 0;
+        SceneManager.LoadScene("YouWinScene");
     }
 }
