@@ -8,22 +8,30 @@ public class LuzTrigger : MonoBehaviour
     //lo uso para prender luces con placas de presion
     //por diego katabian
 
-    
-    public float intensidadDeseada;
-    public Light[] luces; //las luces que quiero prender
-    public bool haceRuido;
+    [SerializeField]
+    protected float intensidadDeseada; //intensidad de la luz
 
-    BoxCollider boxCollider;
-    bool yaPrendiLasLuces;
+    [SerializeField]
+    protected Light[] luces; //las luces que quiero prender
+
+    [SerializeField]
+    protected bool haceRuido;
+
+    [SerializeField]
+    protected bool lasDejaPrendidas; //si las deja prendidas o las apaga cuando salis del plate
+
+    BoxCollider _boxCollider;
+    bool _yaPrendiLasLuces;
+
 
 
     void Start()
     {
         if (GetComponent<BoxCollider>() != null)
         {
-            boxCollider = GetComponent<BoxCollider>();
+            _boxCollider = GetComponent<BoxCollider>();
         }
-        yaPrendiLasLuces = false;
+        _yaPrendiLasLuces = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,12 +43,11 @@ public class LuzTrigger : MonoBehaviour
             {
                 luces[i].intensity = intensidadDeseada;
             }
-            yaPrendiLasLuces = true;
+            _yaPrendiLasLuces = true;
 
             if (haceRuido)
             {
                 AudioManager.instance.PlayPPlateOn(transform.position);
-                print("hice ruido luztrigger enter");
             }
         }
     }
@@ -49,7 +56,7 @@ public class LuzTrigger : MonoBehaviour
     {
         if (other.gameObject.layer == 7 || other.gameObject.layer == 3) 
         {
-            if (!yaPrendiLasLuces) //en el stay, solo las prende si estaban apagadas. 
+            if (!_yaPrendiLasLuces) //en el stay, solo las prende si estaban apagadas. 
             {
                 for (int i = 0; i < luces.Length; i++)
                 {
@@ -63,20 +70,20 @@ public class LuzTrigger : MonoBehaviour
     {
         if (other.gameObject.layer == 7 || other.gameObject.layer == 3)
         {
-            //apaga la luces
-            for (int i = 0; i < luces.Length; i++)
+            if (!lasDejaPrendidas) //si no las tiene que dejar prendidas, las apaga.
             {
-                luces[i].intensity = 0;
+                for (int i = 0; i < luces.Length; i++)
+                {
+                    luces[i].intensity = 0;
+                }
+
+                if (haceRuido)
+                {
+                    AudioManager.instance.PlayPPlateOff(transform.position);
+                }
+
+                _yaPrendiLasLuces = false;
             }
-
-            if (haceRuido)
-            {
-                AudioManager.instance.PlayPPlateOff(transform.position);
-                print("hice ruido luztrigger exit");
-
-            }
-
-            yaPrendiLasLuces = false;
         }
     }
 }

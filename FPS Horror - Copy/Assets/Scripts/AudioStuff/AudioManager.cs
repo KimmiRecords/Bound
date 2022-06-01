@@ -27,6 +27,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource derrumbe1;
     public AudioSource derrumbe2;
     public AudioSource derrumbe3;
+    public AudioSource bigLightSwitch;
 
     AudioSource[] allSounds;
     public bool isRunning;
@@ -176,6 +177,13 @@ public class AudioManager : MonoBehaviour
     {
         pPlateOff.gameObject.transform.position = pos; 
         pPlateOff.Play();
+    }
+
+    public void PlayBigLightSwitch()
+    {
+        float randomPitch = Random.Range(0.9f, 1.1f);
+        bigLightSwitch.pitch = randomPitch;
+        bigLightSwitch.Play();
     }
 
     //PUERTAS
