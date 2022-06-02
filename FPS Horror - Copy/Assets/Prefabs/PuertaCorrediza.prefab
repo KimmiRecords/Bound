@@ -336,8 +336,13 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
+<<<<<<< Updated upstream
   m_Size: {x: 0.6656114, y: 0.54472476, z: 1}
   m_Center: {x: 0.0118218595, y: 0.16462408, z: 0}
+=======
+  m_Size: {x: 1.0497994, y: 1.2655901, z: 1}
+  m_Center: {x: 0.004176961, y: 0.14384255, z: 0}
+>>>>>>> Stashed changes
 --- !u!114 &8926552377476100547
 MonoBehaviour:
   m_ObjectHideFlags: 0
