@@ -12,7 +12,7 @@ public class DoorControllerButton : Interactable
     [HideInInspector]
     public bool access = false;
 
-    public override void Interact() //los doorControllerbutton polimorfean el metodo base, y hacen esto cuando los interactuas con E.
+    public override void Interact()
     {
         if (access)
         {

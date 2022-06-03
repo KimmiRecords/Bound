@@ -44,10 +44,10 @@ public class MonsterMovement : MonoBehaviour
         PlayerStats.instance.playerFear = false;
         _chebolaAnims = new ChebolaAnimations(_anim, _agent);
 
-        if (desiredScreamer == 0)
-        {
-            desiredScreamer = 1;
-        }
+        //if (desiredScreamer == 0)
+        //{
+        //    desiredScreamer = 1;
+        //}
     }
 
     void Update()

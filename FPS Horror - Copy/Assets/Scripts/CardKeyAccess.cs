@@ -18,4 +18,15 @@ public class CardKeyAccess : MonoBehaviour
     {
         infoPopup.desiredText = textoSinCardKey;
     }
+
+    public void GetAccess()
+    {
+        dcb.access = true; //ahora tengo acceso para operar
+        //infoPopup.desiredText = textoConCardKey;
+    }
+
+    public void ChangeText()
+    {
+        infoPopup.desiredText = textoConCardKey;
+    }
 }

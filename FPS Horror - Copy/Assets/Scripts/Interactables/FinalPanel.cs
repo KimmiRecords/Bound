@@ -7,11 +7,20 @@ public class FinalPanel : DoorControllerButton
     public GameObject winTrigger;
     public override void Interact()
     {
-        if (PlayerStats.instance.UsbsCollected == 4)
+        if (access && PlayerStats.instance.UsbsCollected == 4)
         {
-            base.Interact();
+            base.Interact(); //el base es reproducir audio nomas
+
+            if (quePuertaAbro._doorAnim.GetBool("isOpening"))
+            {
+                quePuertaAbro.CloseDoor();
+            }
+            else
+            {
+                quePuertaAbro.OpenDoor();
+            }
+
             winTrigger.SetActive(true);
-            //PlayerStats.instance.Win();
         }
         else
         {

@@ -16,8 +16,9 @@ public class CardKeyPickup : Collectables
         PlayerStats.instance.hasCardKey = true; 
         for (int i = 0; i < cardKeyAccesses.Length; i++)
         {
-            cardKeyAccesses[i].dcb.access = true; //ahora tengo acceso para operar
-            cardKeyAccesses[i].infoPopup.desiredText = cardKeyAccesses[i].textoConCardKey; //cambio el texto que muestran aquellos paneles
+            cardKeyAccesses[i].GetAccess();
+            cardKeyAccesses[i].ChangeText();
+
         }
         base.Interact();
     }

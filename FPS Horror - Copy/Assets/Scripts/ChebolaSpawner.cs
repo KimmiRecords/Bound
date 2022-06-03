@@ -15,7 +15,7 @@ public class ChebolaSpawner : MonoBehaviour
 
     void OnDestroy()
     {
-        if (!this.gameObject.scene.isLoaded) //esto es clave. solo va a instanciar si la escena esta activa. no sea cosa que queden instancias rancias colgando por ahi.
+        if (!this.gameObject.scene.isLoaded)
         { 
             return;
         }
