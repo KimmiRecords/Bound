@@ -6796,8 +6796,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAura: 25
-  monsterDamage: 0.2
-  desiredScreamer: 0
+  monsterDamage: 0.3
+  chebolaPrefab: {fileID: 7808848037089618967}
+  desiredScreamer: 1
 --- !u!1 &7994345373475715123
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,7 +18,6 @@ public class CardKeyPickup : Collectables
         {
             cardKeyAccesses[i].GetAccess();
             cardKeyAccesses[i].ChangeText();
-
         }
         base.Interact();
     }

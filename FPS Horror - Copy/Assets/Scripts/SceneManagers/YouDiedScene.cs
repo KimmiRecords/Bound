@@ -49,7 +49,6 @@ public class YouDiedScene : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             AudioManager.instance.StopAll();
-            //AudioManager.instance.PlayBGM();
             Destroy(AudioManager.instance.gameObject);
 
             SceneManager.LoadScene("Nivel1"); //volves al nivel

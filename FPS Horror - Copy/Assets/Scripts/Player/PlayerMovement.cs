@@ -40,6 +40,9 @@ public class PlayerMovement : MonoBehaviour
         _controls = new Controls(this);
         _pAnims = new PlayerAnimations(_anim); //construyo el script de playerAnimations
 
+        PlayerStats.instance.OnDeath += TPToCheckpoint; //ya enterate
+        print("PlayerMovement agrego su metodo TPToCheckpoint al OnDeath");
+        print("Cuando el player muera, se va a disparar TPToCheckpoint");
     }
 
     void Update()
@@ -109,5 +112,15 @@ public class PlayerMovement : MonoBehaviour
     public void StopRunning()
     {
         playerSpeed = _walkingSpeed;
+    }
+
+    void TPToCheckpoint(Vector3 cp)
+    {
+        print("arranca el metodo TPtocheckpoint, me pasaron lastcheckpoint  " + cp);
+
+        _controller.enabled = false; //apago el character controller antes de moverlo
+        transform.position = cp;
+        _controller.enabled = true;
+
     }
 }

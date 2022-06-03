@@ -9,15 +9,18 @@ public class FinalPanel : DoorControllerButton
     {
         if (access && PlayerStats.instance.UsbsCollected == 4)
         {
-            base.Interact(); //el base es reproducir audio nomas
+            AudioManager.instance.PlayPickup(1.1f);
 
             if (quePuertaAbro._doorAnim.GetBool("isOpening"))
             {
                 quePuertaAbro.CloseDoor();
+                print("cierro la puerta");
+
             }
             else
             {
                 quePuertaAbro.OpenDoor();
+                print("abro la puerta");
             }
 
             winTrigger.SetActive(true);
