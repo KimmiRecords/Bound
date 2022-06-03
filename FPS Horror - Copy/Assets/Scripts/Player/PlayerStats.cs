@@ -56,12 +56,7 @@ public class PlayerStats : MonoBehaviour
         set
         {
             _usbsCollected = value;
-            //if (_usbsCollected == 4)
-            //{
-            //    print("YOU WIN");
-            //    _usbsCollected = 0;
-            //    SceneManager.LoadScene(3);
-            //}
+            
         }
     }
 
@@ -108,7 +103,7 @@ public class PlayerStats : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             UsbsCollected++;
-            print("CHEAT: te sumaste un usb");
+            print("CHEAT: te sumaste un usb. Ahora tenes " + UsbsCollected);
         }
     }
 
