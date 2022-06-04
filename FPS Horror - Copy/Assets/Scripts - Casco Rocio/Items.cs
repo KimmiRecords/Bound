@@ -11,13 +11,8 @@ public class Items : MonoBehaviour
     [HideInInspector]
     public bool pickedUp;
 
-    //public Items(int ids, string types, Sprite icons, bool pickedUps)
-    //{
-    //    id       = ids;
-    //    type     = types;
-    //    icon     = icons;
-    //    pickedUp = pickedUps;
-    
-    //}
-
+    public void OnDisable()
+    {
+        print("me destrui - items");
+    }
 }

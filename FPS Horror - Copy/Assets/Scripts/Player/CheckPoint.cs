@@ -20,17 +20,21 @@ public class CheckPoint : MonoBehaviour
                 Trigger();
             }
         }
-        //particulas = GetComponentInChildren<ParticleSystem>();
     }
     void Trigger()
     {
-        print("dispare el metodo Trigger de este checkpoint, mi posicion es " + transform.position);
+        //print("dispare el metodo Trigger de este checkpoint, mi posicion es " + transform.position);
 
+        USBManager.instance.usbsAtCheckpoint = PlayerStats.instance.UsbsCollected; //cuando agarro este checkpoint, le cuento al usbmanager cuantos usbs tengo
         PlayerStats.instance.lastCheckpoint = transform.position;
+
         particulas.gameObject.SetActive(true);
         AudioManager.instance.PlayPickup(0.5f);
-        print("cambie el lastcheckpoint a " + PlayerStats.instance.lastCheckpoint);
+
+        //print("cambie el lastcheckpoint a " + PlayerStats.instance.lastCheckpoint);
 
         triggered = true;
     }
+
+    
 }

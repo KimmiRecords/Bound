@@ -34,6 +34,7 @@ public abstract class Subs : MonoBehaviour
     public virtual void Hide()
     {
         subsCanvasText.text = "";
+        print("subs: destrui a " + this.gameObject);
         Destroy(this.gameObject);
     }
 }

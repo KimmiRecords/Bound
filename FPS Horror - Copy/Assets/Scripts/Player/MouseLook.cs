@@ -6,7 +6,7 @@ public class MouseLook : MonoBehaviour
 {
     //controla la vista FirstPerson y ademas tiene raycast para interactables en la camara.
     //este script incluye algunas interacciones del jugador con objetos
-    //la mayoria de este script lo hizo Fran, despues DK agrego algunas cositas
+    //por francisco serra y diego katabian
 
     public Transform playerBody;
     public Camera fpsCamera = null;

@@ -134,6 +134,7 @@ public class MonsterMovement : MonoBehaviour
                     {
                         //me suscribo a OnDeath. asi me reseteo cuando el player muera estando yo activo.
                         PlayerStats.instance.OnDeath += ResetChebola; //ya enterate
+                        print("suscribi ResetChebola al ondeath");
 
                         AudioManager.instance.PlayScreamer(desiredScreamer);
                         AudioManager.instance.StopBGM();
@@ -153,8 +154,15 @@ public class MonsterMovement : MonoBehaviour
 
     public void ResetChebola(Vector3 cp)
     {
+        print("arranca el metodo ResetChebola");
+
+        print("lo calmo");
         CalmDown();
-        PlayerStats.instance.OnDeath -= ResetChebola; //ya enterate. me suscribo a ondeath, cuando el player muera disparo el metodo ResetChebola
+
+        //print("anulo la suscripcion");
+        //PlayerStats.instance.OnDeath -= ResetChebola;
+
+        print("destruyo al chebola");
         Destroy(this.gameObject);
     }
 
@@ -166,6 +174,9 @@ public class MonsterMovement : MonoBehaviour
         _chebolaAnims.screamIsReady = true; //el aullido del chebola
         if (_bgmReady)
         {
+            print("anulo la suscripcion");
+            PlayerStats.instance.OnDeath -= ResetChebola;
+
             AudioManager.instance.FadeOutScreamer(desiredScreamer, 1);
             AudioManager.instance.PlayBGM();
             PlayerStats.instance.playerFear = false;
@@ -178,8 +189,8 @@ public class MonsterMovement : MonoBehaviour
         habilitado = true;
     }
 
-    public void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawSphere(transform.position, damageAura);
-    }
+    //public void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.DrawSphere(transform.position, damageAura);
+    //}
 }

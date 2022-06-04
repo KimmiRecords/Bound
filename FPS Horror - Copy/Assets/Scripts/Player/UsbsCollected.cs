@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UsbsCollected : MonoBehaviour
 {
     //este script actualiza la cantidad de usbs recolectados en el canvas
+    //por diego katabian
 
     public string FirstPartOfText;
     private Text usbsCollectedText;

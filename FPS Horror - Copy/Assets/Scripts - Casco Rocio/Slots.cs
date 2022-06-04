@@ -13,26 +13,7 @@ public class Slots : MonoBehaviour
     public bool empty;
 
     public RectTransform slotIconGameObject;
-
-
-    //public Slots(GameObject items, int ids, string types, Sprite icons, bool emptys)
-    //{
-    //    item  = items;
-    //    id    = ids;
-    //    type  = types;
-    //    icon  = icons;
-    //    empty = emptys;
-
-
-
-    //}
-    private void Awake()
-    {
-    }
-    //private void Start()
-    //{
-    //    slotIconGameObject = (RectTransform)this.gameObject.transform.GetChild(0);
-    //}
+    
     public void UpdateSlot()
     {
         slotIconGameObject = (RectTransform)this.gameObject.transform.GetChild(0);

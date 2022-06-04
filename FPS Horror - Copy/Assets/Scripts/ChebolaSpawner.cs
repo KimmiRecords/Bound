@@ -14,10 +14,10 @@ public class ChebolaSpawner : MonoBehaviour
 
     MonsterMovement _mm;
 
-    void OnDestroy()
+    private void OnDisable()
     {
         if (!this.gameObject.scene.isLoaded)
-        { 
+        {
             return;
         }
 
@@ -27,8 +27,23 @@ public class ChebolaSpawner : MonoBehaviour
         //_mm = desiredChebola.GetComponent<MonsterMovement>();
         _mm = chebolaPrefab.GetComponent<MonsterMovement>();
         _mm.desiredScreamer = screamerID;
-
     }
+
+    //void OnDestroy()
+    //{
+    //    if (!this.gameObject.scene.isLoaded)
+    //    { 
+    //        return;
+    //    }
+
+    //    Instantiate(chebolaPrefab, desiredSpawnPosition, Quaternion.identity);
+    //    //desiredChebola.SetActive(false);
+
+    //    //_mm = desiredChebola.GetComponent<MonsterMovement>();
+    //    _mm = chebolaPrefab.GetComponent<MonsterMovement>();
+    //    _mm.desiredScreamer = screamerID;
+
+    //}
 
     void OnDrawGizmosSelected()
     {

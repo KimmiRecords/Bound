@@ -25,11 +25,6 @@ public class Inventory : MonoBehaviour
         Count();
     }
 
-    void Update()
-    {
-        
-    }
-
     public void Count()
     {
         _allSlots = slotHalder.transform.childCount;
@@ -84,6 +79,7 @@ public class Inventory : MonoBehaviour
                 _slot[i].GetComponent<Slots>().icon = itemIcon;
 
                 itemObject.transform.parent = _slot[i].transform;
+
                 itemObject.SetActive(false);
 
                 _slot[i].GetComponent<Slots>().UpdateSlot();

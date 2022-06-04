@@ -27,7 +27,6 @@ public class InfoPopup : Subs
         }
 
         infoColor = new Color(225f/255f, 179f/255f, 179f/255f, 1); //rosita
-
     }
 
     void Update()
@@ -49,7 +48,6 @@ public class InfoPopup : Subs
     public override void Hide()
     {
         subsCanvasText.text = "";
-
     }
 
     public void OnDestroy()
@@ -59,5 +57,10 @@ public class InfoPopup : Subs
             return;
         }
         Hide();
+    }
+
+    public void OnDisable()
+    {
+        print("me destrui - infopopup");
     }
 }

@@ -18,6 +18,7 @@ public class CutsceneManager : MonoBehaviour
 
         //yield return waitforseconds(10)
         //StartExplosions();
+        //fadeout alarmatriple
 
         //canvasbound.text.color lerpear a alpha = 1
         //yield return waitforseconds(6)

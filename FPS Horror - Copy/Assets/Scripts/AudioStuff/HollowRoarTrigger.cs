@@ -10,16 +10,6 @@ public class HollowRoarTrigger : MonoBehaviour
     public Vector3 soundPosition;
     public float delay;
 
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-        
-    }
-
     private void OnDestroy()
     {
         if (!this.gameObject.scene.isLoaded) //esto es clave. solo va a reproducir si la escena esta activa. asi, si cierro la escena y se destruye todo, no reproduce nada.

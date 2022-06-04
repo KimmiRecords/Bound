@@ -62,7 +62,6 @@ public class PlayerStats : MonoBehaviour
         set
         {
             _usbsCollected = value;
-            
         }
     }
 
@@ -134,6 +133,7 @@ public class PlayerStats : MonoBehaviour
         else
         {
             print("hay checkpoint, llamo al evento OnDeath, lastcheckpoint en " + lastCheckpoint);
+            PlayerHp = playerHpMax;
             OnDeath(lastCheckpoint);
         }
 

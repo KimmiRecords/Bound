@@ -37,12 +37,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         _walkingSpeed = playerSpeed;
+
         _controls = new Controls(this);
-        _pAnims = new PlayerAnimations(_anim); //construyo el script de playerAnimations
+        _pAnims = new PlayerAnimations(_anim); //construyo scripts x composicion
 
         PlayerStats.instance.OnDeath += TPToCheckpoint; //ya enterate
-        print("PlayerMovement agrego su metodo TPToCheckpoint al OnDeath");
-        print("Cuando el player muera, se va a disparar TPToCheckpoint");
     }
 
     void Update()
