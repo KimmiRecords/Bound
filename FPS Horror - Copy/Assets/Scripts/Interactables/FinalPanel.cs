@@ -2,14 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FinalPanel : Interactable
+public class FinalPanel : DoorControllerButton
 {
+    public GameObject winTrigger;
     public override void Interact()
     {
-        if (PlayerStats.instance.UsbsCollected == 4)
+        if (access && PlayerStats.instance.UsbsCollected == 4)
         {
-            base.Interact();
-            PlayerStats.instance.Win();
+            AudioManager.instance.PlayPickup(1.1f);
+
+            if (quePuertaAbro._doorAnim.GetBool("isOpening"))
+            {
+                quePuertaAbro.CloseDoor();
+                print("cierro la puerta");
+
+            }
+            else
+            {
+                quePuertaAbro.OpenDoor();
+                print("abro la puerta");
+            }
+
+            winTrigger.SetActive(true);
         }
         else
         {

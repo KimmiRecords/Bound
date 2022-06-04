@@ -15,6 +15,10 @@ public class Collectables : Interactable
         Items item = itemPickedUp.GetComponent<Items>(); //su componente item
         inventory.AddItem(itemPickedUp, item.id, item.type, item.icon); //lo agrego. 
 
-        Destroy(this.gameObject, 0.1f); //quienes hereden de collectables, tienen que poner su base.interact() al final xq se destruyen.
+        
     }
 }
+
+
+//this.gameObject.SetActive(false);
+//Destroy(this.gameObject, 0.1f); //quienes hereden de collectables, tienen que poner su base.interact() al final xq se destruyen.

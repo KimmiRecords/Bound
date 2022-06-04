@@ -11,10 +11,12 @@ public class MonsterMovement : MonoBehaviour
 
     public float damageAura; //el radio del aura
     public float monsterDamage; // el daño que hace
+    public GameObject chebolaPrefab;
 
     Transform _playerTransform;
     Vector3 _playerPosition;
     Vector3 _vectorToPlayer;
+    Vector3 _initialPosition;
     float _distanceToPlayer;
     float _angle; //angulo entre el player y el chebola
     bool _screamerReady = true; //si el screamer ta ready para salir
@@ -24,6 +26,8 @@ public class MonsterMovement : MonoBehaviour
     Animator _anim;
     NavMeshAgent _agent;
     ChebolaAnimations _chebolaAnims;
+
+    bool habilitado;
 
     public int desiredScreamer; //si voy a pedir el screamer 1 o 2 o cual
 
@@ -39,15 +43,13 @@ public class MonsterMovement : MonoBehaviour
             _anim = GetComponent<Animator>();
         }
 
+        _initialPosition = transform.position;
         _playerTransform = PlayerStats.instance.playerTransform;
         _mustStay = true;
         PlayerStats.instance.playerFear = false;
+        //PlayerStats.instance.OnDeath += ResetChebola; //ya enterate. me suscribo a ondeath, cuando el player muera disparo el metodo ResetChebola
         _chebolaAnims = new ChebolaAnimations(_anim, _agent);
-
-        if (desiredScreamer == 0)
-        {
-            desiredScreamer = 1;
-        }
+        habilitado = true;
     }
 
     void Update()
@@ -67,36 +69,11 @@ public class MonsterMovement : MonoBehaviour
         _agent.updateRotation = false;
 
 
-
         //EL CHEBOLA TE PERSIGUE Y DAÑA
-        //Vector3 posicionOjos = transform.position + (Vector3.up * 4);
-        Ray ray = new Ray(transform.position, _vectorToPlayer); //el rayo va desde mi hasta el player
-        RaycastHit hit;
-        Debug.DrawRay(ray.origin, ray.direction * damageAura, Color.red);
 
-        if (Physics.Raycast(ray, out hit, damageAura)) //si el raycast le pega a algo
+        if (habilitado)
         {
-            //print("el chebola esta mirando a " + hit.transform.gameObject);
-            //print("su layer es " + hit.transform.gameObject.layer);
-
-            if (hit.transform.gameObject.layer != 13) //y ese algo no es una pared o una puerta
-            {
-                if (hit.transform.gameObject.layer == 3 && _angle > 135) //y ese algo es layer 3 (player)
-                {
-                    _enEscena = true;
-                    _mustStay = false; //ya esta liberado para irse en cuanto el player se aleje lo suficiente
-                    _anim.SetBool("isWalking", true);
-                    Damage(); //daño constantemente al player mientras me mire
-
-                    if (_screamerReady)
-                    {
-                        AudioManager.instance.PlayScreamer(desiredScreamer);
-                        AudioManager.instance.StopBGM();
-                        _screamerReady = false; //flags para que solo pase una vez
-                        _bgmReady = true;
-                    }
-                }
-            }
+            SeekAndDestroy();
         }
 
         //EL CHEBOLA SE VA
@@ -108,16 +85,7 @@ public class MonsterMovement : MonoBehaviour
 
         if (_enEscena == false && _mustStay == false) //cuando dejo de mirarlo se destruye
         {
-            _agent.destination = transform.position; //o sea, a ningun lado
-            _anim.SetBool("isWalking", false);
-            _screamerReady = true;
-            if (_bgmReady)
-            {
-                AudioManager.instance.FadeOutScreamer(desiredScreamer, 1);
-                AudioManager.instance.PlayBGM();
-                PlayerStats.instance.playerFear = false;
-                _bgmReady = false;
-            }
+            CalmDown();
             Destroy(this.gameObject);
         }
     }
@@ -142,14 +110,87 @@ public class MonsterMovement : MonoBehaviour
         transform.position = position; //teleports a la posicion pedida
     }
 
+    public void SeekAndDestroy()
+    {
+        Ray ray = new Ray(transform.position, _vectorToPlayer); //el rayo va desde mi hasta el player
+        RaycastHit hit;
+        Debug.DrawRay(ray.origin, ray.direction * damageAura, Color.red);
+
+        if (Physics.Raycast(ray, out hit, damageAura)) //si el raycast le pega a algo
+        {
+            //print("el chebola esta mirando a " + hit.transform.gameObject);
+            //print("su layer es " + hit.transform.gameObject.layer);
+
+            if (hit.transform.gameObject.layer != 13) //y ese algo no es una pared o una puerta
+            {
+                if (hit.transform.gameObject.layer == 3 && _angle > 135) //y ese algo es layer 3 (player) //CHEBOLA ACTIVATE
+                {
+                    _enEscena = true;
+                    _mustStay = false; //ya esta liberado para irse en cuanto el player se aleje lo suficiente
+                    _anim.SetBool("isWalking", true);
+                    Damage(); //daño constantemente al player mientras me mire
+
+                    if (_screamerReady) //ONEHIT
+                    {
+                        //me suscribo a OnDeath. asi me reseteo cuando el player muera estando yo activo.
+                        PlayerStats.instance.OnDeath += ResetChebola; //ya enterate
+                        print("suscribi ResetChebola al ondeath");
+
+                        AudioManager.instance.PlayScreamer(desiredScreamer);
+                        AudioManager.instance.StopBGM();
+                        _screamerReady = false; //flags para que solo pase una vez
+                        _bgmReady = true;
+                    }
+                }
+            }
+        }
+    }
+
     public void Damage()
     {
         PlayerStats.instance.TakeDamage(monsterDamage); //daña al player constantemente
         PlayerStats.instance.playerFear = true;
     }
 
-    public void OnDrawGizmosSelected()
+    public void ResetChebola(Vector3 cp)
     {
-        Gizmos.DrawSphere(transform.position, damageAura);
+        print("arranca el metodo ResetChebola");
+
+        print("lo calmo");
+        CalmDown();
+
+        //print("anulo la suscripcion");
+        //PlayerStats.instance.OnDeath -= ResetChebola;
+
+        print("destruyo al chebola");
+        Destroy(this.gameObject);
     }
+
+    public void CalmDown()
+    {
+        _agent.destination = transform.position; //o sea, a ningun lado
+        _anim.SetBool("isWalking", false);
+        _screamerReady = true; //los violines
+        _chebolaAnims.screamIsReady = true; //el aullido del chebola
+        if (_bgmReady)
+        {
+            print("anulo la suscripcion");
+            PlayerStats.instance.OnDeath -= ResetChebola;
+
+            AudioManager.instance.FadeOutScreamer(desiredScreamer, 1);
+            AudioManager.instance.PlayBGM();
+            PlayerStats.instance.playerFear = false;
+            _bgmReady = false;
+        }
+    }
+
+    public void Habilitar()
+    {
+        habilitado = true;
+    }
+
+    //public void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.DrawSphere(transform.position, damageAura);
+    //}
 }

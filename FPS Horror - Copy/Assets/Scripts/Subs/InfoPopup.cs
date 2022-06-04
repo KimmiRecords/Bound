@@ -26,8 +26,7 @@ public class InfoPopup : Subs
             mouseLook = FindObjectOfType<MouseLook>();
         }
 
-        infoColor = new Color(226f/255f, 180f/255f, 180f/255f, 1); //rosita
-
+        infoColor = new Color(225f/255f, 179f/255f, 179f/255f, 1); //rosita
     }
 
     void Update()
@@ -49,7 +48,6 @@ public class InfoPopup : Subs
     public override void Hide()
     {
         subsCanvasText.text = "";
-
     }
 
     public void OnDestroy()
@@ -60,4 +58,5 @@ public class InfoPopup : Subs
         }
         Hide();
     }
+
 }

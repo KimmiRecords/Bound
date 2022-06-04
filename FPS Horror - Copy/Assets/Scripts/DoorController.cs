@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-    //este script se lo pones a una puerta para que se abra automaticamente al acercarte. 
+    //este script se lo pones a un collider hijo de puerta para que esta se abra automaticamente al acercarte. 
     //las puertas que se abren con boton o placa de presion llaman a los metodos de este script.
     //por francisco serra
 
@@ -29,15 +29,10 @@ public class DoorController : MonoBehaviour
     public void OpenDoor()
     {
         _doorAnim.SetBool("isOpening", true);
-        //AudioManager.instance.PlayDoorOpen();
     }
 
     public void CloseDoor()
     {
         _doorAnim.SetBool("isOpening", false);
-        //AudioManager.instance.PlayDoorClose();
     }
-
-    
-
 }

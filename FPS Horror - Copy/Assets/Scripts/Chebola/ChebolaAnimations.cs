@@ -12,7 +12,7 @@ public class ChebolaAnimations
     NavMeshAgent _agent;
     float _initialSpeed;
     float _attackRange; //que tan cerca te ataca
-    bool screamIsReady;
+    public bool screamIsReady;
 
     public ChebolaAnimations(Animator a, NavMeshAgent nma)
     {

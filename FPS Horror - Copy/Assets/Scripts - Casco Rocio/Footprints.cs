@@ -44,8 +44,5 @@ public class Footprints : MonoBehaviour
             footprints[1].SetActive(false);
             footprints[2].SetActive(false);
         }
-
-
-
     }
 }

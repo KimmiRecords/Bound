@@ -17,6 +17,9 @@ public class PlayerStats : MonoBehaviour
     public GameObject CanvasVidaUtil;
     public GameObject ModeloLinterna;
 
+    public delegate void MyDelegate(Vector3 cp);
+    public event MyDelegate OnDeath;
+
     [HideInInspector]
     public Transform playerTransform;
 
@@ -28,6 +31,9 @@ public class PlayerStats : MonoBehaviour
 
     [HideInInspector]
     public bool hasCardKey = false;
+
+    [HideInInspector]
+    public Vector3 lastCheckpoint;
 
     bool _gotFlashlightFlag;
     float _playerHp;
@@ -56,12 +62,6 @@ public class PlayerStats : MonoBehaviour
         set
         {
             _usbsCollected = value;
-            //if (_usbsCollected == 4)
-            //{
-            //    print("YOU WIN");
-            //    _usbsCollected = 0;
-            //    SceneManager.LoadScene(3);
-            //}
         }
     }
 
@@ -78,6 +78,7 @@ public class PlayerStats : MonoBehaviour
 
         hasFlashlight = false;
         playerTransform = transform;
+        lastCheckpoint = Vector3.zero;
         _playerHp = playerHpMax;
         _gotFlashlightFlag = false;
         UsbsCollected = 0;
@@ -108,7 +109,7 @@ public class PlayerStats : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             UsbsCollected++;
-            print("CHEAT: te sumaste un usb");
+            print("CHEAT: te sumaste un usb. Ahora tenes " + UsbsCollected);
         }
     }
 
@@ -117,9 +118,27 @@ public class PlayerStats : MonoBehaviour
         PlayerHp -= dmg;
         if (_playerHp <= 0)
         {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        print("arranca el metodo Die");
+        if (lastCheckpoint == Vector3.zero)
+        {
             print("YOU DIED");
             SceneManager.LoadScene("YouDiedScene");
         }
+        else
+        {
+            print("hay checkpoint, llamo al evento OnDeath, lastcheckpoint en " + lastCheckpoint);
+            PlayerHp = playerHpMax;
+            OnDeath(lastCheckpoint);
+        }
+
+        //print("YOU DIED");
+        //SceneManager.LoadScene("YouDiedScene");
     }
 
     public void Win()

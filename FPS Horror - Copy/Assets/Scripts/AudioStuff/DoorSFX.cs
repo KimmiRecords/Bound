@@ -8,15 +8,6 @@ public class DoorSFX : MonoBehaviour
     //este script se lo agregas a una puerta para que su animator pueda disparar el openDoorSFX.
     //este script y el animator DEBEN estar en el mismo objeto.
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 
     public void PlayDoorOpen()
     {

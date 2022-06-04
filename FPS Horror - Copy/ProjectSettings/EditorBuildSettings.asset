@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EscenarioDePrueba.unity
     guid: 5287246541c54b44183a48b979220cd2
+  - enabled: 1
+    path: Assets/Scenes/FinalCutscene.unity
+    guid: 26720c92f5bc1914fb413b07f7f4181d
   m_configObjects: {}

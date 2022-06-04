@@ -36,7 +36,7 @@ public class RaycastBatteries : MonoBehaviour
                 Items item = itemPickedUp.GetComponent<Items>();
                 _inventory.AddItem(itemPickedUp, item.id, item.type, item.icon);
 
-                Destroy(hit.transform.gameObject);
+                //Destroy(hit.transform.gameObject);
             }
         }
     }
