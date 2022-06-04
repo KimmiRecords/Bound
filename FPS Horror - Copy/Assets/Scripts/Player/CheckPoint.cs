@@ -25,7 +25,11 @@ public class CheckPoint : MonoBehaviour
     {
         //print("dispare el metodo Trigger de este checkpoint, mi posicion es " + transform.position);
 
-        USBManager.instance.usbsAtCheckpoint = PlayerStats.instance.UsbsCollected; //cuando agarro este checkpoint, le cuento al usbmanager cuantos usbs tengo
+        if (USBManager.instance != null)
+        {
+            USBManager.instance.usbsAtCheckpoint = PlayerStats.instance.UsbsCollected; //cuando agarro este checkpoint, le cuento al usbmanager cuantos usbs tengo
+        }
+
         PlayerStats.instance.lastCheckpoint = transform.position;
 
         particulas.gameObject.SetActive(true);

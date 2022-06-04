@@ -30,9 +30,4 @@ public class Interactable : MonoBehaviour
             AudioManager.instance.PlayPickup(1.1f);
         }
     }
-
-    public void OnDisable()
-    {
-        print("me destrui - interactable");
-    }
 }

@@ -59,8 +59,4 @@ public class InfoPopup : Subs
         Hide();
     }
 
-    public void OnDisable()
-    {
-        print("me destrui - infopopup");
-    }
 }

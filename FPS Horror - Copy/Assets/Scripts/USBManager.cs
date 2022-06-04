@@ -31,8 +31,8 @@ public class USBManager : MonoBehaviour
         for (int i = 0; i < allUsbs.Length; i++)
         {
             areCollected[i] = false;
-            print(allUsbs[i]);
-            print(areCollected[i]);
+            //print(allUsbs[i]);
+            //print(areCollected[i]);
         }
 
         //PlayerStats.instance.OnDeath += ResetUSBs;

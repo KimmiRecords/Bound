@@ -9,7 +9,16 @@ public class CutsceneManager : MonoBehaviour
 
     void Start()
     {
-        
+        if (AudioManager.instance.screamer1.isPlaying)
+        {
+            AudioManager.instance.StopScreamer(1);
+        }
+        if (AudioManager.instance.screamer2.isPlaying)
+        {
+            AudioManager.instance.StopScreamer(2);
+        }
+
+
     }
 
     void Update()
