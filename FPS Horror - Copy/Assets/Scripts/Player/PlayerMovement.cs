@@ -13,18 +13,19 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight;
     public float gravityValue;          //gravedad extra para que quede linda la caida del salto
 
+    public bool agency = true;
 
     float _verticalVelocity;
 
     float _groundedTimer;
     float _walkingSpeed;
     Vector3 _move;
-    CharacterController _controller;
+    public CharacterController _controller;
+    public PlayerAnimations _pAnims;
+    public Controls _controls;
     Animator _anim;
-    PlayerAnimations _pAnims;
-    Controls _controls;
 
-    private void Start()
+    private void Awake()
     {
         if (GetComponent<CharacterController>() != null)
         {
@@ -100,7 +101,10 @@ public class PlayerMovement : MonoBehaviour
         _move.y = _verticalVelocity; //sigo cargando el vector movieminto
         _controller.Move(_move * Time.deltaTime); //aplico el vector movieminto al character controller, con el metodo .Move
 
-        _pAnims.CheckMagnitude(_move.x + _move.z); //en el script de playerAnimations, chequea si me estoy moviendo o no
+        if (agency)
+        {
+            _pAnims.CheckMagnitude(_move.x + _move.z); //en el script de playerAnimations, chequea si me estoy moviendo o no
+        }
     }
 
     public void Run()
@@ -115,11 +119,18 @@ public class PlayerMovement : MonoBehaviour
 
     void TPToCheckpoint(Vector3 cp)
     {
-        print("arranca el metodo TPtocheckpoint, me pasaron lastcheckpoint  " + cp);
+        //print("arranca el metodo TPtocheckpoint, me pasaron lastcheckpoint  " + cp);
 
         _controller.enabled = false; //apago el character controller antes de moverlo
         transform.position = cp;
         _controller.enabled = true;
 
+    }
+
+    public void MoveForward()
+    {
+        _move = transform.forward * playerSpeed;
+        _controller.Move(_move * Time.deltaTime);
+        _pAnims.CheckMagnitude(_move.x + _move.z); //en el script de playerAnimations, chequea si me estoy moviendo o no
     }
 }

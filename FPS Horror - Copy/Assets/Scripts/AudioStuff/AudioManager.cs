@@ -126,15 +126,15 @@ public class AudioManager : MonoBehaviour
     {
         switch(derrumbeID)
         {
-            case 1:
+            case 0:
                 derrumbe1.Play();
                 break;
 
-            case 2:
+            case 1:
                 derrumbe2.Play();
                 break;
 
-            case 3:
+            case 2:
                 derrumbe3.Play();
                 break;
 
@@ -380,5 +380,11 @@ public class AudioManager : MonoBehaviour
                 allSounds[i].Stop();
             }
         }
+    }
+
+    public void PlayAtMoment(AudioSource sound, float moment)
+    {
+        sound.time = moment;
+        sound.Play();
     }
 }
