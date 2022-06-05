@@ -14,6 +14,27 @@ public class DetectPlayer : MonoBehaviour
 
     void Update()
     {
-        playerIsInRange = Physics.CheckSphere(transform.position, sightRange, playerMask);
+        //playerIsInRange = Physics.CheckSphere(transform.position, sightRange, playerMask);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 3)
+        {
+            playerIsInRange = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == 3)
+        {
+            playerIsInRange = false;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        //Gizmos.DrawSphere(transform.position, sightRange);
     }
 }
