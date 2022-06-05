@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
-
 public class CutsceneManager : MonoBehaviour
 {
     public Camera mainCamera;
@@ -40,9 +38,16 @@ public class CutsceneManager : MonoBehaviour
     float _cameraTimer;
     float _textTimer;
 
+    [HideInInspector]
     public int textToFadeIn;
+
+    [HideInInspector]
     public int textToFadeOut;
+
+    [HideInInspector]
     public bool fadeInGo;
+
+    [HideInInspector]
     public bool fadeOutGo;
 
 
