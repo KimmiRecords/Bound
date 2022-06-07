@@ -26,10 +26,8 @@ public class PlayerStats : MonoBehaviour
     [HideInInspector]
     public bool playerFear = false;
 
-    [HideInInspector]
     public bool hasFlashlight = false;
 
-    [HideInInspector]
     public bool hasCardKey = false;
 
     [HideInInspector]
@@ -86,6 +84,7 @@ public class PlayerStats : MonoBehaviour
 
     void Update()
     {
+        print(PlayerHp);
         if (_playerHp < playerHpMax) //regenera hp de a poco
         {
             if (!playerFear) //pero solo si no me esta dañando el chebola

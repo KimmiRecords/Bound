@@ -48,6 +48,6 @@ public class ChebolaSpawner : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(desiredSpawnPosition, 1);
+        Gizmos.DrawSphere(desiredSpawnPosition, 2);
     }
 }
