@@ -122,7 +122,7 @@ public class PlayerMovement : MonoBehaviour, IRalentizable
     void TPToCheckpoint(Vector3 cp)
     {
         //print("arranca el metodo TPtocheckpoint, me pasaron lastcheckpoint  " + cp);
-
+        AudioManager.instance.PlayTPToCheckpoint();
         _controller.enabled = false; //apago el character controller antes de moverlo
         transform.position = cp;
         _controller.enabled = true;

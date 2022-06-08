@@ -134,10 +134,11 @@ public class MonsterMovement : MonoBehaviour, IRalentizable
                     if (_screamerReady) //ONEHIT
                     {
                         //me suscribo a OnDeath. asi me reseteo cuando el player muera estando yo activo.
-                        //print("suscribi ResetChebola al ondeath");
+                        print("suscribi ResetChebola al ondeath");
                         PlayerStats.instance.OnDeath += ResetChebola; //ya enterate
 
                         AudioManager.instance.PlayScreamer(desiredScreamer);
+
                         AudioManager.instance.StopBGM();
                         _screamerReady = false; //flags para que solo pase una vez
                         _bgmReady = true;
@@ -176,6 +177,8 @@ public class MonsterMovement : MonoBehaviour, IRalentizable
             PlayerStats.instance.OnDeath -= ResetChebola;
 
             AudioManager.instance.FadeOutScreamer(desiredScreamer, 1);
+            AudioManager.instance.PlayHeavyBreathing();
+
             AudioManager.instance.PlayBGM();
             PlayerStats.instance.playerFear = false;
             _bgmReady = false;

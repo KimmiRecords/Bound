@@ -28,6 +28,19 @@ public class AudioManager : MonoBehaviour
     public AudioSource derrumbe2;
     public AudioSource derrumbe3;
     public AudioSource bigLightSwitch;
+    public AudioSource tpToCheckpoint;
+    public AudioSource mudSteps;
+    public AudioSource mudSteps2;
+    public AudioSource cough;
+    public AudioSource heavyBreathing;
+    public AudioSource zombieStress;
+    public AudioSource zombieScream;
+    public AudioSource zombieIdle;
+    public AudioSource zombieExplosion;
+    public AudioSource gasLeak;
+    public AudioSource sewerAmbience;
+    public AudioSource inventoryOpen;
+    public AudioSource inventoryClose;
 
     AudioSource[] allSounds;
     public bool isRunning;
@@ -35,7 +48,7 @@ public class AudioManager : MonoBehaviour
     float volumenDeseadoScreamer;
     bool jumpDownIsReady;
 
-    void Start()
+    void Awake()
     {
         if (instance) //esto es para que audiomanager sea unico. puse uno en cada escena, pero a traves de las escenas se mantiene vivo uno solo.
         {
@@ -143,7 +156,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-
     //HOLLOW ROAR
     public void PlayHollowRoar(Vector3 pos, float delayTime)
     {
@@ -154,14 +166,16 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-
-    //PICKUPS SFX
     public void PlayPickup(float p)
     {
         pickup.pitch = p;
         pickup.Play();
     }
 
+    public void PlayTPToCheckpoint()
+    {
+        tpToCheckpoint.Play();
+    }
     public void PlayAccessDenied()
     {
         accessDenied.Play();
@@ -354,6 +368,63 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayHeavyBreathing()
+    {
+        float randomPitch = Random.Range(0.95f, 1.05f);
+        if (!heavyBreathing.isPlaying)
+        {
+            heavyBreathing.volume = 0.8f;
+            heavyBreathing.pitch = randomPitch;
+            heavyBreathing.Play();
+            StartCoroutine(FadeAudioSource.StartFade(heavyBreathing, 15, 0.8f, 0));
+        }
+    }
+
+    public void PlayZExplosion(Vector3 position)
+    {
+        zombieExplosion.transform.position = position;
+        zombieExplosion.Play();
+    }
+
+    public void PlayZIdle()
+    {
+        zombieIdle.Play();
+    }
+
+    public void PlayZStress()
+    {
+        zombieStress.Play();
+    }
+
+    public void PlayZScream()
+    {
+        zombieScream.Play();
+    }
+
+    public void StopZIdle()
+    {
+        zombieIdle.Stop();
+    }
+
+    public void StopZStress()
+    {
+        zombieStress.Stop();
+    }
+
+    public void StopZScream()
+    {
+        zombieScream.Stop();
+    }
+
+    public void PlayInventoryOpen()
+    {
+        inventoryOpen.Play();
+    }
+
+    public void PlayInventoryClose()
+    {
+        inventoryClose.Play();
+    }
 
 
     //AUDIO TRIGGERS

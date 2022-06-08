@@ -50,6 +50,7 @@ public class Inventory : MonoBehaviour
 
             if (inventoryEnabled)
             {
+                AudioManager.instance.PlayInventoryOpen();
                 inventory.SetActive(true);
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None; // puedo mover el cursor
@@ -57,6 +58,7 @@ public class Inventory : MonoBehaviour
             }
             else
             {
+                AudioManager.instance.PlayInventoryClose();
                 inventory.SetActive(false);
                 Cursor.visible = false;
                 Time.timeScale = 1;

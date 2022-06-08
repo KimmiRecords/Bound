@@ -115,6 +115,12 @@ public class PlayerStats : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         PlayerHp -= dmg;
+
+        //if (_playerHp <= playerHpMax/2)
+        //{
+        //    AudioManager.instance.PlayHeavyBreathing();
+        //}
+
         if (_playerHp <= 0)
         {
             Die();

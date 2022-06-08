@@ -14,34 +14,35 @@ public class Patrol : MonoBehaviour, IRalentizable
     public NavMeshAgent miNavMeshAgent;
     public DetectPlayer detectPlayer;
     public Animator miAnimator;
-
+    public Transform[] points;
     public float runningSpeed;
     public float timeUntilExplosionMin;
     public float timeUntilExplosionMax;
 
-    public Transform[] points;
-
     [HideInInspector]
     public int index;
 
-    BoomerAnimations boomerAnims;
-    float timeUntilExplosionPosta;
+    BoomerAnimations _boomerAnims;
+    BoomerSounds _boomerSounds;
+    float _timeUntilExplosionPosta;
     float _speedModifier;
-    bool yaViAlPlayer;
+    bool _yaViAlPlayer;
 
     void Start()
     {
+        _boomerAnims = new BoomerAnimations(miAnimator);
+        _boomerSounds = new BoomerSounds(this);
         index = 1;
         miNavMeshAgent.destination = points[1].position;
-        yaViAlPlayer = false;
-
-        timeUntilExplosionPosta = Random.Range(timeUntilExplosionMin, timeUntilExplosionMax);
-        boomerAnims = new BoomerAnimations(miAnimator);
-
+        _yaViAlPlayer = false;
+        _timeUntilExplosionPosta = Random.Range(timeUntilExplosionMin, timeUntilExplosionMax);
+        AudioManager.instance.PlayZIdle();
     }
 
     void Update()
     {
+        _boomerSounds.UpdateSoundsPosition();
+
         if (miNavMeshAgent.remainingDistance < 1 && index != 2)
         {
             //index = (index + 1) % points.Length;
@@ -54,16 +55,19 @@ public class Patrol : MonoBehaviour, IRalentizable
             miNavMeshAgent.speed = 0;
         }
 
-        if (!yaViAlPlayer && detectPlayer.playerIsInRange)
+        if (!_yaViAlPlayer && detectPlayer.playerIsInRange)
         {
-            boomerAnims.StartRunning();
+            AudioManager.instance.StopZIdle();
+            AudioManager.instance.PlayZStress();
+
+            _boomerAnims.StartRunning();
             miNavMeshAgent.speed = runningSpeed * _speedModifier;
             index = 2;
             GoToPoint(points[index]);
-            Invoke("Stop", timeUntilExplosionPosta - 2);
-            Invoke("Explode", timeUntilExplosionPosta);
+            Invoke("Stop", _timeUntilExplosionPosta - 2);
+            Invoke("Explode", _timeUntilExplosionPosta);
 
-            yaViAlPlayer = true;
+            _yaViAlPlayer = true;
         }
     }
 
@@ -74,7 +78,8 @@ public class Patrol : MonoBehaviour, IRalentizable
 
     public void Explode()
     {
-        print("explote");
+        AudioManager.instance.StopZScream();
+        AudioManager.instance.PlayZExplosion(transform.position);
 
         if (detectPlayer.playerIsInRange)
         {
@@ -86,7 +91,9 @@ public class Patrol : MonoBehaviour, IRalentizable
 
     public void Stop()
     {
-        boomerAnims.StartPain();
+        _boomerAnims.StartPain();
+        AudioManager.instance.StopZStress();
+        AudioManager.instance.PlayZScream();
         miNavMeshAgent.speed = 0;
     }
 

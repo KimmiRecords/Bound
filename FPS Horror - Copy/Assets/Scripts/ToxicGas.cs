@@ -7,7 +7,8 @@ public class ToxicGas : MonoBehaviour
     //este script se lo pones a un collider bien grandote para que funcione como area de gas toxico
     //por mateo
 
-    public float GasDamage;
+    public float gasDamage;
+
     void OnTriggerStay(Collider collider)
     {
         if (collider.gameObject.layer == 3) 
@@ -17,7 +18,6 @@ public class ToxicGas : MonoBehaviour
     }
     public void GasPassiveDamage()
     {
-        PlayerStats.instance.TakeDamage(GasDamage);
-        //print("Me queda " + PlayerStats.playerHp + " de vida");
+        PlayerStats.instance.TakeDamage(gasDamage);
     }
 }
