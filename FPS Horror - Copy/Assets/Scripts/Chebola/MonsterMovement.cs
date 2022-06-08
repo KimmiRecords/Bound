@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class MonsterMovement : MonoBehaviour
+public class MonsterMovement : MonoBehaviour, IRalentizable
 {
     //este script se lo adjuntas al chebola para que haga daño en aura al player, y lo persiga si es visto
     //por diego katabian y valentino roman
@@ -12,6 +12,7 @@ public class MonsterMovement : MonoBehaviour
     public float damageAura; //el radio del aura
     public float monsterDamage; // el daño que hace
     public GameObject chebolaPrefab;
+    public int desiredScreamer; //si voy a pedir el screamer 1 o 2 o cual
 
     Transform _playerTransform;
     Vector3 _playerPosition;
@@ -23,13 +24,15 @@ public class MonsterMovement : MonoBehaviour
     bool _bgmReady = false; //si la musiquita ...
     bool _enEscena = false; //si esta el chebola en vista o no
     bool _mustStay = true; //si el chebola debe quedarse en su lugar. lo uso por si te tiene que esperar aunque no lo veas.
-    Animator _anim;
-    NavMeshAgent _agent;
-    ChebolaAnimations _chebolaAnims;
-
+    public Animator _anim;
+    public NavMeshAgent _agent;
+    protected ChebolaAnimations _chebolaAnims;
     bool habilitado;
 
-    public int desiredScreamer; //si voy a pedir el screamer 1 o 2 o cual
+    float _initialSpeed;
+
+    [HideInInspector]
+    public float finalSpeed;
 
     void Start()
     {
@@ -43,12 +46,13 @@ public class MonsterMovement : MonoBehaviour
             _anim = GetComponent<Animator>();
         }
 
+        finalSpeed = _agent.speed;
         _initialPosition = transform.position;
+        _initialSpeed = _agent.speed;
         _playerTransform = PlayerStats.instance.playerTransform;
         _mustStay = true;
         PlayerStats.instance.playerFear = false;
-        //PlayerStats.instance.OnDeath += ResetChebola; //ya enterate. me suscribo a ondeath, cuando el player muera disparo el metodo ResetChebola
-        _chebolaAnims = new ChebolaAnimations(_anim, _agent);
+        _chebolaAnims = new ChebolaAnimations(this);
         habilitado = true;
     }
 
@@ -118,9 +122,6 @@ public class MonsterMovement : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, damageAura)) //si el raycast le pega a algo
         {
-            //print("el chebola esta mirando a " + hit.transform.gameObject);
-            //print("su layer es " + hit.transform.gameObject.layer);
-
             if (hit.transform.gameObject.layer != 13) //y ese algo no es una pared o una puerta
             {
                 if (hit.transform.gameObject.layer == 3 && _angle > 135) //y ese algo es layer 3 (player) //CHEBOLA ACTIVATE
@@ -133,8 +134,8 @@ public class MonsterMovement : MonoBehaviour
                     if (_screamerReady) //ONEHIT
                     {
                         //me suscribo a OnDeath. asi me reseteo cuando el player muera estando yo activo.
+                        //print("suscribi ResetChebola al ondeath");
                         PlayerStats.instance.OnDeath += ResetChebola; //ya enterate
-                        print("suscribi ResetChebola al ondeath");
 
                         AudioManager.instance.PlayScreamer(desiredScreamer);
                         AudioManager.instance.StopBGM();
@@ -158,9 +159,6 @@ public class MonsterMovement : MonoBehaviour
 
         print("lo calmo");
         CalmDown();
-
-        //print("anulo la suscripcion");
-        //PlayerStats.instance.OnDeath -= ResetChebola;
 
         print("destruyo al chebola");
         Destroy(this.gameObject);
@@ -188,9 +186,18 @@ public class MonsterMovement : MonoBehaviour
     {
         habilitado = true;
     }
+    public void EnterSlow()
+    {
+        //_agent.speed *= 0.5f;
+        finalSpeed = _agent.speed * 0.5f;
+        //print("bajo la speed a " + _agent.speed);
+    }
 
-    //public void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.DrawSphere(transform.position, damageAura);
-    //}
+    public void ExitSlow()
+    {
+        //_agent.speed *= 2;
+        finalSpeed = _initialSpeed;
+        //print("volvio la speed a " + _agent.speed);
+
+    }
 }

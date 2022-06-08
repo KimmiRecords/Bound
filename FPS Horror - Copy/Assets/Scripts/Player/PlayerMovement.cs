@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IRalentizable
 {
     //el movimiento del player. con character controller y a mano
     //llama por composicion a playeranimations y controls
     //por diego katabian, francisco serra, valentino roman, mateo palma, rocio casco.
 
+    [HideInInspector]
     public float playerSpeed;
+
+    public float walkingSpeed;
     public float runningSpeed;
     public float jumpHeight;
     public float gravityValue;          //gravedad extra para que quede linda la caida del salto
@@ -16,9 +19,8 @@ public class PlayerMovement : MonoBehaviour
     public bool agency = true;
 
     float _verticalVelocity;
-
+    float _speedModifier;
     float _groundedTimer;
-    float _walkingSpeed;
     Vector3 _move;
     public CharacterController _controller;
     public PlayerAnimations _pAnims;
@@ -37,8 +39,8 @@ public class PlayerMovement : MonoBehaviour
             _anim = GetComponent<Animator>();
         }
 
-        _walkingSpeed = playerSpeed;
-
+        playerSpeed = walkingSpeed;
+        _speedModifier = 1;
         _controls = new Controls(this);
         _pAnims = new PlayerAnimations(_anim); //construyo scripts x composicion
 
@@ -97,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        _move *= playerSpeed;
+        _move *= playerSpeed * _speedModifier;
         _move.y = _verticalVelocity; //sigo cargando el vector movieminto
         _controller.Move(_move * Time.deltaTime); //aplico el vector movieminto al character controller, con el metodo .Move
 
@@ -114,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void StopRunning()
     {
-        playerSpeed = _walkingSpeed;
+        playerSpeed = walkingSpeed;
     }
 
     void TPToCheckpoint(Vector3 cp)
@@ -129,8 +131,19 @@ public class PlayerMovement : MonoBehaviour
 
     public void MoveForward()
     {
-        _move = transform.forward * playerSpeed;
+        _move = transform.forward * playerSpeed * _speedModifier;
         _controller.Move(_move * Time.deltaTime);
         _pAnims.CheckMagnitude(_move.x + _move.z); //en el script de playerAnimations, chequea si me estoy moviendo o no
+    }
+
+    public void EnterSlow()
+    {
+        _speedModifier = 0.5f;
+    }
+
+    public void ExitSlow()
+    {
+        _speedModifier = 1;
+
     }
 }

@@ -4,18 +4,11 @@ using UnityEngine;
 
 public class DetectPlayer : MonoBehaviour
 {
-    //este script hace lo que dice que hace. adjuntasela al monstruo patrullador.
+    //este script detecta al player y cambia la bool para ser usada por otros scripts.
+    //se la adjunto al collider de explosion del monstruo patrullador para que detecte al player con una caja de colision distinta a la propia del monstruo.
     //por diego katabian y francisco serra
 
-    public LayerMask playerMask;
-    public float sightRange;
-
     public bool playerIsInRange;
-
-    void Update()
-    {
-        //playerIsInRange = Physics.CheckSphere(transform.position, sightRange, playerMask);
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -31,10 +24,5 @@ public class DetectPlayer : MonoBehaviour
         {
             playerIsInRange = false;
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        //Gizmos.DrawSphere(transform.position, sightRange);
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GraviBox : MonoBehaviour
+public class GraviBox : MonoBehaviour, IRalentizable
 {
     //este script se lo adjuntas a una caja que tenga gravedad loca.
     //acordate de cargar en el inspector qué interactable le va a togglear la grav, y cuales son sus gravedad normal y loca.
@@ -15,6 +15,7 @@ public class GraviBox : MonoBehaviour
     private Vector3 appliedGrav;
     private bool isBound;
     private Rigidbody rb;
+    float _speedModifier;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class GraviBox : MonoBehaviour
             rb = GetComponent<Rigidbody>();
         }
 
+        _speedModifier = 1;
         appliedGrav = normalGrav;
         isBound = true;
         rb.useGravity = false;
@@ -30,7 +32,7 @@ public class GraviBox : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.AddForce(appliedGrav, ForceMode.Force); //aplica appliedGrav constantemente
+        rb.AddForce(appliedGrav * _speedModifier, ForceMode.Force); //aplica appliedGrav constantemente
     }
 
     public void ToggleGrav()
@@ -45,5 +47,15 @@ public class GraviBox : MonoBehaviour
             appliedGrav = normalGrav; //la vuelvo a la normalidad
             isBound = true;
         }
+    }
+
+    public void EnterSlow()
+    {
+        _speedModifier = 0.1f;
+    }
+
+    public void ExitSlow()
+    {
+        _speedModifier = 1;
     }
 }

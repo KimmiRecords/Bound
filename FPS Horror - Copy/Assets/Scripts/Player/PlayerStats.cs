@@ -84,7 +84,7 @@ public class PlayerStats : MonoBehaviour
 
     void Update()
     {
-        print(PlayerHp);
+        //print(PlayerHp);
         if (_playerHp < playerHpMax) //regenera hp de a poco
         {
             if (!playerFear) //pero solo si no me esta dañando el chebola

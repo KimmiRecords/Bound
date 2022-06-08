@@ -16,7 +16,7 @@ public class CheckPoint : MonoBehaviour
         {
             if (collider.gameObject.layer == 3)
             {
-                print("este checkpoint fue colisionado por el player");
+                //print("este checkpoint fue colisionado por el player");
                 Trigger();
             }
         }

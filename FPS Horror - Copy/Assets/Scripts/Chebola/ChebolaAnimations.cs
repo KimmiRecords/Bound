@@ -10,22 +10,25 @@ public class ChebolaAnimations
 
     Animator _anim;
     NavMeshAgent _agent;
-    float _initialSpeed;
+    MonsterMovement _mm;
+    float _finalSpeed;
     float _attackRange; //que tan cerca te ataca
     public bool screamIsReady;
 
-    public ChebolaAnimations(Animator a, NavMeshAgent nma)
+    public ChebolaAnimations(MonsterMovement mm)
     {
-        _anim = a;
-        _agent = nma;
+        _anim = mm._anim;
+        _agent = mm._agent;
+        _mm = mm;
 
-        _initialSpeed = _agent.speed;
         _attackRange = 5f;
         screamIsReady = true;
     }
 
     public void AnimUpdate()
     {
+        _finalSpeed = _mm.finalSpeed;
+
         if (_anim.GetCurrentAnimatorStateInfo(0).IsName("chebola_scream"))
         {
             if (screamIsReady) //para que reproduzca el audio una sola vez
@@ -38,7 +41,7 @@ public class ChebolaAnimations
         //solo tiene velocidad cuando camina
         if (_anim.GetCurrentAnimatorStateInfo(0).IsName("chebola_walk"))
         {
-            _agent.speed = _initialSpeed;
+            _agent.speed = _finalSpeed;
         }
         else
         {

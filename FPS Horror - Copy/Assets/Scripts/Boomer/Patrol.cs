@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class Patrol : MonoBehaviour
+public class Patrol : MonoBehaviour, IRalentizable
 {
     //este script se lo adjuntas a un mosntruo para que patrulle
     //va del punto 0 al 1 (pingpong)
@@ -20,12 +20,14 @@ public class Patrol : MonoBehaviour
     public float timeUntilExplosionMax;
 
     public Transform[] points;
+
+    [HideInInspector]
     public int index;
 
     BoomerAnimations boomerAnims;
     float timeUntilExplosionPosta;
+    float _speedModifier;
     bool yaViAlPlayer;
-
 
     void Start()
     {
@@ -35,6 +37,7 @@ public class Patrol : MonoBehaviour
 
         timeUntilExplosionPosta = Random.Range(timeUntilExplosionMin, timeUntilExplosionMax);
         boomerAnims = new BoomerAnimations(miAnimator);
+
     }
 
     void Update()
@@ -54,7 +57,7 @@ public class Patrol : MonoBehaviour
         if (!yaViAlPlayer && detectPlayer.playerIsInRange)
         {
             boomerAnims.StartRunning();
-            miNavMeshAgent.speed = runningSpeed;
+            miNavMeshAgent.speed = runningSpeed * _speedModifier;
             index = 2;
             GoToPoint(points[index]);
             Invoke("Stop", timeUntilExplosionPosta - 2);
@@ -63,6 +66,7 @@ public class Patrol : MonoBehaviour
             yaViAlPlayer = true;
         }
     }
+
     public void GoToPoint(Transform point)
     {
         miNavMeshAgent.destination = point.position;
@@ -84,5 +88,17 @@ public class Patrol : MonoBehaviour
     {
         boomerAnims.StartPain();
         miNavMeshAgent.speed = 0;
+    }
+
+    public void EnterSlow()
+    {
+        _speedModifier = 0.5f;
+        miNavMeshAgent.speed *= 0.5f;
+    }
+
+    public void ExitSlow()
+    {
+        _speedModifier = 1;
+        miNavMeshAgent.speed *= 2;
     }
 }
