@@ -20,8 +20,9 @@ public class Patrol : MonoBehaviour, IRalentizable
     public float timeUntilExplosionMax;
 
     public GameObject exp;
+    public GameObject boomerModel;
 
-    [HideInInspector]
+    //[HideInInspector]
     public int index;
 
     BoomerAnimations _boomerAnims;
@@ -34,8 +35,8 @@ public class Patrol : MonoBehaviour, IRalentizable
     {
         _boomerAnims = new BoomerAnimations(miAnimator);
         _boomerSounds = new BoomerSounds(this);
-        index = 1;
-        miNavMeshAgent.destination = points[1].position;
+        index = 0;
+        miNavMeshAgent.destination = points[0].position;
         _yaViAlPlayer = false;
         _timeUntilExplosionPosta = Random.Range(timeUntilExplosionMin, timeUntilExplosionMax);
         AudioManager.instance.PlayZIdle();
@@ -45,19 +46,20 @@ public class Patrol : MonoBehaviour, IRalentizable
     {
         _boomerSounds.UpdateSoundsPosition();
 
-        if (miNavMeshAgent.remainingDistance < 1 && index != 2)
+        if (miNavMeshAgent.remainingDistance < 1 && index != 2) //si no estoy yendo al punto 2, ciclo entre punto 0 y 1
         {
             //index = (index + 1) % points.Length;
             index = 1 - index;
-            GoToPoint(   points[index]   );
+            GoToPoint(points[index]);
         }
 
-        if (miNavMeshAgent.remainingDistance < 1 && index == 2)
+
+        if (miNavMeshAgent.remainingDistance < 1 && index == 2) //cuando llego al punto 2, me quedo quieto
         {
             miNavMeshAgent.speed = 0;
         }
 
-        if (!_yaViAlPlayer && detectPlayer.playerIsInRange)
+        if (!_yaViAlPlayer && detectPlayer.playerIsInRange) //veo al player y corro hacia punto 2
         {
             AudioManager.instance.StopZIdle();
             AudioManager.instance.PlayZStress();
@@ -73,16 +75,19 @@ public class Patrol : MonoBehaviour, IRalentizable
         }
     }
 
+   
+
     public void GoToPoint(Transform point)
     {
         miNavMeshAgent.destination = point.position;
+        print("go to point: " + point);
     }
 
     public void Explode()
     {
         AudioManager.instance.StopZScream();
         AudioManager.instance.PlayZExplosion(transform.position);
-        GameObject _exp = Instantiate(exp, transform.position, transform.rotation);
+        GameObject _exp = Instantiate(exp, boomerModel.transform.position, boomerModel.transform.rotation);
         Destroy(_exp, 3);
 
         if (detectPlayer.playerIsInRange)

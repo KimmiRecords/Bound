@@ -8,9 +8,6 @@ public class LightsManager : MonoBehaviour
     //la idea es optimizar recursos y reducir la cantidad de luces realtime a renderear.
     //por diego katabian
 
-    //pero realmente esto ahorra recursos? 
-    //hay una manera mas optima de lograr esto?
-
 
     public LayerMask playerMask; //en inspector le indico cual es la layer del player, y la distancia a considerar para prender/apagar luces.
     public float radio;
@@ -38,6 +35,7 @@ public class LightsManager : MonoBehaviour
     private void Update()
     {
         CheckPlayer(); //constantemente chequea si el player esta cerca o lejos
+        
 
         for (int i = 0; i < playerInRange.Length; i++) //constantemente prende o apaga TODAS. no parece muy optimo la verdad. se puede mejorar?
         {
@@ -60,8 +58,8 @@ public class LightsManager : MonoBehaviour
     public void TurnOnLight(Light l)
     {
         l.gameObject.SetActive(true);
-    }   
-    
+    }
+
     public void CheckPlayer()
     {
         for (int i = 0; i < rtLights.Count; i++) //para cada luz realtime, me fijo si el player esta en rango, y seteo el bool.
@@ -76,4 +74,5 @@ public class LightsManager : MonoBehaviour
             }
         }
     }
+
 }

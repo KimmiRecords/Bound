@@ -4698,9 +4698,9 @@ MonoBehaviour:
   accessDenied: {fileID: 5636015222192882993}
   alarmaNorway: {fileID: 1120631196371661291}
   alarmaTriple: {fileID: 294874030801885554}
-  derrumbe1: {fileID: 4766966554900509199}
-  derrumbe2: {fileID: 1045915872477105216}
-  derrumbe3: {fileID: 8094687240543305180}
+  derrumbe0: {fileID: 4766966554900509199}
+  derrumbe1: {fileID: 1045915872477105216}
+  derrumbe2: {fileID: 8094687240543305180}
   bigLightSwitch: {fileID: 721830156664544199}
   tpToCheckpoint: {fileID: 7832806871154810086}
   mudSteps: {fileID: 2793868184410449199}
