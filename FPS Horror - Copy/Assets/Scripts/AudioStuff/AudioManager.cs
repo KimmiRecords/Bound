@@ -24,9 +24,9 @@ public class AudioManager : MonoBehaviour
     public AudioSource accessDenied;
     public AudioSource alarmaNorway;
     public AudioSource alarmaTriple;
+    public AudioSource derrumbe0;
     public AudioSource derrumbe1;
     public AudioSource derrumbe2;
-    public AudioSource derrumbe3;
     public AudioSource bigLightSwitch;
     public AudioSource tpToCheckpoint;
     public AudioSource mudSteps;
@@ -47,6 +47,8 @@ public class AudioManager : MonoBehaviour
 
     float volumenDeseadoScreamer;
     bool jumpDownIsReady;
+    int _cycleIndex;
+
 
     void Awake()
     {
@@ -63,6 +65,8 @@ public class AudioManager : MonoBehaviour
         volumenDeseadoScreamer = screamer1.volume; //ojo, esto significa que los 2 screamers tendran el mismo volumen
 
         allSounds = GetComponentsInChildren<AudioSource>();
+        _cycleIndex = 0;
+
 
     }
 
@@ -137,23 +141,31 @@ public class AudioManager : MonoBehaviour
 
     public void PlayDerrumbe(int derrumbeID)
     {
-        switch(derrumbeID)
+        switch (_cycleIndex)
         {
             case 0:
-                derrumbe1.Play();
+                derrumbe0.Play();
+                print("le di play a derrumbe0");
                 break;
 
             case 1:
-                derrumbe2.Play();
+                derrumbe1.Play();
+                print("le di play a derrumbe1");
+
                 break;
 
             case 2:
-                derrumbe3.Play();
+                derrumbe2.Play();
+                print("le di play a derrumbe2");
+
                 break;
 
             default:
                 break;
         }
+
+        _cycleIndex = (_cycleIndex + 1) % 3;
+        print("subo el index a " + _cycleIndex);
     }
 
     //HOLLOW ROAR

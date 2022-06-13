@@ -21,19 +21,20 @@ public class CutsceneManager : MonoBehaviour
     [Tooltip("Que tan largo queres el fadeout en ms aprox")]
     public float textFadeDuration;
 
+    public float timeUntilTexts;
+    public float timeBetweenTexts;
+    public Canvas creditsCanvas;
+
+
     public float timeUntilExplosion;
     public float timeBetweenExplosions;
 
-    public float timeUntilTexts;
-    public float timeBetweenTexts;
-
-    public Canvas creditsCanvas;
-    Text[] texts;
+    public GameObject[] explosions;
 
     public PlayerMovement pm;
+
+    Text[] texts;
     Vector3 _move;
-
-
     float _alarmaTimer;
     float _cameraTimer;
     float _textTimer;
@@ -122,9 +123,11 @@ public class CutsceneManager : MonoBehaviour
     {
         yield return new WaitForSeconds(timeUntilExplosion);
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < explosions.Length; i++)
         {
             AudioManager.instance.PlayDerrumbe(i);
+            explosions[i].SetActive(true);
+            print("cutscene: prendo la explosion " + i);
             yield return new WaitForSeconds(timeBetweenExplosions);
         }
     }

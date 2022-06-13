@@ -59,7 +59,10 @@ public class PlayerStats : MonoBehaviour
 
         set
         {
-            _usbsCollected = value;
+            if (_usbsCollected < 4)
+            {
+                _usbsCollected = value;
+            }
         }
     }
 
