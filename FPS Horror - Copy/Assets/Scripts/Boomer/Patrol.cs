@@ -19,6 +19,8 @@ public class Patrol : MonoBehaviour, IRalentizable
     public float timeUntilExplosionMin;
     public float timeUntilExplosionMax;
 
+    public GameObject exp;
+
     [HideInInspector]
     public int index;
 
@@ -80,6 +82,8 @@ public class Patrol : MonoBehaviour, IRalentizable
     {
         AudioManager.instance.StopZScream();
         AudioManager.instance.PlayZExplosion(transform.position);
+        GameObject _exp = Instantiate(exp, transform.position, transform.rotation);
+        Destroy(_exp, 3);
 
         if (detectPlayer.playerIsInRange)
         {
