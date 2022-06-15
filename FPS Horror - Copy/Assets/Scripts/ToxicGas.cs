@@ -18,6 +18,6 @@ public class ToxicGas : MonoBehaviour
     }
     public void GasPassiveDamage()
     {
-        PlayerStats.instance.TakeDamage(gasDamage);
+        PlayerStats.instance.TakeDamage(gasDamage * Time.deltaTime);
     }
 }
