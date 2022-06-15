@@ -7,45 +7,45 @@ public class GraviBox : MonoBehaviour, IRalentizable
     //este script se lo adjuntas a una caja que tenga gravedad loca.
     //acordate de cargar en el inspector qué interactable le va a togglear la grav, y cuales son sus gravedad normal y loca.
 
-    //-por valen y dk
+    //-por valentino roman y diego katabian
 
-    public Vector3 normalGrav;
-    public Vector3 alteredGrav;
+    [Tooltip("La gravedad normal y alterada para esta caja.")]
+    public GraviStruct graviStruct;
 
-    private Vector3 appliedGrav;
-    private bool isBound;
-    private Rigidbody rb;
+    Vector3 _appliedGrav;
+    Rigidbody _rb;
+    bool _isBound;
     float _speedModifier;
 
     void Start()
     {
         if (GetComponent<Rigidbody>() != null)
         {
-            rb = GetComponent<Rigidbody>();
+            _rb = GetComponent<Rigidbody>();
         }
 
         _speedModifier = 1;
-        appliedGrav = normalGrav;
-        isBound = true;
-        rb.useGravity = false;
+        _appliedGrav = graviStruct.normalGrav;
+        _isBound = true;
+        _rb.useGravity = false;
     }
 
     void FixedUpdate()
     {
-        rb.AddForce(appliedGrav * _speedModifier, ForceMode.Force); //aplica appliedGrav constantemente
+        _rb.AddForce(_appliedGrav * _speedModifier, ForceMode.Force); //aplica appliedGrav constantemente
     }
 
     public void ToggleGrav()
     {
-        if (isBound)
+        if (_isBound)
         {
-            appliedGrav = alteredGrav; //suelto a la caja para que flote (altero la grav)
-            isBound = false;
+            _appliedGrav = graviStruct.alteredGrav; //suelto a la caja para que flote (altero la grav)
+            _isBound = false;
         }
         else
         {
-            appliedGrav = normalGrav; //la vuelvo a la normalidad
-            isBound = true;
+            _appliedGrav = graviStruct.normalGrav; //la vuelvo a la normalidad
+            _isBound = true;
         }
     }
 

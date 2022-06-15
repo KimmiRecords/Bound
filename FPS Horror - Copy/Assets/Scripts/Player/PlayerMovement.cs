@@ -15,23 +15,24 @@ public class PlayerMovement : MonoBehaviour, IRalentizable
     public float runningSpeed;
     public float jumpHeight;
     public float gravityValue;          //gravedad extra para que quede linda la caida del salto
-
     public bool agency = true;
 
     float _verticalVelocity;
     float _speedModifier;
     float _groundedTimer;
     Vector3 _move;
-    public CharacterController _controller;
-    public PlayerAnimations _pAnims;
-    public Controls _controls;
+
+    public CharacterController controller;
+    public PlayerAnimations pAnims;
+    public Controls controls;
+
     Animator _anim;
 
-    private void Awake()
+    void Awake()
     {
         if (GetComponent<CharacterController>() != null)
         {
-            _controller = GetComponent<CharacterController>();
+            controller = GetComponent<CharacterController>();
         }
 
         if (GetComponent<Animator>() != null)
@@ -41,23 +42,23 @@ public class PlayerMovement : MonoBehaviour, IRalentizable
 
         playerSpeed = walkingSpeed;
         _speedModifier = 1;
-        _controls = new Controls(this);
-        _pAnims = new PlayerAnimations(_anim); //construyo scripts x composicion
+        controls = new Controls(this);
+        pAnims = new PlayerAnimations(_anim); //construyo scripts x composicion
 
         PlayerStats.instance.OnDeath += TPToCheckpoint; //ya enterate
     }
 
     void Update()
     {
-        _controls.CheckControls();
+        controls.CheckControls();
 
-        bool groundedPlayer = _controller.isGrounded;
+        bool groundedPlayer = controller.isGrounded;
         if (groundedPlayer)
         {
             _groundedTimer = 0.2f; //mientras este en el suelo
-            _pAnims.StopJumping();
-            _pAnims.StopFalling();
-            _pAnims.PlayLanding();
+            pAnims.StopJumping();
+            pAnims.StopFalling();
+            pAnims.PlayLanding();
         }
 
         if (_groundedTimer > 0)
@@ -67,8 +68,8 @@ public class PlayerMovement : MonoBehaviour, IRalentizable
 
         if (!groundedPlayer && _verticalVelocity <= -2f) //si esta cayendo pero no tocando el suelo empieza a caer
         {
-            _pAnims.StopJumping();
-            _pAnims.PlayFalling();
+            pAnims.StopJumping();
+            pAnims.PlayFalling();
         }
 
         if (groundedPlayer && _verticalVelocity <= 0) //corta la caida cuando toco el suelo
@@ -78,14 +79,14 @@ public class PlayerMovement : MonoBehaviour, IRalentizable
         }
 
         _verticalVelocity -= gravityValue * Time.deltaTime; //aplica gravedad extra
-        _move = transform.right * _controls.h + transform.forward * _controls.v; //cargo mi vector movimiento
+        _move = transform.right * controls.h + transform.forward * controls.v; //cargo mi vector movimiento
 
         if (_move.magnitude > 1)
         {
             _move = _move.normalized;
         }
 
-        if (_controls.isJump)
+        if (controls.isJump)
         {
             if (_groundedTimer > 0)
             {
@@ -93,19 +94,19 @@ public class PlayerMovement : MonoBehaviour, IRalentizable
                 AudioManager.instance.PlayJumpUp();
                 _groundedTimer = 0;
                 _verticalVelocity += Mathf.Sqrt(jumpHeight * 2 * gravityValue); //saltar en realidad le da velocidad vertical nomas
-                _pAnims.PlayJumping();
-                _pAnims.StopLanding();
-                _controls.isJump = false;
+                pAnims.PlayJumping();
+                pAnims.StopLanding();
+                controls.isJump = false;
             }
         }
 
         _move *= playerSpeed * _speedModifier;
         _move.y = _verticalVelocity; //sigo cargando el vector movieminto
-        _controller.Move(_move * Time.deltaTime); //aplico el vector movieminto al character controller, con el metodo .Move
+        controller.Move(_move * Time.deltaTime); //aplico el vector movieminto al character controller, con el metodo .Move
 
         if (agency)
         {
-            _pAnims.CheckMagnitude(_move.x + _move.z); //en el script de playerAnimations, chequea si me estoy moviendo o no
+            pAnims.CheckMagnitude(_move.x + _move.z); //en el script de playerAnimations, chequea si me estoy moviendo o no
         }
     }
 
@@ -113,37 +114,29 @@ public class PlayerMovement : MonoBehaviour, IRalentizable
     {
         playerSpeed = runningSpeed;
     }
-
     public void StopRunning()
     {
         playerSpeed = walkingSpeed;
     }
-
     void TPToCheckpoint(Vector3 cp)
     {
-        //print("arranca el metodo TPtocheckpoint, me pasaron lastcheckpoint  " + cp);
         AudioManager.instance.PlayTPToCheckpoint();
-        _controller.enabled = false; //apago el character controller antes de moverlo
+        controller.enabled = false; //apago el character controller antes de moverlo
         transform.position = cp;
-        _controller.enabled = true;
-
+        controller.enabled = true;
     }
-
     public void MoveForward()
     {
         _move = transform.forward * playerSpeed * _speedModifier;
-        _controller.Move(_move * Time.deltaTime);
-        _pAnims.CheckMagnitude(_move.x + _move.z); //en el script de playerAnimations, chequea si me estoy moviendo o no
+        controller.Move(_move * Time.deltaTime);
+        pAnims.CheckMagnitude(_move.x + _move.z); //en el script de playerAnimations, chequea si me estoy moviendo o no
     }
-
     public void EnterSlow()
     {
         _speedModifier = 0.5f;
     }
-
     public void ExitSlow()
     {
         _speedModifier = 1;
-
     }
 }

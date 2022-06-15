@@ -25,19 +25,15 @@ public class CutsceneManager : MonoBehaviour
     public float timeBetweenTexts;
     public Canvas creditsCanvas;
 
-
     public float timeUntilExplosion;
     public float timeBetweenExplosions;
-
     public GameObject[] explosions;
 
     public PlayerMovement pm;
 
-    Text[] texts;
-    Vector3 _move;
+    Text[] _texts;
     float _alarmaTimer;
     float _cameraTimer;
-    float _textTimer;
 
     [HideInInspector]
     public int textToFadeIn;
@@ -65,15 +61,14 @@ public class CutsceneManager : MonoBehaviour
 
         AudioManager.instance.PlayAtMoment(darkCircles, darkCirclesStartingTime);
 
-        texts = creditsCanvas.gameObject.GetComponentsInChildren<Text>();
-        for (int i = 0; i < texts.Length; i++)
+        _texts = creditsCanvas.gameObject.GetComponentsInChildren<Text>();
+        for (int i = 0; i < _texts.Length; i++)
         {
-            texts[i].color = new Color(texts[i].color.r, texts[i].color.g, texts[i].color.b, 0); //hago transparentes a todos
+            _texts[i].color = new Color(_texts[i].color.r, _texts[i].color.g, _texts[i].color.b, 0); //hago transparentes a todos
         }
 
         _alarmaTimer = 0;
         _cameraTimer = 0;
-        _textTimer = 0;
         Invoke("StartFadeIn", timeUntilTexts);
 
         StartCoroutine(PlayExplosions());
@@ -83,7 +78,6 @@ public class CutsceneManager : MonoBehaviour
     {
         _alarmaTimer += (Time.deltaTime / alarmaFadeOutDuration);
         _cameraTimer += (Time.deltaTime / cameraTravelDuration);
-        _textTimer += (Time.deltaTime / textFadeDuration);
 
         if (AudioManager.instance.alarmaTriple.isPlaying)
         {
@@ -94,12 +88,12 @@ public class CutsceneManager : MonoBehaviour
 
         if (fadeInGo)
         {
-            StartCoroutine(FadeTextToFullAlpha(textFadeDuration, texts[textToFadeIn]));
+            StartCoroutine(FadeTextToFullAlpha(textFadeDuration, _texts[textToFadeIn]));
             fadeInGo = false;
         }
         if (fadeOutGo)
         {
-            StartCoroutine(FadeTextToZeroAlpha(textFadeDuration, texts[textToFadeOut]));
+            StartCoroutine(FadeTextToZeroAlpha(textFadeDuration, _texts[textToFadeOut]));
             fadeOutGo = false;
         }
 
@@ -156,7 +150,7 @@ public class CutsceneManager : MonoBehaviour
 
         yield return new WaitForSeconds(timeBetweenTexts);
 
-        if (textToFadeIn < (texts.Length - 1))
+        if (textToFadeIn < (_texts.Length - 1))
         {
             textToFadeIn++;
             textToFadeOut++;

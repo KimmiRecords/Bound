@@ -5,6 +5,7 @@ using UnityEngine;
 public class Controls
 {
     //clase construida por playerMovement
+    //incluye cheats para sumarse usbs, linterna y cardkey
     //por diego katabian
 
     public float h;
@@ -45,6 +46,24 @@ public class Controls
         if (Input.GetButtonUp("Jump"))
         {
             isJump = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            PlayerStats.instance.UsbsCollected++;
+            Debug.Log("CHEAT: te sumaste un usb. Ahora tenes " + PlayerStats.instance.UsbsCollected);
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            PlayerStats.instance.GetCardKey();
+            Debug.Log("CHEAT: conseguiste la cardkey");
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            PlayerStats.instance.GetFlashlight();
+            Debug.Log("CHEAT: conseguiste la linterna");
         }
     }
 }

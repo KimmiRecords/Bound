@@ -22,7 +22,7 @@ public class Patrol : MonoBehaviour, IRalentizable
     public GameObject exp;
     public GameObject boomerModel;
 
-    //[HideInInspector]
+    [HideInInspector]
     public int index;
 
     BoomerAnimations _boomerAnims;
@@ -80,7 +80,6 @@ public class Patrol : MonoBehaviour, IRalentizable
     public void GoToPoint(Transform point)
     {
         miNavMeshAgent.destination = point.position;
-        print("go to point: " + point);
     }
 
     public void Explode()
@@ -92,7 +91,7 @@ public class Patrol : MonoBehaviour, IRalentizable
 
         if (detectPlayer.playerIsInRange)
         {
-            PlayerStats.instance.TakeDamage(PlayerStats.instance.playerHpMax);
+            PlayerStats.instance.InstaDeath();
         }
 
         this.gameObject.SetActive(false);

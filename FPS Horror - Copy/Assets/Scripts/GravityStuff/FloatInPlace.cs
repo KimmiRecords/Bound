@@ -9,28 +9,28 @@ public class FloatInPlace : MonoBehaviour
 
     public Vector3 desiredGrav;
 
-    Rigidbody[] allRBs;
-    float timer;
-    Vector3 finalGrav;
+    Rigidbody[] _allRBs;
+    float _timer;
+    Vector3 _finalGrav;
 
     void Start()
     {
-        allRBs = GetComponentsInChildren<Rigidbody>();
+        _allRBs = GetComponentsInChildren<Rigidbody>();
     }
 
     void Update()
     {
-        timer += Time.deltaTime;
-        finalGrav.x = Mathf.Sin(timer) * desiredGrav.x;
-        finalGrav.y = Mathf.Sin(timer) * desiredGrav.y;
-        finalGrav.z = Mathf.Sin(timer) * desiredGrav.z;
+        _timer += Time.deltaTime;
+        _finalGrav.x = Mathf.Sin(_timer) * desiredGrav.x;
+        _finalGrav.y = Mathf.Sin(_timer) * desiredGrav.y;
+        _finalGrav.z = Mathf.Sin(_timer) * desiredGrav.z;
 
         //finalGrav = Mathf.Clamp(finalGrav, 0, 1);
 
-        for (int i = 0; i < allRBs.Length; i++)
+        for (int i = 0; i < _allRBs.Length; i++)
         {
-            allRBs[i].useGravity = false;
-            allRBs[i].AddForce(finalGrav, ForceMode.Force);
+            _allRBs[i].useGravity = false;
+            _allRBs[i].AddForce(_finalGrav, ForceMode.Force);
         }
     }
 

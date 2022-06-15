@@ -13,23 +13,21 @@ public class MonsterMovement : MonoBehaviour, IRalentizable
     public float monsterDamage; // el daño que hace
     public GameObject chebolaPrefab;
     public int desiredScreamer; //si voy a pedir el screamer 1 o 2 o cual
+    public Animator _anim;
+    public NavMeshAgent _agent;
 
     Transform _playerTransform;
     Vector3 _playerPosition;
     Vector3 _vectorToPlayer;
-    Vector3 _initialPosition;
     float _distanceToPlayer;
     float _angle; //angulo entre el player y el chebola
+    float _initialSpeed;
     bool _screamerReady = true; //si el screamer ta ready para salir
     bool _bgmReady = false; //si la musiquita ...
     bool _enEscena = false; //si esta el chebola en vista o no
     bool _mustStay = true; //si el chebola debe quedarse en su lugar. lo uso por si te tiene que esperar aunque no lo veas.
-    public Animator _anim;
-    public NavMeshAgent _agent;
-    protected ChebolaAnimations _chebolaAnims;
     bool habilitado;
-
-    float _initialSpeed;
+    protected ChebolaAnimations _chebolaAnims;
 
     [HideInInspector]
     public float finalSpeed;
@@ -47,7 +45,6 @@ public class MonsterMovement : MonoBehaviour, IRalentizable
         }
 
         finalSpeed = _agent.speed;
-        _initialPosition = transform.position;
         _initialSpeed = _agent.speed;
         _playerTransform = PlayerStats.instance.playerTransform;
         _mustStay = true;
@@ -94,11 +91,11 @@ public class MonsterMovement : MonoBehaviour, IRalentizable
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == 3) //layer 3 es Player
         {
-            PlayerStats.instance.TakeDamage(PlayerStats.instance.playerHpMax); //me mata de una si me toca
+            PlayerStats.instance.InstaDeath(); //me mata de una si me toca
         }
     }
 
@@ -107,13 +104,11 @@ public class MonsterMovement : MonoBehaviour, IRalentizable
         _mustStay = true;                                                             //le pido que se quede ahi aunque no lo vea
         transform.position = _playerPosition + (_playerTransform.forward * -distance); //teleports behind you
     }
-
     public void TPToPosition(Vector3 position)
     {
         _mustStay = true;               //le pido que se quede ahi aunque no lo vea
         transform.position = position; //teleports a la posicion pedida
     }
-
     public void SeekAndDestroy()
     {
         Ray ray = new Ray(transform.position, _vectorToPlayer); //el rayo va desde mi hasta el player
@@ -133,12 +128,10 @@ public class MonsterMovement : MonoBehaviour, IRalentizable
 
                     if (_screamerReady) //ONEHIT
                     {
-                        //me suscribo a OnDeath. asi me reseteo cuando el player muera estando yo activo.
-                        print("suscribi ResetChebola al ondeath");
+                        print("este chebola se suscribio al ondeath");
                         PlayerStats.instance.OnDeath += ResetChebola; //ya enterate
 
                         AudioManager.instance.PlayScreamer(desiredScreamer);
-
                         AudioManager.instance.StopBGM();
                         _screamerReady = false; //flags para que solo pase una vez
                         _bgmReady = true;
@@ -147,24 +140,16 @@ public class MonsterMovement : MonoBehaviour, IRalentizable
             }
         }
     }
-
     public void Damage()
     {
         PlayerStats.instance.TakeDamage(monsterDamage); //daña al player constantemente
         PlayerStats.instance.playerFear = true;
     }
-
     public void ResetChebola(Vector3 cp)
     {
-        print("arranca el metodo ResetChebola");
-
-        print("lo calmo");
         CalmDown();
-
-        print("destruyo al chebola");
         Destroy(this.gameObject);
     }
-
     public void CalmDown()
     {
         _agent.destination = transform.position; //o sea, a ningun lado
@@ -184,23 +169,16 @@ public class MonsterMovement : MonoBehaviour, IRalentizable
             _bgmReady = false;
         }
     }
-
     public void Habilitar()
     {
         habilitado = true;
     }
     public void EnterSlow()
     {
-        //_agent.speed *= 0.5f;
         finalSpeed = _agent.speed * 0.5f;
-        //print("bajo la speed a " + _agent.speed);
     }
-
     public void ExitSlow()
     {
-        //_agent.speed *= 2;
         finalSpeed = _initialSpeed;
-        //print("volvio la speed a " + _agent.speed);
-
     }
 }

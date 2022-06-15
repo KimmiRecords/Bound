@@ -16,6 +16,7 @@ public class PlayerStats : MonoBehaviour
     public float hpRegen;
     public GameObject CanvasVidaUtil;
     public GameObject ModeloLinterna;
+    public CardKeyAccess[] cardKeyAccesses; //referencio a los paneles que necesitan llave para operar
 
     public delegate void MyDelegate(Vector3 cp);
     public event MyDelegate OnDeath;
@@ -26,16 +27,18 @@ public class PlayerStats : MonoBehaviour
     [HideInInspector]
     public bool playerFear = false;
 
+    [HideInInspector]
     public bool hasFlashlight = false;
 
+    [HideInInspector]
     public bool hasCardKey = false;
 
     [HideInInspector]
     public Vector3 lastCheckpoint;
 
-    bool _gotFlashlightFlag;
     float _playerHp;
     int _usbsCollected;
+    HPRegen _hpRegen;
 
     public float PlayerHp
     {
@@ -49,7 +52,6 @@ public class PlayerStats : MonoBehaviour
             _playerHp = value;
         }
     }
-
     public int UsbsCollected
     {
         get
@@ -77,59 +79,60 @@ public class PlayerStats : MonoBehaviour
             instance = this;
         }
 
+        _hpRegen = new HPRegen(hpRegen, playerHpMax);
         hasFlashlight = false;
         playerTransform = transform;
         lastCheckpoint = Vector3.zero;
         _playerHp = playerHpMax;
-        _gotFlashlightFlag = false;
         UsbsCollected = 0;
     }
-
     void Update()
     {
-        //print(PlayerHp);
-        if (_playerHp < playerHpMax) //regenera hp de a poco
+        if (!playerFear)
         {
-            if (!playerFear) //pero solo si no me esta dañando el chebola
-            {
-                _playerHp += hpRegen;
-            }
-
-            if (_playerHp > playerHpMax) //maxea la vida por si me paso
-            {
-                _playerHp = playerHpMax;
-            }
-        }
-
-        if (hasFlashlight && _gotFlashlightFlag == false) //asi sucede una sola vez y no todo el tiempo
-        {
-            CanvasVidaUtil.SetActive(true);
-            ModeloLinterna.SetActive(true);
-            _gotFlashlightFlag = true;
-        }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            UsbsCollected++;
-            print("CHEAT: te sumaste un usb. Ahora tenes " + UsbsCollected);
+            _hpRegen.CheckAndRegen(ref _playerHp);
         }
     }
 
+    public void GetFlashlight()
+    {
+        if (!hasFlashlight)
+        {
+            hasFlashlight = true;
+            CanvasVidaUtil.SetActive(true);
+            ModeloLinterna.SetActive(true);
+        }
+    }
+    public void GetCardKey()
+    {
+        if (!hasCardKey)
+        {
+            hasCardKey = true;
+        }
+        GrantAccess(cardKeyAccesses);
+    }
+    public void GrantAccess(CardKeyAccess[] CKAs)
+    {
+        for (int i = 0; i < CKAs.Length; i++) //doy acceso a todos los paneles
+        {
+            CKAs[i].GetAccess();
+            CKAs[i].ChangeText();
+        }
+    }
     public void TakeDamage(float dmg)
     {
         PlayerHp -= dmg;
-
-        //if (_playerHp <= playerHpMax/2)
-        //{
-        //    AudioManager.instance.PlayHeavyBreathing();
-        //}
 
         if (_playerHp <= 0)
         {
             Die();
         }
     }
-
+    public void InstaDeath()
+    {
+        PlayerHp = 0;
+        Die();
+    }
     public void Die()
     {
         print("arranca el metodo Die");
@@ -144,11 +147,7 @@ public class PlayerStats : MonoBehaviour
             PlayerHp = playerHpMax;
             OnDeath(lastCheckpoint);
         }
-
-        //print("YOU DIED");
-        //SceneManager.LoadScene("YouDiedScene");
     }
-
     public void Win()
     {
         print("YOU WIN");

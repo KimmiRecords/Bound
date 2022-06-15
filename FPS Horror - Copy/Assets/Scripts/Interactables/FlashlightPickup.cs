@@ -11,8 +11,12 @@ public class FlashlightPickup : Collectables
 
     public override void Interact()
     {
-        PlayerStats.instance.hasFlashlight = true; //obtengo la linterna
-        Destroy(chebolaCrux, 0.1f); //destruye al chebola colgado
+        PlayerStats.instance.GetFlashlight();
+
+        if (chebolaCrux != null)
+        {
+            Destroy(chebolaCrux, 0.1f); //destruye al chebola colgado
+        }
         base.Interact();
     }
 }
