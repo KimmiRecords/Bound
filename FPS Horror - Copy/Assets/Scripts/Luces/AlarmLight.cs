@@ -31,6 +31,6 @@ public class AlarmLight : MonoBehaviour
     {
         timer += Time.deltaTime;
         
-        luz.intensity = Mathf.Sin(timer * frequency) * amplitude + (maxIntensity + minIntensity)/2;
+        luz.intensity = Mathf.Sin(timer * frequency) * amplitude + (maxIntensity + minIntensity) * 0.5f;
     }
 }

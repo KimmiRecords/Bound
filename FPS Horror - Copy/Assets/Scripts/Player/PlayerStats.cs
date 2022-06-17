@@ -17,6 +17,7 @@ public class PlayerStats : MonoBehaviour
     public GameObject CanvasVidaUtil;
     public GameObject ModeloLinterna;
     public CardKeyAccess[] cardKeyAccesses; //referencio a los paneles que necesitan llave para operar
+    public int maxUsbs;
 
     public delegate void MyDelegate(Vector3 cp);
     public event MyDelegate OnDeath;
@@ -61,7 +62,7 @@ public class PlayerStats : MonoBehaviour
 
         set
         {
-            if (_usbsCollected < 4)
+            if (_usbsCollected < maxUsbs)
             {
                 _usbsCollected = value;
             }
