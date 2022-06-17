@@ -42,6 +42,8 @@ public class AudioManager : MonoBehaviour
     public AudioSource inventoryOpen;
     public AudioSource inventoryClose;
 
+    public FinalUSB finalUsb;
+
     AudioSource[] allSounds;
     public bool isRunning;
 
@@ -67,7 +69,10 @@ public class AudioManager : MonoBehaviour
         allSounds = GetComponentsInChildren<AudioSource>();
         _cycleIndex = 0;
 
-
+        if (finalUsb != null)
+        {
+            finalUsb.OnFinalUSBPickup += TurnOnFinalAlarm;
+        }
     }
 
     void Update()
@@ -79,9 +84,6 @@ public class AudioManager : MonoBehaviour
     }
 
     //ARRANCAN LOS METODOS
-
-
-
     //BACKGROUNDMUSIC
     public void PlayBGM()
     {
@@ -112,9 +114,7 @@ public class AudioManager : MonoBehaviour
         mainMenuMusic.Stop();
     }
 
-
     //ALARMAS
-
     public void PlayAlarmaNorway()
     {
         alarmaNorway.Play();
@@ -131,14 +131,14 @@ public class AudioManager : MonoBehaviour
     {
         alarmaTriple.Stop();
     }
-
-
-
+    public void TurnOnFinalAlarm()
+    {
+        StopAlarmaNorway();
+        PlayAlarmaTriple();
+    }
 
 
     //SFX
-
-
     public void PlayDerrumbe(int derrumbeID)
     {
         switch (_cycleIndex)
@@ -167,8 +167,6 @@ public class AudioManager : MonoBehaviour
         _cycleIndex = (_cycleIndex + 1) % 3;
         print("subo el index a " + _cycleIndex);
     }
-
-    //HOLLOW ROAR
     public void PlayHollowRoar(Vector3 pos, float delayTime)
     {
         if (!hollowRoar.isPlaying)
@@ -177,13 +175,11 @@ public class AudioManager : MonoBehaviour
             hollowRoar.PlayDelayed(delayTime);
         }
     }
-
     public void PlayPickup(float p)
     {
         pickup.pitch = p;
         pickup.Play();
     }
-
     public void PlayTPToCheckpoint()
     {
         tpToCheckpoint.Play();
@@ -191,6 +187,17 @@ public class AudioManager : MonoBehaviour
     public void PlayAccessDenied()
     {
         accessDenied.Play();
+    }
+    public void PlayHeavyBreathing()
+    {
+        float randomPitch = Random.Range(0.95f, 1.05f);
+        if (!heavyBreathing.isPlaying)
+        {
+            heavyBreathing.volume = 0.8f;
+            heavyBreathing.pitch = randomPitch;
+            heavyBreathing.Play();
+            StartCoroutine(FadeAudioSource.StartFade(heavyBreathing, 15, 0.8f, 0));
+        }
     }
 
     //PRESSURE PLATE SFX
@@ -204,7 +211,6 @@ public class AudioManager : MonoBehaviour
         pPlateOff.gameObject.transform.position = pos; 
         pPlateOff.Play();
     }
-
     public void PlayBigLightSwitch()
     {
         float randomPitch = Random.Range(0.9f, 1.1f);
@@ -228,6 +234,7 @@ public class AudioManager : MonoBehaviour
         doorClose.Play();
     }
 
+    //SCREAMER
     public void PlayScreamer(int screamerID)
     {
         switch (screamerID)
@@ -281,7 +288,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-
     //LINTERNA ON/OFF
     public void PlayLinternaOn()
     {
@@ -291,7 +297,6 @@ public class AudioManager : MonoBehaviour
     {
         linternaOff.Play();
     }
-
 
     //PASOS
     public void PlayPasos()
@@ -354,7 +359,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-
     //SALTO
     public void PlayJumpUp()
     {
@@ -379,68 +383,49 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
-
-    public void PlayHeavyBreathing()
-    {
-        float randomPitch = Random.Range(0.95f, 1.05f);
-        if (!heavyBreathing.isPlaying)
-        {
-            heavyBreathing.volume = 0.8f;
-            heavyBreathing.pitch = randomPitch;
-            heavyBreathing.Play();
-            StartCoroutine(FadeAudioSource.StartFade(heavyBreathing, 15, 0.8f, 0));
-        }
-    }
-
+    
+    //ZOMBIE EXPLOSIVO
     public void PlayZExplosion(Vector3 position)
     {
         zombieExplosion.transform.position = position;
         zombieExplosion.Play();
     }
-
     public void PlayZIdle()
     {
         zombieIdle.Play();
     }
-
     public void PlayZStress()
     {
         zombieStress.Play();
     }
-
     public void PlayZScream()
     {
         zombieScream.Play();
     }
-
     public void StopZIdle()
     {
         zombieIdle.Stop();
     }
-
     public void StopZStress()
     {
         zombieStress.Stop();
     }
-
     public void StopZScream()
     {
         zombieScream.Stop();
     }
 
+    //INVENTORY
     public void PlayInventoryOpen()
     {
         inventoryOpen.Play();
     }
-
     public void PlayInventoryClose()
     {
         inventoryClose.Play();
     }
 
-
-    //AUDIO TRIGGERS
-    //a este metodo le pasas un sonido, duracion y volumen de fade, y te lo da play con fade
+    //OTROS
     public void TriggerSound(AudioSource auso, float fadeDuration, float initialVolume, float finalVolume, bool isPlay)
     {
         if (isPlay)
@@ -453,7 +438,11 @@ public class AudioManager : MonoBehaviour
             auso.Stop();
         }
     }
-
+    public void PlayAtMoment(AudioSource sound, float moment)
+    {
+        sound.time = moment;
+        sound.Play();
+    }
     public void StopAll()
     {
         for (int i = 0; i < allSounds.Length; i++)
@@ -463,11 +452,5 @@ public class AudioManager : MonoBehaviour
                 allSounds[i].Stop();
             }
         }
-    }
-
-    public void PlayAtMoment(AudioSource sound, float moment)
-    {
-        sound.time = moment;
-        sound.Play();
     }
 }

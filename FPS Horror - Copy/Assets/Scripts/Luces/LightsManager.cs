@@ -4,9 +4,30 @@ using UnityEngine;
 
 public class LightsManager : MonoBehaviour
 {
-    //este script se lo adjunte a un objeto para que apague y prenda las luces que estan lejos del jugador.
-    //la idea es optimizar recursos y reducir la cantidad de luces realtime a renderear.
+    //este script se lo adjuntas a un objeto lightsmanager para que apague y prenda luces que estan lejos del jugador.
+    //ademas, la idea es mas adelante optimizar recursos y reducir la cantidad de luces realtime a renderear.
     //por diego katabian
+
+    public Light luzAlarma;
+    public FinalUSB finalUsb;
+
+    private void Start()
+    {
+        finalUsb.OnFinalUSBPickup += TurnOnAlarm;
+    }
+
+    public void TurnOnAlarm()
+    {
+        luzAlarma.gameObject.SetActive(true);
+    }
+
+
+
+
+
+
+
+
 
 
     //public LayerMask playerMask; //en inspector le indico cual es la layer del player, y la distancia a considerar para prender/apagar luces.
@@ -14,29 +35,27 @@ public class LightsManager : MonoBehaviour
 
     //Light[] allLights; //el array de todas las luces
     //List<Light> rtLights = new List<Light>(); //la lista con solo las realtime
-
     //bool[] playerInRange; //para cada luz realtime, si el player esta en rango o no
 
     //void Start()
     //{
-    //    allLights = FindObjectsOfType<Light>(); //lleno el array de todas las luces
+        //allLights = FindObjectsOfType<Light>(); //lleno el array de todas las luces activas al start
 
-    //    for (int i = 0; i < allLights.Length; i++)
-    //    {
-    //        if (allLights[i].lightmapBakeType == LightmapBakeType.Realtime)
-    //        {
-    //            rtLights.Add(allLights[i]); //lleno la lista solo con las que son realtime
-    //        }
-    //    }
+        //for (int i = 0; i < allLights.Length; i++)
+        //{
+        //    //if (allLights[i].lightmapBakeType == LightmapBakeType.Realtime)
+        //    //{
+        //    //    rtLights.Add(allLights[i]); //lleno la lista solo con las que son realtime
+        //    //}
+        //    print(allLights[i]);
+        //}
 
-    //    playerInRange = new bool[rtLights.Count]; //lleno el array de bools
+        //playerInRange = new bool[rtLights.Count]; //lleno el array de bools
     //}
 
     //private void Update()
     //{
     //    CheckPlayer(); //constantemente chequea si el player esta cerca o lejos
-        
-
     //    for (int i = 0; i < playerInRange.Length; i++) //constantemente prende o apaga TODAS. no parece muy optimo la verdad. se puede mejorar?
     //    {
     //        if (playerInRange[i])
@@ -74,5 +93,4 @@ public class LightsManager : MonoBehaviour
     //        }
     //    }
     //}
-
 }

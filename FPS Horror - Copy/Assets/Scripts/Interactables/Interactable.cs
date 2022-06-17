@@ -6,7 +6,7 @@ public enum EnumPickUpType
 {
     item_usb, item_battery, solo_infoPopup, item_flashlight, trigger_button, item_cardkey
 }
-public class Interactable : MonoBehaviour
+public abstract class Interactable : MonoBehaviour
 {
     //los interactables tienen pickuptype, y hacen mostrar una manito (ui)
     //si son collectables van a aparecer en el inventario y destruirse

@@ -17,6 +17,7 @@ public class PlayerStats : MonoBehaviour
     public GameObject CanvasVidaUtil;
     public GameObject ModeloLinterna;
     public CardKeyAccess[] cardKeyAccesses; //referencio a los paneles que necesitan llave para operar
+    public int maxUsbs;
 
     public delegate void MyDelegate(Vector3 cp);
     public event MyDelegate OnDeath;
@@ -61,7 +62,7 @@ public class PlayerStats : MonoBehaviour
 
         set
         {
-            if (_usbsCollected < 4)
+            if (_usbsCollected < maxUsbs)
             {
                 _usbsCollected = value;
             }
@@ -92,6 +93,8 @@ public class PlayerStats : MonoBehaviour
         {
             _hpRegen.CheckAndRegen(ref _playerHp);
         }
+
+        print(_playerHp);
     }
 
     public void GetFlashlight()
@@ -135,15 +138,12 @@ public class PlayerStats : MonoBehaviour
     }
     public void Die()
     {
-        print("arranca el metodo Die");
         if (lastCheckpoint == Vector3.zero)
         {
-            print("YOU DIED");
             SceneManager.LoadScene("YouDiedScene");
         }
         else
         {
-            print("hay checkpoint, llamo al evento OnDeath, lastcheckpoint en " + lastCheckpoint);
             PlayerHp = playerHpMax;
             OnDeath(lastCheckpoint);
         }

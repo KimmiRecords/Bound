@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Collectables : Interactable
+public abstract class Collectables : Interactable
 {
     //los collectables son un tipo de interactable cuyo objeto se destruye y cuya imagen se agrega al inventario
     //por diego katabian

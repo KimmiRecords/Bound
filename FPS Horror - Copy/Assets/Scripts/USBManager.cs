@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class USBManager : MonoBehaviour
 {
+    //por ahora
     //este script organiza los usbs en un array, para prenderlos y apagarlos segun los agarro
-    //cuando me muero, re-habilita los usbs que haya capturado entre el ultimo checkpoint y mi muerte.
+
+    //mas adelante
+    //cuando me muero, re-habilita los usbs que haya capturado entre el ultimo checkpoint y mi muerte
+
     //por diego katabian
 
     public static USBManager instance;
@@ -45,18 +49,17 @@ public class USBManager : MonoBehaviour
 
         areCollected[index] = true; //hago true que agarre ESE usb
         //allUsbs[index].SetActive(false); //deshabilito ese usb
-        print("agarre el usb " + index);
+        //print("agarre el usb " + index);
     }
 
     public void ResetUSBs(Vector3 cp) 
     {
-        print("murio el player, reseteo los usbs");
         PlayerStats.instance.UsbsCollected = usbsAtCheckpoint; //vuelvo a tener usbs como tenia al momento del checkpoint
 
         for (int i = usbsAtCheckpoint; i < allUsbs.Length; i++)
         {
             allUsbs[i].SetActive(true); //re-habilito los usb que no tenia al momento del checkpoint
-            print("active el usb " + i);
+            //print("active el usb " + i);
         }
     }
 }
