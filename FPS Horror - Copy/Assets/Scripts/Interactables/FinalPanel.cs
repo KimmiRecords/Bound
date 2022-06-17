@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FinalPanel : DoorControllerButton
+public class FinalPanel : DoorLightButton
 {
-    //este es u doorControllerButton especial nomas
+    //este es un doorControllerButton especial nomas
     //por diego katabian
+    public WinTrigger winTrigger;
 
     public override void Interact()
     {
@@ -20,6 +21,22 @@ public class FinalPanel : DoorControllerButton
             else
             {
                 quePuertaAbro.OpenDoor();
+            }
+
+            if (!_yaPrendiLasLuces)
+            {
+                TurnGreen();
+                _yaPrendiLasLuces = true;
+            }
+            else
+            {
+                TurnRed();
+                _yaPrendiLasLuces = false;
+            }
+
+            if (!winTrigger.gameObject.activeSelf)
+            {
+                winTrigger.gameObject.SetActive(true);
             }
         }
         else

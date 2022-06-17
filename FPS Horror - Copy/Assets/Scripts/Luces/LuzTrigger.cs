@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LuzTrigger : MonoBehaviour
 {
-    //este script se lo pones a un collider para que prenda n luces MIENTRAS lo pisas
+    //este script se lo pones a un collider para que prenda n luces CUANDO y MIENTRAS lo pisas
     //lo uso para prender luces con placas de presion
     //por diego katabian
 
@@ -38,11 +38,8 @@ public class LuzTrigger : MonoBehaviour
     {
         if (other.gameObject.layer == 7 || other.gameObject.layer == 3) //la layer 7 es de las cajas, la 3 es player
         {
-            //prende las luces
-            for (int i = 0; i < luces.Length; i++)
-            {
-                luces[i].intensity = intensidadDeseada;
-            }
+            TurnOnLights();
+
             _yaPrendiLasLuces = true;
 
             if (haceRuido)
@@ -58,10 +55,7 @@ public class LuzTrigger : MonoBehaviour
         {
             if (!_yaPrendiLasLuces) //en el stay, solo las prende si estaban apagadas. 
             {
-                for (int i = 0; i < luces.Length; i++)
-                {
-                    luces[i].intensity = intensidadDeseada;
-                }
+                TurnOnLights();
             }
         }
     }
@@ -72,10 +66,7 @@ public class LuzTrigger : MonoBehaviour
         {
             if (!lasDejaPrendidas) //si no las tiene que dejar prendidas, las apaga.
             {
-                for (int i = 0; i < luces.Length; i++)
-                {
-                    luces[i].intensity = 0;
-                }
+                TurnOffLights();
 
                 if (haceRuido)
                 {
@@ -86,4 +77,21 @@ public class LuzTrigger : MonoBehaviour
             }
         }
     }
+
+    public void TurnOnLights()
+    {
+        for (int i = 0; i < luces.Length; i++)
+        {
+            luces[i].intensity = intensidadDeseada;
+        }
+    }
+
+    public void TurnOffLights()
+    {
+        for (int i = 0; i < luces.Length; i++)
+        {
+            luces[i].intensity = 0;
+        }
+    }
+
 }

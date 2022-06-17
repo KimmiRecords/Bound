@@ -26,6 +26,8 @@ public class DoorControllerButton : Interactable
             {
                 quePuertaAbro.OpenDoor();
             }
+
+
         }
         else
         {
