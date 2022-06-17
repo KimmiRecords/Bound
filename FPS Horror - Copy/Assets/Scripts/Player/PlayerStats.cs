@@ -93,6 +93,8 @@ public class PlayerStats : MonoBehaviour
         {
             _hpRegen.CheckAndRegen(ref _playerHp);
         }
+
+        print(_playerHp);
     }
 
     public void GetFlashlight()
@@ -136,15 +138,12 @@ public class PlayerStats : MonoBehaviour
     }
     public void Die()
     {
-        print("arranca el metodo Die");
         if (lastCheckpoint == Vector3.zero)
         {
-            print("YOU DIED");
             SceneManager.LoadScene("YouDiedScene");
         }
         else
         {
-            print("hay checkpoint, llamo al evento OnDeath, lastcheckpoint en " + lastCheckpoint);
             PlayerHp = playerHpMax;
             OnDeath(lastCheckpoint);
         }

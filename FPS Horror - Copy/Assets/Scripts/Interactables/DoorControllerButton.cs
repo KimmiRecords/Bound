@@ -30,7 +30,6 @@ public class DoorControllerButton : Interactable
         else
         {
             AudioManager.instance.PlayAccessDenied();
-            print("no tenes permiso para operar este panel");
         }
 
     }
