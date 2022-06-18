@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum EnumPickUpType
 {
-    item_usb, item_battery, solo_infoPopup, item_flashlight, trigger_button, item_cardkey
+    item_usb, item_battery, solo_infoPopup, item_flashlight, trigger_button, item_cardkey, item_map //solo agrege item_map. Casco Rocio
 }
 public abstract class Interactable : MonoBehaviour
 {

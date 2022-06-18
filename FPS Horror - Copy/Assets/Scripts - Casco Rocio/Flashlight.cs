@@ -9,7 +9,7 @@ public class Flashlight : MonoBehaviour
     //LOGICA DE LA LINTERNA, POR MEI
     private bool           flashlightActive = false;
     public  Text           textTimer;
-    public  GameObject     flashlight;
+    public GameObject flashlight;
     public  GameObject     flashlightPoint;
     public  GameObject     flashlightActivatingCollider;
     public  FlashlightLife flashlightOff; //re cheto, llama al otro script
@@ -17,9 +17,6 @@ public class Flashlight : MonoBehaviour
 
     
     public bool activate = true;
-    //public GameObject batteryOne;
-    //public GameObject batteryTwo;
-    //public GameObject batteryTree;
 
     
 
@@ -58,7 +55,9 @@ public class Flashlight : MonoBehaviour
 
     }
 
-    
+
+
+
 
     public void Object()
     {
@@ -67,13 +66,13 @@ public class Flashlight : MonoBehaviour
         if (PlayerStats.instance.hasFlashlight && activate == true)
         {
             flashlight.SetActive(true);
-            
+
         }
         else if (PlayerStats.instance.hasFlashlight && activate == false)
         {
-            
+
             flashlight.SetActive(false);
-            
+
         }
     }
 }
