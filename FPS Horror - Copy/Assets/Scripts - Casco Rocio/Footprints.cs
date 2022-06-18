@@ -7,6 +7,7 @@ public class Footprints : MonoBehaviour
     public GameObject []  footprints;
     public GameObject []  seeFootprints;
     public FlashlightLife timerLife;
+    public Flashlight boolActivated;
     bool                  activator;
 
     void Start()
@@ -22,7 +23,7 @@ public class Footprints : MonoBehaviour
 
     void Update()
     {
-        if (timerLife.timer > 0 && Input.GetKeyDown(KeyCode.Q) && PlayerStats.instance.hasFlashlight == true)
+        if (timerLife.timer > 0 && Input.GetKeyDown(KeyCode.Q) && PlayerStats.instance.hasFlashlight == true && boolActivated.activate == true)
         {
             activator = !activator;
             if (activator)
