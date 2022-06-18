@@ -29,7 +29,6 @@ public class MiniMap : MonoBehaviour
         
         if (obtained.obtainedMap == 2)
         {
-            Debug.Log("asdasd");
             map1 = !map1;
             if (map1)
             {
