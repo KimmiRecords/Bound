@@ -201,7 +201,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9703d407c5d4f29428df44c5bf35fde0, type: 2}
+  - {fileID: 2100000, guid: 18f53882efe7d8d4a866ec3244b5738e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -456,6 +456,7 @@ MonoBehaviour:
   chebolaPrefab: {fileID: 7808848037089618967, guid: dfa27c2be20bc854ba76f849923c6257,
     type: 3}
   desiredSpawnPosition: {x: 0, y: 0, z: 0}
+  screamerID: 0
 --- !u!65 &5224542322552382295
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -484,6 +485,7 @@ MonoBehaviour:
   pickUpType: 0
   muestraManito: 1
   inventory: {fileID: 0}
+  usbManager: {fileID: 0}
 --- !u!114 &-8663348323810601195
 MonoBehaviour:
   m_ObjectHideFlags: 0
