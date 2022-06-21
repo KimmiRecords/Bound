@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerStats : MonoBehaviour
+public class PlayerStats : MonoBehaviour, IGaseable
 {
     //todos los stats del personaje principal
     //incluye getter y setter para hp y usbs recolectados
@@ -94,7 +94,7 @@ public class PlayerStats : MonoBehaviour
             _hpRegen.CheckAndRegen(ref _playerHp);
         }
 
-        print(_playerHp);
+        //print(_playerHp);
     }
 
     public void GetFlashlight()
@@ -133,6 +133,8 @@ public class PlayerStats : MonoBehaviour
     }
     public void InstaDeath()
     {
+        print("playerStats: me insta mori");
+
         PlayerHp = 0;
         Die();
     }
@@ -153,5 +155,10 @@ public class PlayerStats : MonoBehaviour
         print("YOU WIN");
         _usbsCollected = 0;
         SceneManager.LoadScene("YouWinScene");
+    }
+
+    public void Gas(float d)
+    {
+        TakeDamage(d);
     }
 }

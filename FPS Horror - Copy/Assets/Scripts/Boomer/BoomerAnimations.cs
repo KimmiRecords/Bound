@@ -11,13 +11,13 @@ public class BoomerAnimations
     }
     public void StartRunning()
     {
-        Debug.Log("dispare startrunning");
+        //Debug.Log("dispare startrunning");
         anim.SetBool("isRunning", true);
     }
 
     public void StartPain()
     {
-        Debug.Log("dispare startpain");
+        //Debug.Log("dispare startpain");
         anim.SetBool("isRunning", false);
         anim.SetBool("isPain", true);
     }

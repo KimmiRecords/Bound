@@ -167,10 +167,11 @@ public class AudioManager : MonoBehaviour
         _cycleIndex = (_cycleIndex + 1) % 3;
         print("subo el index a " + _cycleIndex);
     }
-    public void PlayHollowRoar(Vector3 pos, float delayTime)
+    public void PlayHollowRoar(Vector3 pos, float delayTime, float p)
     {
         if (!hollowRoar.isPlaying)
         {
+            hollowRoar.pitch = p;
             hollowRoar.gameObject.transform.position = pos; //muevo al audiosource
             hollowRoar.PlayDelayed(delayTime);
         }
