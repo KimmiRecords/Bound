@@ -64,6 +64,6 @@ public class ChebolaAnimations
 
     void Scream()
     {
-        AudioManager.instance.PlayHollowRoar(_agent.gameObject.transform.position, 0);
+        AudioManager.instance.PlayHollowRoar(_agent.gameObject.transform.position, 0, 1.1f);
     }
 }

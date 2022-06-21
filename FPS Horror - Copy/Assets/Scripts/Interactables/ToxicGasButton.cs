@@ -4,21 +4,42 @@ using UnityEngine;
 
 public class ToxicGasButton : Interactable
 {
-    //los botones de toxicGas funcionan solo una vez. los tocas y no sirven mas.
+    //los botones de toxicGas funcionan pueden funcionar una sola vez. si son onetime los tocas y no sirven mas.
+    //sea ese el caso o no, apagan y prenden gases.
     //por dk
 
     public ToxicGas[] queGasesApago;
+    public bool oneTime; //si es de uno unico o toggle
+
+    bool yaPrendiLosGases = true;
+
 
     public override void Interact()
     {
         base.Interact();
 
-        for (int i = 0; i < queGasesApago.Length; i++) //destruyo cada gas
+        if (!yaPrendiLosGases)
         {
-            Destroy(queGasesApago[i].gameObject); 
-            print("destrui el gas" + queGasesApago[i]);
+            for (int i = 0; i < queGasesApago.Length; i++) //prendo cada gas
+            {
+                queGasesApago[i].gameObject.SetActive(true);
+                print("active el gas" + queGasesApago[i]);
+            }
+            yaPrendiLosGases = true;
+        }
+        else
+        {
+            for (int i = 0; i < queGasesApago.Length; i++) //apago cada gas
+            {
+                queGasesApago[i].gameObject.SetActive(false); 
+                print("desactive el gas" + queGasesApago[i]);
+            }
+            yaPrendiLosGases = false;
         }
 
-        Destroy(this.gameObject); //destruyo este boton para que quede deshabilitado y ya no se pueda pulsar.
+        if (oneTime)
+        {
+            Destroy(this.gameObject); //destruyo este boton para que quede deshabilitado y ya no se pueda pulsar.
+        }
     }
 }

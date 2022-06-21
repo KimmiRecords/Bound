@@ -17,7 +17,7 @@ public class HollowRoarTrigger : MonoBehaviour
             return;
         }
         print("le di play al hollow roar en" + soundPosition);
-        AudioManager.instance.PlayHollowRoar(soundPosition, delay);
+        AudioManager.instance.PlayHollowRoar(soundPosition, delay, 1);
     }
 
     private void OnDrawGizmosSelected()

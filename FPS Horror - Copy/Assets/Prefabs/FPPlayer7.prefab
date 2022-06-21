@@ -492,6 +492,7 @@ MonoBehaviour:
   seeFootprints:
   - {fileID: 0}
   timerLife: {fileID: 0}
+  boolActivated: {fileID: 0}
   timerFlashlight: {fileID: 0}
 --- !u!1 &6718208575797854338
 GameObject:
@@ -571,7 +572,7 @@ MonoBehaviour:
   jumpHeight: 3
   gravityValue: 20
   agency: 1
-  _controller: {fileID: 0}
+  controller: {fileID: 0}
 --- !u!114 &2662333412612807085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,9 +615,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHpMax: 300
-  hpRegen: 0.2
+  hpRegen: 50
   CanvasVidaUtil: {fileID: 0}
   ModeloLinterna: {fileID: 0}
+  cardKeyAccesses: []
+  maxUsbs: 4
   playerTransform: {fileID: 0}
   playerFear: 0
   hasFlashlight: 0
@@ -636,8 +639,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textTimer: {fileID: 0}
   flashlight: {fileID: 6718208575965016203}
+  flashlightPoint: {fileID: 0}
   flashlightActivatingCollider: {fileID: 0}
   flashlightOff: {fileID: 0}
+  activate: 1
 --- !u!114 &9016950396880282742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -706,6 +711,7 @@ MonoBehaviour:
   seeFootprints:
   - {fileID: 0}
   timerLife: {fileID: 0}
+  boolActivated: {fileID: 0}
 --- !u!1 &6718208575965016203
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,10 +755,10 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.7924528, g: 0.7214311, b: 0.72458327, a: 1}
-  m_Intensity: 1
-  m_Range: 30
-  m_SpotAngle: 60
+  m_Color: {r: 1, g: 0.60784316, b: 0.09803922, a: 1}
+  m_Intensity: 2
+  m_Range: 60
+  m_SpotAngle: 70
   m_InnerSpotAngle: 4
   m_CookieSize: 10
   m_Shadows:
@@ -874,8 +880,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.8207547, g: 0.5993969, b: 0.2981043, a: 1}
-  m_Intensity: 0.5
-  m_Range: 30
+  m_Intensity: 1
+  m_Range: 60
   m_SpotAngle: 85
   m_InnerSpotAngle: 1
   m_CookieSize: 10

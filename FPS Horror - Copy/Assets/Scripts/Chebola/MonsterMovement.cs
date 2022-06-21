@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class MonsterMovement : MonoBehaviour, IRalentizable
+public class MonsterMovement : MonoBehaviour, IRalentizable, IGaseable
 {
     //este script se lo adjuntas al chebola para que haga daño en aura al player, y lo persiga si es visto
     //por diego katabian y valentino roman
@@ -95,6 +95,7 @@ public class MonsterMovement : MonoBehaviour, IRalentizable
     {
         if (collision.gameObject.layer == 3) //layer 3 es Player
         {
+            print("chebola: Me tocó el chebola y me mató");
             PlayerStats.instance.InstaDeath(); //me mata de una si me toca
         }
     }
@@ -152,6 +153,8 @@ public class MonsterMovement : MonoBehaviour, IRalentizable
     }
     public void CalmDown()
     {
+        print("chebola: el chebola se calmó");
+
         _agent.destination = transform.position; //o sea, a ningun lado
         _anim.SetBool("isWalking", false);
         _screamerReady = true; //los violines
@@ -180,5 +183,12 @@ public class MonsterMovement : MonoBehaviour, IRalentizable
     public void ExitSlow()
     {
         finalSpeed = _initialSpeed;
+    }
+    public void Gas(float d)
+    {
+        print("chebola: a este chebola lo mato el gas");
+        AudioManager.instance.PlayHollowRoar(transform.position, 0.1f, 0.9f);
+        CalmDown();
+        Destroy(this.gameObject);
     }
 }

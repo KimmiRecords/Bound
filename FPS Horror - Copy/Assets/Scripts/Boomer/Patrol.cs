@@ -40,6 +40,7 @@ public class Patrol : MonoBehaviour, IRalentizable
         _yaViAlPlayer = false;
         _timeUntilExplosionPosta = Random.Range(timeUntilExplosionMin, timeUntilExplosionMax);
         AudioManager.instance.PlayZIdle();
+        _speedModifier = 1;
     }
 
     void Update()

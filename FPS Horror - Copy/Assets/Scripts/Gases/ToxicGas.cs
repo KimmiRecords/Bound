@@ -11,17 +11,11 @@ public class ToxicGas : MonoBehaviour
 
     void OnTriggerStay(Collider collider)
     {
-        if (collider.gameObject.layer == 3) 
+        if (collider.GetComponent<IGaseable>() != null)
         {
-            GasPassiveDamage();
+            var elotro = collider.GetComponent<IGaseable>();
+            elotro.Gas(gasDamage * Time.deltaTime);
         }
-        //if collider.GetComponent<IGaseable>() != null
-        //var elotro = collider.GetComponent<IGaseable>();
-        //elotro.TakeDamage();
-
-        //en los que se afectan, agregar ", IGaseable" y el metodo.
-        //crear la interfaz con los metodos obligatorios.
-        
     }
     public void GasPassiveDamage()
     {

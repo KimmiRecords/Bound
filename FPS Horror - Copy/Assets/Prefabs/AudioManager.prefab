@@ -170,7 +170,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8f705ac5fabc86945bbb4d2e7a4919fb, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.9
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2102,7 +2102,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 965572a937aa9c548a516b51d34937d9, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.9
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2737,7 +2737,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d004e3c96a69db24e9f8efcc3a271b3e, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.7
+  m_Volume: 0.9
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -4715,6 +4715,7 @@ MonoBehaviour:
   sewerAmbience: {fileID: 8646321804336460802}
   inventoryOpen: {fileID: 9043891397929937329}
   inventoryClose: {fileID: 6544689983356425343}
+  finalUsb: {fileID: 0}
   isRunning: 0
 --- !u!1 &8473027215033407150
 GameObject:
