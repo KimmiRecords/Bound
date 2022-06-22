@@ -8,6 +8,7 @@ public class FlashlightPickup : Collectables
     //por diego katabian
 
     public GameObject chebolaCrux;
+    public InfoPopupOneTime pressQ;
 
     public override void Interact()
     {
@@ -16,6 +17,11 @@ public class FlashlightPickup : Collectables
         if (chebolaCrux != null)
         {
             Destroy(chebolaCrux, 0.1f); //destruye al chebola colgado
+        }
+
+        if (pressQ != null)
+        {
+            pressQ.gameObject.SetActive(true);
         }
         base.Interact();
     }

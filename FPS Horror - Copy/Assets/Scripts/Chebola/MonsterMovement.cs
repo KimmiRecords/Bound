@@ -164,7 +164,7 @@ public class MonsterMovement : MonoBehaviour, IRalentizable, IGaseable
             print("anulo la suscripcion");
             PlayerStats.instance.OnDeath -= ResetChebola;
 
-            AudioManager.instance.FadeOutScreamer(desiredScreamer, 1);
+            AudioManager.instance.FadeOutScreamer(desiredScreamer, 10);
             AudioManager.instance.PlayHeavyBreathing();
 
             AudioManager.instance.PlayBGM();

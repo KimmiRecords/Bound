@@ -39589,6 +39589,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6718208575435062047, guid: ad879de42b68c7d4183d06578ee93335,
+        type: 3}
+      propertyPath: near clip plane
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6718208575797854338, guid: ad879de42b68c7d4183d06578ee93335,
         type: 3}
       propertyPath: m_Name
