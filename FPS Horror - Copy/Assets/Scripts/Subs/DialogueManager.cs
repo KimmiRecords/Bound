@@ -13,10 +13,10 @@ public class DialogueManager : MonoBehaviour
     public FinalUSB finalUsb;
     private void Start()
     {
-        finalUsb.OnFinalUSBPickup += TurnOnDialogueTriggers; //nos suscribimossss
+        finalUsb.OnFinalUSBPickup += TurnOnFinalDialogueTriggers; //nos suscribimossss
     }
 
-    public void TurnOnDialogueTriggers()
+    public void TurnOnFinalDialogueTriggers()
     {
         for (int i = 0; i < finalUsbDialogues.Length; i++)
         {
