@@ -7,7 +7,7 @@ public class GraviBox : MonoBehaviour, IRalentizable
     //este script se lo adjuntas a una caja que tenga gravedad loca.
     //acordate de cargar en el inspector qué interactable le va a togglear la grav, y cuales son sus gravedad normal y loca.
 
-    //-por valentino roman y diego katabian
+    //TP2 - Valentino Roman y Diego Katabian
 
     [Tooltip("La gravedad normal y alterada para esta caja.")]
     public GraviStruct graviStruct;

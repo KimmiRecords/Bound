@@ -14,11 +14,5 @@ public abstract class Collectables : Interactable
         GameObject itemPickedUp = this.gameObject; //que objeto agarre
         Items item = itemPickedUp.GetComponent<Items>(); //su componente item
         inventory.AddItem(itemPickedUp, item.id, item.type, item.icon); //lo agrego. 
-
-        
     }
 }
-
-
-//this.gameObject.SetActive(false);
-//Destroy(this.gameObject, 0.1f); //quienes hereden de collectables, tienen que poner su base.interact() al final xq se destruyen.

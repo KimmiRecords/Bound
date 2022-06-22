@@ -5,8 +5,7 @@ using UnityEngine;
 public interface IGaseable
 {
     //todos los que sean afectados por el gas tienen este metodo
-    //por mateo palma, francisco serra y diego katabian
+    //TP2 - Mateo Palma y Francisco Serra
 
     void Gas(float d);
-    //void Gasnt();
 }

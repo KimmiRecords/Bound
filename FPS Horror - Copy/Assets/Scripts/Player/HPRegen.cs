@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class HPRegen
 {
+    //la regen de vida por composicion. es construida por PlayerStats
+    //TP2 - Diego Katabian
+
     float _hpRegen;
     float _playerHpMax;
 

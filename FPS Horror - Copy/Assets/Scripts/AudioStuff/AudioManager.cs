@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    //todo lo pertinente a sonidos y sus metodos
+    //por diego katabian
+
     public static AudioManager instance;
     public AudioSource pickup;
     public AudioSource bgm;
@@ -71,7 +74,7 @@ public class AudioManager : MonoBehaviour
 
         if (finalUsb != null)
         {
-            finalUsb.OnFinalUSBPickup += TurnOnFinalAlarm;
+            finalUsb.OnFinalUSBPickup += TurnOnFinalAlarm; //suscribo el metodo PrenderAlarmas al evento
         }
     }
 

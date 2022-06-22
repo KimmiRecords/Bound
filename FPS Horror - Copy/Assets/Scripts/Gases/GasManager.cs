@@ -5,7 +5,8 @@ using UnityEngine;
 public class GasManager : MonoBehaviour
 {
     //este script administra los gases y recibe eventos
-    //por diego katabian
+    //TP2 - Mateo Palma y Diego Katabian
+
 
     [Tooltip("Los gases que queres que se prendan en el FinalUSB")]
     public ToxicGas[] finalUsbGases;

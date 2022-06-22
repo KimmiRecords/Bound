@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ToxicGasButton : Interactable
 {
-    //los botones de toxicGas funcionan pueden funcionar una sola vez. si son onetime los tocas y no sirven mas.
+    //los botones de toxicGas funcionan pueden funcionar una sola vez. si son one-time los tocas y no sirven mas.
     //sea ese el caso o no, apagan y prenden gases.
-    //por dk
+    //TP2 - Diego Katabian
 
     public ToxicGas[] queGasesApago;
     public bool oneTime; //si es de uno unico o toggle

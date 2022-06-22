@@ -5,7 +5,8 @@ using UnityEngine;
 public class DialogueManager : MonoBehaviour
 {
     //este script administra los triggers de dialogo y de victoria
-    //por diego katabian
+    //TP2 - Diego Katabian
+
 
     [Tooltip("Los dialogos que queres que se prendan en el FinalUSB")]
     public Dialogue[] finalUsbDialogues;

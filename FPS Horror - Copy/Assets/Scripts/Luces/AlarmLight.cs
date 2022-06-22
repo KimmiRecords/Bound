@@ -6,7 +6,7 @@ public class AlarmLight : MonoBehaviour
 {
     //este script se lo pones a una luz para que vaya y venga
     //lo uso para la luz roja de alarma en la secuencia final
-    //por diego katabian
+    //TP2 - Diego Katabian
 
     public Light luz; //esta luz
 

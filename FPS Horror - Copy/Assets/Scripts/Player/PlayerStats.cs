@@ -8,7 +8,10 @@ public class PlayerStats : MonoBehaviour, IGaseable
     //todos los stats del personaje principal
     //incluye getter y setter para hp y usbs recolectados
     //inluye metodos para hacerme daño, y variables para los estados del player (si tiene linterna, llaves, etc)
-    //por diego katabian, francisco serra y rocio casco
+    //construye HPRegen por composicion
+    //crea el evento OnDeath, al que otros objetos se van a suscribir
+    //TP2 - Francisco Serra, Rocio Casco y Diego Katabian
+
 
     public static PlayerStats instance;
 

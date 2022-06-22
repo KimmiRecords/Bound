@@ -6,7 +6,8 @@ public class FinalUSB : USBPickup
 {
     //este script agrega funciones especiales al ultimo USB que agarras
     //ademas de ser un usbpickup normal
-    //por diego katabian
+    //TP2 - Diego Katabian
+
 
     public delegate void MyDelegate();
     public event MyDelegate OnFinalUSBPickup;

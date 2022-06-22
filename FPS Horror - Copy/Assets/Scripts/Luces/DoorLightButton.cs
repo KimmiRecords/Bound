@@ -7,7 +7,7 @@ public class DoorLightButton : DoorControllerButton
     //las puertas cerradas tienen una luz roja
     //este script se lo pones a un boton que abre puertas para que la haga verde
     //es hijo de doorcontroller, por lo que tambien abre puertas
-    //por diego katabian
+    //TP2 - Francisco Serra y Diego Katabian
 
     [SerializeField]
     protected Light[] luces; //las luces que quiero prender

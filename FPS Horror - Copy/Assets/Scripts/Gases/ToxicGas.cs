@@ -5,7 +5,7 @@ using UnityEngine;
 public class ToxicGas : MonoBehaviour
 {
     //este script se lo pones a un collider bien grandote para que funcione como area de gas toxico
-    //por mateo palma
+    //TP2 - Mateo Palma
 
     public float gasDamage;
 
@@ -16,9 +16,5 @@ public class ToxicGas : MonoBehaviour
             var elotro = collider.GetComponent<IGaseable>();
             elotro.Gas(gasDamage * Time.deltaTime);
         }
-    }
-    public void GasPassiveDamage()
-    {
-        PlayerStats.instance.TakeDamage(gasDamage * Time.deltaTime);
     }
 }

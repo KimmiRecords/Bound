@@ -5,7 +5,8 @@ using UnityEngine;
 public class FinalPanel : DoorLightButton
 {
     //este es un doorControllerButton especial nomas
-    //por diego katabian
+    //TP2 - Francisco Serra y Diego Katabian
+
     public WinTrigger winTrigger;
 
     public override void Interact()

@@ -5,7 +5,7 @@ using UnityEngine;
 public class DoorControllerButton : Interactable
 {
     //este script se lo agregas a una consola para que abra una puerta
-    //por francisco serra y diego katabian
+    //TP2 - Francisco Serra y Diego Katabian
 
     public DoorController quePuertaAbro;
 

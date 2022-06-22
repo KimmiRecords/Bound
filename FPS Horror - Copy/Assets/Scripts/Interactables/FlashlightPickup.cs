@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class FlashlightPickup : Collectables
 {
-    //cuando tocas E, levantas la linterna y desaperece el chebola colgante. 
-    //por diego katabian
+    //cuando tocas E, levantas la linterna y desaperece el chebola colgante.
+    //tambien hace aparecer un texto informativo
+    //TP2 - Diego Katabian
 
     public GameObject chebolaCrux;
     public InfoPopupOneTime pressQ;

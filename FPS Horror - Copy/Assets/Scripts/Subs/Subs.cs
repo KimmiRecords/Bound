@@ -10,6 +10,7 @@ public abstract class Subs : MonoBehaviour
 
     //los hijos de este script son las distintas maneras de mostrar subs.
     //polymorphean el metodo Show para cambiarle el formato u otras cosas.
+    //TP2 - Diego Katabian
 
     [TextArea(2,4)]
     public string desiredText;

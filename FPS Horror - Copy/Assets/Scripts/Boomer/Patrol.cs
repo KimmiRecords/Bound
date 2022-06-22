@@ -9,7 +9,7 @@ public class Patrol : MonoBehaviour, IRalentizable
     //este script se lo adjuntas a un mosntruo para que patrulle
     //va del punto 0 al 1 (pingpong)
     //si el player entra en rango, va hacia el punto 2 y explota a mitad de camino
-    //por diego katabian y francisco serra
+    //TP2 - Francisco Serra y Diego Katabian
 
     public NavMeshAgent miNavMeshAgent;
     public DetectPlayer detectPlayer;
