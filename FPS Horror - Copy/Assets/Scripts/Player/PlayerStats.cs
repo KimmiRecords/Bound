@@ -136,8 +136,6 @@ public class PlayerStats : MonoBehaviour, IGaseable
     }
     public void InstaDeath()
     {
-        print("playerStats: me insta mori");
-
         PlayerHp = 0;
         Die();
     }

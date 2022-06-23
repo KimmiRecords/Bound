@@ -148,19 +148,14 @@ public class AudioManager : MonoBehaviour
         {
             case 0:
                 derrumbe0.Play();
-                print("le di play a derrumbe0");
                 break;
 
             case 1:
                 derrumbe1.Play();
-                print("le di play a derrumbe1");
-
                 break;
 
             case 2:
                 derrumbe2.Play();
-                print("le di play a derrumbe2");
-
                 break;
 
             default:
@@ -168,7 +163,6 @@ public class AudioManager : MonoBehaviour
         }
 
         _cycleIndex = (_cycleIndex + 1) % 3;
-        print("subo el index a " + _cycleIndex);
     }
     public void PlayHollowRoar(Vector3 pos, float delayTime, float p)
     {
@@ -241,6 +235,8 @@ public class AudioManager : MonoBehaviour
     //SCREAMER
     public void PlayScreamer(int screamerID)
     {
+        screamer1.Stop();
+        screamer2.Stop();
         switch (screamerID)
         {
             case 1:

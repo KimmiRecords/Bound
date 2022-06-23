@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour, IRalentizable
 
     Animator _anim;
 
-    void Awake()
+    void Start()
     {
         if (GetComponent<CharacterController>() != null)
         {
