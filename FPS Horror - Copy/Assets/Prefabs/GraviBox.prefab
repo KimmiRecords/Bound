@@ -385,6 +385,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5feab10818b6b47439830f0edc9c8189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quienMeControla: {fileID: 0}
-  normalGrav: {x: 0, y: -9.81, z: 0}
-  alteredGrav: {x: 0, y: 9.81, z: 0}
+  graviStruct:
+    normalGrav: {x: 0, y: 0, z: 0}
+    alteredGrav: {x: 0, y: 0, z: 0}

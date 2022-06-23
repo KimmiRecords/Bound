@@ -15,7 +15,7 @@ public class AudioTriggers : MonoBehaviour
     public float finalVolume;
     public bool isPlay; //si le da play o stop
 
-       void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 3) //la 3 es el player
         {

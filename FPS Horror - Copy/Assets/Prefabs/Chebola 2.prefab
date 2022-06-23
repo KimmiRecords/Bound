@@ -5450,9 +5450,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -6795,10 +6795,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407ce0d39d81da243b116f481132a6fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAura: 25
+  damageAura: 30
   monsterDamage: 0.3
   chebolaPrefab: {fileID: 7808848037089618967}
   desiredScreamer: 1
+  _anim: {fileID: 0}
+  _agent: {fileID: 0}
+  finalSpeed: 0
 --- !u!1 &7994345373475715123
 GameObject:
   m_ObjectHideFlags: 0

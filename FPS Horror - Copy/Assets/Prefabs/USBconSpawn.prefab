@@ -877,7 +877,7 @@ MonoBehaviour:
   chebolaPrefab: {fileID: 7808848037089618967, guid: dfa27c2be20bc854ba76f849923c6257,
     type: 3}
   desiredSpawnPosition: {x: 0, y: 0, z: 0}
-  screamerID: 0
+  screamerID: 1
 --- !u!65 &5224542322552382295
 BoxCollider:
   m_ObjectHideFlags: 0

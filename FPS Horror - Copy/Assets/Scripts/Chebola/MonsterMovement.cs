@@ -11,7 +11,7 @@ public class MonsterMovement : MonoBehaviour, IRalentizable, IGaseable
 
     public float damageAura; //el radio del aura
     public float monsterDamage; // el daño que hace
-    public GameObject chebolaPrefab;
+    //public GameObject chebolaPrefab;
     public int desiredScreamer; //si voy a pedir el screamer 1 o 2 o cual
     public Animator _anim;
     public NavMeshAgent _agent;

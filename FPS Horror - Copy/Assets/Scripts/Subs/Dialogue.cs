@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Dialogue : Subs
 {
-    //un tipo de sub que es vintage y amarillo
+    //un tipo de sub que es vintage y amarillo que se dispara por collider
 
     private Color dialogueColor;
     void Start()

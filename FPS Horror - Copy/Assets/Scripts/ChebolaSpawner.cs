@@ -10,6 +10,7 @@ public class ChebolaSpawner : MonoBehaviour
     public GameObject chebolaPrefab;
     public Vector3 desiredSpawnPosition;
     public int screamerID; //cual screamer reproduce este chebola
+    public float desiredAura;
 
     MonsterMovement _mm;
 
@@ -24,6 +25,7 @@ public class ChebolaSpawner : MonoBehaviour
 
         _mm = chebolaPrefab.GetComponent<MonsterMovement>();
         _mm.desiredScreamer = screamerID; //le cargo el screamer que pedi
+        _mm.damageAura = desiredAura;
     }
 
     void OnDrawGizmosSelected()

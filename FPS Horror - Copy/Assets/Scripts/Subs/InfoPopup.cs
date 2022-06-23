@@ -8,7 +8,7 @@ public class InfoPopup : Subs
 {
     //este script se lo adjuntas a un Interactable que quieras que muestre un mensaje en pantalla mientras lo miras
 
-    Interactable yo;
+    protected Interactable yo;
     public MouseLook mouseLook;
 
     private Color infoColor;
