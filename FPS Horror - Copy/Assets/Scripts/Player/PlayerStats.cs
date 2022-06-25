@@ -163,6 +163,12 @@ public class PlayerStats : MonoBehaviour, IGaseable, IGraviFloorDamageable
         TakeDamage(dmg);
     }
 
+    public void EnterGas()
+    {
+        print("playerstats: el player entro al gas");
+        AudioManager.instance.PlayTos();
+    }
+
     public void TakeFloorDamage(float dmg)
     {
         TakeDamage(dmg);

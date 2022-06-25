@@ -191,4 +191,9 @@ public class MonsterMovement : MonoBehaviour, IRalentizable, IGaseable
         CalmDown();
         Destroy(this.gameObject);
     }
+
+    public void EnterGas()
+    {
+        print("monstermovement: el chebola entro al gas");
+    }
 }

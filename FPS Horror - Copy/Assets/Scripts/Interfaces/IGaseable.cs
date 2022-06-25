@@ -8,4 +8,5 @@ public interface IGaseable
     //TP2 - Mateo Palma y Francisco Serra
 
     void Gas(float d);
+    void EnterGas();
 }

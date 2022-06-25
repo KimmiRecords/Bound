@@ -17,4 +17,14 @@ public class ToxicGas : MonoBehaviour
             elotro.Gas(gasDamage * Time.deltaTime);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<IGaseable>() != null)
+        {
+            var elotro = other.GetComponent<IGaseable>();
+            elotro.EnterGas();
+        }
+    }
+
 }
