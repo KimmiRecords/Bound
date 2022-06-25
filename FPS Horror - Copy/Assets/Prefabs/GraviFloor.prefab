@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6339795688157530715}
   - component: {fileID: 847089543286247262}
   - component: {fileID: 1487798740337739215}
-  - component: {fileID: 6332160790152741805}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -297,7 +296,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a1c10a829f9bc4b409831a9e8dd7ee69, type: 2}
+  - {fileID: 2100000, guid: 09e2a9d9720e37245b2c0b1e1ffc03d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -326,20 +325,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3865650471124662192}
-  m_Mesh: {fileID: 0}
---- !u!64 &6332160790152741805
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3865650471124662192}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &8398688886267515531
 GameObject:
@@ -399,3 +384,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b96e0d316d461049b6a109792c0db5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  graviFloorDamage: 60
