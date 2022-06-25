@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerStats : MonoBehaviour, IGaseable
+public class PlayerStats : MonoBehaviour, IGaseable, IGraviFloorDamageable
 {
     //todos los stats del personaje principal
     //incluye getter y setter para hp y usbs recolectados
@@ -158,8 +158,19 @@ public class PlayerStats : MonoBehaviour, IGaseable
         SceneManager.LoadScene("YouWinScene");
     }
 
-    public void Gas(float d)
+    public void Gas(float dmg)
     {
-        TakeDamage(d);
+        TakeDamage(dmg);
+    }
+
+    public void EnterGas()
+    {
+        print("playerstats: el player entro al gas");
+        AudioManager.instance.PlayTos();
+    }
+
+    public void TakeFloorDamage(float dmg)
+    {
+        TakeDamage(dmg);
     }
 }

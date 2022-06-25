@@ -44,6 +44,10 @@ public class AudioManager : MonoBehaviour
     public AudioSource sewerAmbience;
     public AudioSource inventoryOpen;
     public AudioSource inventoryClose;
+    public AudioSource tos0;
+    public AudioSource tos1;
+    public AudioSource tos2;
+    public AudioSource tos3;
 
     public FinalUSB finalUsb;
 
@@ -52,8 +56,11 @@ public class AudioManager : MonoBehaviour
 
     float volumenDeseadoScreamer;
     bool jumpDownIsReady;
-    int _cycleIndex;
 
+    int _explosionCycleIndex = 0;
+    int _tosCycleIndex = 0;
+
+    //protected Dictionary<string, AudioSource> soundDictionary = new Dictionary<string, AudioSource>();
 
     void Awake()
     {
@@ -70,12 +77,14 @@ public class AudioManager : MonoBehaviour
         volumenDeseadoScreamer = screamer1.volume; //ojo, esto significa que los 2 screamers tendran el mismo volumen
 
         allSounds = GetComponentsInChildren<AudioSource>();
-        _cycleIndex = 0;
 
         if (finalUsb != null)
         {
             finalUsb.OnFinalUSBPickup += TurnOnFinalAlarm; //suscribo el metodo PrenderAlarmas al evento
         }
+
+        //soundDictionary.Add("tos0", tos0);
+        //PlayByName("tos0");
     }
 
     void Update()
@@ -144,7 +153,7 @@ public class AudioManager : MonoBehaviour
     //SFX
     public void PlayDerrumbe(int derrumbeID)
     {
-        switch (_cycleIndex)
+        switch (_explosionCycleIndex)
         {
             case 0:
                 derrumbe0.Play();
@@ -162,8 +171,61 @@ public class AudioManager : MonoBehaviour
                 break;
         }
 
-        _cycleIndex = (_cycleIndex + 1) % 3;
+        _explosionCycleIndex = (_explosionCycleIndex + 1) % 3;
     }
+    public void PlayTos()
+    {
+        bool anyTosIsPlaying = false;
+
+        if (tos0.isPlaying || tos1.isPlaying ||
+            tos2.isPlaying || tos3.isPlaying)
+        {
+            anyTosIsPlaying = true;
+        }
+
+        if (!anyTosIsPlaying)
+        {
+            float randomPitch = Random.Range(0.9f, 1.1f);
+
+            switch (_tosCycleIndex)
+            {
+                case 0:
+                    tos0.pitch = randomPitch;
+                    tos0.Play();
+                    break;
+
+                case 1:
+                    tos1.pitch = randomPitch;
+                    tos1.Play();
+                    break;
+
+                case 2:
+                    tos2.pitch = randomPitch;
+                    tos2.Play();
+                    break;
+
+                case 3:
+                    tos3.pitch = randomPitch;
+                    tos3.Play();
+                    break;
+
+                default:
+                    break;
+            }
+
+            _tosCycleIndex = (_tosCycleIndex + 1) % 4;
+        }
+
+    }
+
+    //public void PlayByName(string clipName)
+    //{
+    //    AudioSource sound;
+    //    sound = soundDictionary[clipName];
+    //    sound.Play();
+    //    print(sound);
+    //}
+
     public void PlayHollowRoar(Vector3 pos, float delayTime, float p)
     {
         if (!hollowRoar.isPlaying)
