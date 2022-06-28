@@ -48,6 +48,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource tos1;
     public AudioSource tos2;
     public AudioSource tos3;
+    public AudioSource geigerCounter;
 
     public FinalUSB finalUsb;
 

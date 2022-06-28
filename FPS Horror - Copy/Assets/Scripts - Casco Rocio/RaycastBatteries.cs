@@ -26,7 +26,7 @@ public class RaycastBatteries : MonoBehaviour
             {
                 batteriesObtained += currentBatteries;
                 //Debug.Log("bateria obtenida");
-                count.text = "batteries: " + batteriesObtained.ToString("f0") + "/5";
+                count.text = "Batteries Collected: " + batteriesObtained.ToString("f0") + "/5";
 
                 //AudioManager.instance.PlayPickup(1);
 

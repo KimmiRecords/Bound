@@ -97,8 +97,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.010889229, y: 0.011260549, z: 0.019526312}
-  m_Center: {x: -0.00084332394, y: 0.0026386187, z: -0.0000056517842}
+  m_Size: {x: 0.01691734, y: 0.018708019, z: 0.019526312}
+  m_Center: {x: -0.00020953748, y: 0.0036503044, z: -0.000005651845}
 --- !u!114 &4945978239522745644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +113,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUpType: 4
   muestraManito: 1
+  inventory: {fileID: 0}
   quePuertaAbro: {fileID: 0}
+  access: 0
 --- !u!1 &1945761128538939854
 GameObject:
   m_ObjectHideFlags: 0
